@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/common.less" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">赵庆馨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="study.html">学习总结</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="introductions">
+        <p class="padding-left2">
+            安装:npm install less
+        </p>
+        <p class="padding-left2">
+            less编译成css有4种途径:1.通过lessc编译;2.通过node编译;3.通过自动化构建工具编译,如fis3,webpack;4.在html中直接引入.less和less.js文件
+        </p>
+        <p class="padding-left2">
+            --lessc编译: lessc [--clean-css] name.less name.css(--clean-css参数待变输出压缩文件)
+        </p>
+        <div class="padding-left2">
+            --node编译:
+            <div class="code">
+                <span>var less = require('less');</span><br>
+
+                <span class="padding-left2">less.render('.class { width: (1 + 1) }', function (e, output)</span> {<br>
+                <span class="padding-left2">console.log(output.css);</span><br>
+                <span>});</span>
+            </div>
+        </div>
+        <div class="padding-left2">
+            --在html中直接引入
+            <p class="code">
+                link rel="stylesheet/less" type="text/css" href="styles.less"<br>
+                script src="less.js" type="text/javascript" /script
+            </p>
+        </div>
+        <p class="padding-left2 text-danger">
+            通过1天的学习,感觉有点得心应手了,总结一下less: <br>
+            less可以很语义化的定义一些变量,方便在之后引用,变量很灵活,可以在变量中定义大多数你想定义的东西. <br>
+            可以封装一些基础的样式,很方便的继承和混合,结合guard匹配不同条件,完成复杂一点的调用. <br>
+            可以按照dom树的结构来写less代码,使结构清晰. <br>
+            可以利用函数和算术运算很方便的操作字符串,颜色等特殊的数值. <br>
+            通过一点复杂的递归调用循环生成样式. <br>
+            太方便了,我决定之后的项目就使用less了. <br>
+        </p>
+        <p class="padding-left2">
+            参考 <a href="http://lesscss.org/">http://lesscss.org/</a>,<a href="https://github.com/less/less.js">https://github.com/less/less.js</a>
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="api">
+        <h2>Variables变量</h2>
+        <div class="padding-left2">
+            <p>
+                <span>--我认为定义变量有几点好处: </span><br>
+                <span class="padding-left2">1.有利于复用; </span><br>
+                <span class="padding-left2 text-success">2.语义化更好,每次调用的时候使用darkyellow,lightblue会比使用#cccccc更清晰和易于记忆; </span><br>
+                <span>--变量标示符:@</span><br>
+                <span>--变量可以用在value,如color:@dark; 也可以在类里面定义.border(@color:#ccc){border:1px solid @color;}</span><br>
+                <span>--可以用在类名和路径,需要使用@{name},如@class:btn, @{class}{}; </span><br>
+                <span>--变量可以互相引用,如@color:#cccccc, @font:'color', @@font或者@color:red, @a:@color; </span><br>
+                <span>--变量的声明可以在调用之前,也可以在调用之后; </span><br>
+                <span>--变量是有作用域的,变量的作用域类似于函数的作用域,变量可以继承父作用域的值,就和js一样, 如@a:#cccccc, .box{@a:red; color:@a}, box类的颜色是red;</span><br>
+                <span>--在同作用域中重复声明变量,会取最后一个变量值,如@a:#cccccc @a:#dddddd, 结果@a是#bbbbbb</span><br>
+                <span>--变量不止可以定义数值或者字符串,还可以定义字符集,像是可以一个class类,如@var{color:#ccc;font-size:16px;}</span>
+
+            </p>
+        </div>
+        <h2>Extend扩展</h2>
+        <div class="padding-left2">
+            <p>
+                <span>--extend的使用场景应该是在复制一个类的样式,复制之后当然可以继续扩充或者覆盖部分样式</span><br>
+                <span>--作用: 将一个或多个类的样式,引入到另一个类中</span><br>
+                <span>--声明:extend,如.box:extend(.btn,.container){}或者在类的内部&:extend(.btn)</span><br>
+                <span>--如果在扩展中加入了all关键字,比如.box:extend(.btn all){},那么必须要.box和.btn的dom树结构一致才会生效,这句话只有我能理解估计...</span><br>
+                <span>--extend的用法非常灵活,有以下几点</span> <br>
+                <span class="padding-left2">1.可以连续引用.box:extend(.a).extend(.b) == .box:extend(.a,.b)</span> <br>
+                <span class="padding-left2">2.可以.box:extend(.a),.box2:extend(.b)</span> <br>
+                <span class="padding-left2">3.extend必须写在最后,像pre:hover:extend(div pre).nth-child(odd)是不允许的.</span><br>
+                <span class="padding-left2">4.扩展的时候需要注意书写顺序和完整性,差一点都不配不上</span><br>
+            </p>
+        </div>
+        <h2>
+            Mixin混合
+        </h2>
+        <div class="padding-left2">
+            <p>
+                <span>--混合可以在一个类里面通过类名引入此类的样式.</span><br>
+                <span>--如果不想输出一个类,可以使用.class(){}的方法,在编译后不会有.class这个类,但是可以混入到其他类中</span><br>
+                <span>--混合的命名空间,>,空格,连续写是一样的.这个很怪,比如有.father .son和.father.son这两种选择器同时存在,这两种样式都会被引入到目标类中.如果相同,按先后顺序覆盖</span><br>
+                <span>--!important关键字可以用在混合的类后面,表示所有属性都是!important</span><br>
+                <span>--带参数的混合,可以指定默认参数,也可以不指定参数值.如.border(@color:red){border:1px solid @color;}, .box{.border(#ccc)}</span><br>
+                <span>--定义类是只要有(),此类不会被output</span><br>
+                <span>--对于传参有点类似java里面的函数重载,如.box(@width;@color){},.box(@width){},调用的时候{.box(10px)},相当于调用了第二个定义</span><br>
+                <span>--如果定义的时候参数没有赋值,调用的时候没有传参,会报错</span><br>
+                <span>--...和@rest...传参传多了的时候不会报错,这个真的有点鸡肋</span><br>
+                <span>--匹配模式,switch的感觉,定义一个参数,通过传入的参数匹配执行那个类的样式,如.box(dark){...}, .box(light){...},看你传如dark还是light,决定了那个样式生效</span>
+            </p>
+
+        </div>
+        <h2>Mixin as Function</h2>
+        <div class="padding-left2">
+            <p>
+                <span>--在mixin中定义的变量或者类,就像函数的return 变量,只有调用mixin的作用域或者子作用域可以使用,这里面类套类有一点绕,如.a{.b{}},如果调用了.a,哪在作用域内就会返回.b, .b就可以被调用,并且参数可以继承</span><br>
+                <span>--定义变量的地方都可以使用算术运算</span><br>
+                <span>--变量不能传参,class可以传参</span><br>
+                <span>--变量的赋值很有意思,在一般情况下会从自己作用域向上找,但是在mixin中,会先在就近作用域找,如果找不到,在找调用的作用域</span><br>
+                <span>--变量如果定义的是一个类,执行要加()</span>
+
+            </p>
+        </div>
+        <h2>Import引入文件</h2>
+        <div class="padding-left2">
+            <p>
+                <span>less.js并不关心你在哪里使用import,也就是说你可以按需引入</span>
+            </p>
+        </div>
+        <h2>Mixin Guard</h2>
+        <div class="padding-left2">
+            <p>
+                <span>--关键字when, .box(@width) when(@width>100){...}, 设置当@width大于100的样式</span><br>
+                <span>--and要两个条件都匹配到,逗号相当于或者,只要满足一个就可以; not否定</span><br>
+                <span>--常用判断的条件有iscolor,isnumber,isstring,iskeyword,isurl.</span><br>
+                <span>--如果像判断是否是一个特定单位的值ispixel,ispercentage,isem,isunit,只能看懂是否是em</span><br>
+            </p>
+        </div>
+    </div>
+    <h2>loop循环</h2>
+    <div class="padding-left2">
+        <div>
+            <span>--写了一个循环,感觉很恶心</span><br>
+            <div class="code">
+                <span>.generate(@n) when(@n>=1){</span><br>
+                <span class="padding-left2">.width@{n}{</span><br>
+                <span class="padding-left4">width:unit(@n,px);</span><br>
+                <span class="padding-left2">}</span><br>
+                <span class="padding-left2">.generate(@n - 100);</span><br>
+                <span>}</span><br>
+                <span>.generate(1000);</span><br>
+            </div>
+            <span>--有几点需要注意,1.变量不支持在内部自增或者自减,@n=@n+100这样不可以; 2.变量的自减只能写在自己调用自己的函数中; 3.写加减运算的时候一定要用空格隔开</span>
+        </div>
+    </div>
+    <h2>merge合并</h2>
+    <div class="padding-left2">
+        <p>
+            <span>--可以用+合并样式,是通过逗号合并,但是我真不知道这个除了写背景还有什么用处,个人感觉鸡肋了,迅速忘记</span><br>
+            <span>--可以用+_合并样式,通过空格合并,这个真的有点用,可以合并很多东西</span><br>
+
+        </p>
+    </div>
+    <h2>&符号 parentselector</h2>
+    <div class="padding-left2">
+        <p>
+            <span>--这个非常有用,这个符号引用了父级元素的名字,仅仅是名字,可以组合使用&&,& &,&:hover等等用法</span><br>
+            <span>--如果有多个父级,&代表多个嵌套关系的父级,& &,&&,&>&之间的关系代表多个父级之间的关系</span><br>
+            <span>--如果多个同级父级用逗号隔开的,&代表任意一个</span>
+        </p>
+    </div>
+    <h2>Function函数</h2>
+    <div class="padding-left2 end">
+        <p>
+            <span>--参考官网吧,太多了,大多数不会经常用</span><br>
+            <span>--有几个觉得用得着unit()合并数字和单位,Math function, type function, color function这个感觉挺有意思,调色相的挺有意思,有机会要用一用</span><br>
+
+        </p>
+    </div>
+</div>
+</body>
+<script src="../js/less.js"></script>
+</html>
