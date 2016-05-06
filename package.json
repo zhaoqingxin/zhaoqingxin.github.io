@@ -1,0 +1,27 @@
+{
+  "name": "zhaoqingxin.github.io",
+  "version": "1.0.0",
+  "description": "个人静态网站",
+  "main": "index.js",
+  "dependencies": {
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-react": "^6.5.0",
+    "bootstrap": "^3.3.6",
+    "co": "^4.6.0",
+    "less": "^2.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhaoqingxin/zhaoqingxin.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhaoqingxin/zhaoqingxin.github.io/issues"
+  },
+  "homepage": "https://github.com/zhaoqingxin/zhaoqingxin.github.io#readme"
+}

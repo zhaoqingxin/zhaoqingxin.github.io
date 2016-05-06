@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES5</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/common.less" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">赵庆馨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="study.html">学习总结</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="introductions">
+        <p class="padding-left2">
+            ES5增加了一点对字符串和数组的使用方法.总结一下:
+        </p>
+        <p class="padding-left4">
+            --ES5的兼容性对于低版本浏览器还是有点问题的,但在node中可以大胆使用.
+        </p>
+        <p class="padding-left4">
+            --对于Object我不知道理解的对不对,所有的原型都是Object,所以所有原型都继承了Object.prototype,tostring,valueof等这些方法都是在object原型上定义的,object的原型的方法,貌似是不可枚举的,有时间好好研究一下
+        </p>
+        <p class="padding-left4">
+            --关于原型的问题是这样的,每个构造函数都有个原型,每个对象都有个隐式原型指向构造函数的原型,每个原型都会继承父构造函数的原型,原型就是个对象,所以原型都是new Object出来的,所以都继承了Object的原型.算了太多了,就说这么多吧,这没啥用.
+        </p>
+        <p class="padding-left4">
+            --我对于arguments我还是有一点疑问的,arguments是对象,KEY就是0,1,2,3,为什么可以使用Array的slice方法?
+        </p>
+    </div>
+    <div class="api">
+        <h2>Object</h2>
+        <div class="padding-left2">
+            <p>
+                Object.getPrototypeOf(obj)
+            </p>
+            <p class="padding-left2">
+                --返回一个对象,obj的隐式原型
+            </p>
+            <p>
+                Object.getOwnPropertyNames(obj)/Object.keys(obj)
+            </p>
+            <p class="padding-left2">
+                --返回一个数组,obj的属性,不包括隐式原型,这两个方法貌似一样
+            </p>
+            <p>
+                Object.seal(obj)/Object.freeze(obj)
+            </p>
+            <p class="padding-left2">
+                --返回一个对象,obj的属性key和value,这两个方法我看不出有什么不同
+            </p>
+        </div>
+        <h2>Object.prototype</h2>
+        <div class="padding-left2">
+            <p>
+                Obj.toString()
+            </p>
+            <p class="padding-left2">
+                --对象转化成字符串,数组,函数都是对象,所以都可以调用toString()方法;
+            </p>
+            <p>
+                Obj.hasOwnProperty(key)
+            </p>
+            <p class="padding-left2">
+                --返回一个布尔值,表示是否有此属性
+            </p>
+            <p>
+                obj.valueOf()
+            </p>
+            <p class="padding-left2">
+                --返回指定对象的原始值
+            </p>
+            <p>
+                obj.propertyIsEnumerable()
+            </p>
+            <p class="padding-left2">
+                --返回布尔值,表示属性是否可枚举
+            </p>
+        </div>
+
+        <h2>Function.prototype上的方法</h2>
+        <div class="padding-left2">
+            <p>
+                Function.prototype.constructor
+            </p>
+            <p class="padding-left2">
+                --prototype属于谁,但这不准
+            </p>
+            <p>
+                Function.prototype.toString()
+            </p>
+            <p class="padding-left2">
+                --转化字符串
+            </p>
+            <p class="text-danger">
+                Function.prototype.apply (thisArg, argArray)
+            </p>
+            <p class="padding-left2">
+                --常用
+            </p>
+            <p class="text-danger">
+                Function.prototype.call (thisArg, arg1 , arg2, …  )
+            </p>
+            <p class="padding-left2">
+                --常用
+            </p>
+            <p class="text-danger">
+                Function.prototype.bind (thisArg, arg1 , arg2, …  )
+            </p>
+            <p class="padding-left2 text-info">
+                --call,aplly都是改变this指向执行函数,bind则是绑定新的对象和参数,然后返回一个绑定好的函数,调用的时候只需要传入剩余的参数即可.有机会要深入研究一下这三个方法.
+            </p>
+
+        </div>
+
+        <h2>Array</h2>
+        <p class="padding-left2 text-danger">
+            Array部分是ES5的重头戏
+        </p>
+        <div class="padding-left2">
+            <p>
+                Array.isArray(arg)
+            </p>
+            <p class="padding-left2">
+                --是不是数组
+            </p>
+            <p>
+                Array.prototype.toString()
+            </p>
+            <p class="padding-left2">
+                --转化字符串
+            </p>
+            <p class="text-danger">
+                Array.prototype.slice(start,end)
+            </p>
+            <p class="padding-left2">
+                --这个很实用,返回一个被截取的数组;
+            </p>
+            <p>
+                Array.prototype.sort (comparefn)
+            </p>
+            <p class="padding-left2">
+                --排序,也是很早之前的方法,不过用法很灵活,不只是数字,字母,汉字等等都可以排序,非常有用;
+            </p>
+            <p>
+                Array.prototype.indexOf/lastIndexOf()
+            </p>
+            <p class="padding-left2">
+                --用法同字符串的方法一样;
+            </p>
+            <p class="text-success">
+                Array.prototype.every(callbackfn[, thisArg ] )
+            </p>
+            <p class="padding-left2">
+                --循环数组的每一个元素,满足条件返回true,否则返回false,全部为真,则结果为真.第二个参数可以传入一个对象,用this调用.
+            </p>
+            <p class="text-success">
+                Array.prototype.some ( callbackfn [ , thisArg ] )
+            </p>
+            <p class="padding-left2">
+                --和every相反,有一个为真,则结果为真.
+            </p>
+            <p class="text-danger">
+                Array.prototype.forEach ( callbackfn [ , thisArg ] )
+            </p>
+            <p class="padding-left2">
+                --和传统的for循环一样.可以传入一个对象,用this指向
+            </p>
+            <p class="text-success">
+                Array.prototype.map ( callbackfn [ , thisArg ] )
+            </p>
+            <p class="padding-left2">
+                --映射出一个新的数组
+            </p>
+            <p class="text-success">
+                Array.prototype.filter ( callbackfn [ , thisArg ] )
+            </p>
+            <p class="text-success">
+                Array.prototype.reduce/reduceRight(function (previous, current, index, array) {},params)
+            </p>
+            <p class="padding-left2">
+                --第一种情况,没有传params,那么从数组的第1项开始循环,return出来的值,作为下一次函数执行的previous,最简单的应用是算数组的和;
+            </p>
+            <p class="padding-left2">
+                --第二种情况,传params,那么从数组的第0项开始循环,return出来的值,作为下一次函数执行的previous,最简单的应用是算数组的和;
+            </p>
+            <p class="text-success">
+            </p>
+            <p class="padding-left2">
+                --按照条件过滤出一个新数组
+            </p>
+        </div>
+
+        <h2>String</h2>
+        <div class="padding-left2">
+            <p>
+                String.fromCharCode ( arg1,arg2... )
+            </p>
+            <p class="padding-left2">
+                --传入数字,返回对应utf8编码的字符;
+            </p>
+            <p>
+                String.prototype.charAt (pos)
+            </p>
+            <p class="padding-left2">
+                --传入位置,返回字符;
+            </p>
+            <p>
+                String.prototype.charCodeAt (pos)
+            </p>
+            <p class="padding-left2">
+                --返回对应位置的字符编码;
+            </p>
+            <p>
+                String.prototype.concat (arg1,arg2,arg3...)
+            </p>
+            <p class="padding-left2">
+                --拼接字符串;
+            </p>
+            <p>
+                String.prototype.indexOf/lastIndexOf(searchString, position)
+            </p>
+            <p class="padding-left2">
+                --查找字符串出现的位置;
+            </p>
+            <p class="">
+                String.prototype.match (regexp)
+            </p>
+            <p class="padding-left2">
+                --在字符串中寻找正则匹配
+            </p>
+            <p class="text-success">
+                String.prototype.replace (reg, function(value,index,原数组){})
+            </p>
+            <p class="padding-left2">
+                --替换
+            </p>
+            <p class="">
+                String.prototype.search (regexp)
+            </p>
+            <p class="padding-left2">
+                --返回匹配到的位置,很想indexOf;
+            </p>
+            <p class="text-success">
+                String.prototype.slice (start, end)
+            </p>
+            <p class="padding-left2">
+                --跟数组的用法一样,截取字符串;
+            </p>
+            <p class="">
+                String.prototype.split (separator, limit)
+            </p>
+            <p class="padding-left2">
+                --字符串转数组;
+            </p>
+            <p class="">
+                String.prototype.substring (start, end)
+            </p>
+            <p class="padding-left2">
+                --截取字符串
+            </p>
+            <p class="">
+                String.prototype.toLowerCase/toUpperCase( )
+            </p>
+            <p class="padding-left2">
+                --转换大小写;
+            </p>
+            <p class="">
+                String.prototype.trim()
+            </p>
+            <p class="padding-left2">
+                --删除头尾空白
+            </p>
+            <p class="">
+                String.length
+            </p>
+            <p class="padding-left2">
+                --获取长度
+            </p>
+        </div>
+
+        <h2>Math</h2>
+        <div class="padding-left2">
+            <p>
+                --abs(x)绝对值
+            </p>
+            <p>
+                --ceil(x)向上取整数
+            </p>
+            <p>
+                --floor(x)向下取整
+            </p>
+            <p>
+                --max(arr)最大值,min(arr)最小值
+            </p>
+            <p>
+                --pow(x, y)的多少次方
+            </p>
+            <p>
+                --random()随机数
+            </p>
+            <p>
+                --round(x)四舍五入
+            </p>
+        </div>
+
+        <h2>Date</h2>
+        <div class="padding-left2">
+            <p>
+                new Date([年,月,日,小时,分....])/new Date(毫秒)
+            </p>
+            <p class="padding-left2">
+                --按照传入的参数,生成日期对象
+            </p>
+            <p>
+                Date.now()
+            </p>
+            <p class="padding-left2">
+                --当前时间戳
+            </p>
+            <p>
+                Date.prototype.toString/toDateString/toTimeString/toLocaleString ( )
+            </p>
+            <p class="padding-left2">
+                --返回字符串;
+            </p>
+            <p>
+                Date.prototype.getTime/valueOf( )
+            </p>
+            <p class="padding-left2">
+                --返回时间戳;
+            </p>
+            <p>
+                Date.prototype.getFullYear/getMonth/getDate/getDay/getHours/getMinutes/getSeconds( )
+            </p>
+            <p class="padding-left2">
+                --获取各种时间,get换成set设置时间;
+            </p>
+        </div>
+
+        <h2>JSON</h2>
+        <div class="padding-left2">
+            <p>
+                parse
+            </p>
+            <p class="padding-left2">
+                --字符串转JSON,必须标准,KEY和VALUE如果是字符串必须用双引号
+            </p>
+            <p>
+                stringify
+            </p>
+            <p class="padding-left2">
+                --转字符串
+            </p>
+            <p>
+                Date.prototype.toString/toDateString/toTimeString/toLocaleString ( )
+            </p>
+            <p class="padding-left2">
+                --返回字符串;
+            </p>
+            <p>
+                Date.prototype.getTime/valueOf( )
+            </p>
+            <p class="padding-left2">
+                --返回时间戳;
+            </p>
+            <p>
+                Date.prototype.getFullYear/getMonth/getDate/getDay/getHours/getMinutes/getSeconds( )
+            </p>
+            <p class="padding-left2 padding-bottom10">
+                --获取各种时间,get换成set设置时间;
+            </p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/less.js"></script>
+</html>
