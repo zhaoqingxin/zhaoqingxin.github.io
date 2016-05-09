@@ -44,67 +44,77 @@
 
 <div class="container">
     <div class="introductions">
-        <p class="padding-left2">
-            ES6可能有点复杂,因为有时候看上去有点像java了,不过他的本质还是js,只是看上去像.
+        <p class="padding-left2 text-danger">
+            --用了三天把知识梳理了一遍,感觉ES6确实增加了许多东西,甚至有时候都不知道是不是在写js,还是写java,一下子把书写习惯改过来还是不太容易,以后要多多应用.感觉有些新东西并没有太方便,比如promise,iterator等等,并没有改变实质的问题,还有babel对于set,map等数据结构并没有转化,还有其他兼容问题,这可能导致很多版本的浏览器和node不能正确的运行ES6,如果全面普及还有待时日.还有对于module模块机制,在浏览器端并不能取代amd,cmd模块化工具,也可能是我没有找到正确的方法.在学习的过程中也思考了很多问题,包括如何实现promise构造函数的,for of是如何调用迭代器的,等等,对于程序的理解更好了一点,但是只是理解到些皮毛,这些都要在以后学习的过程中加强理解和运用.本总结涵盖了一点ES6入门知识,但是还有一些没有涵盖到.过了这阵要从头到尾细细研究一遍,能加深理解
         </p>
-        <p class="padding-left2">
-            let命令、const命令、class命令声明的全局变量，不属于全局对象的属性。
+        <p class="padding-left2 text-danger">
+            总结几点自己的不足:
+        </p>
+        <p class="padding-left2 text-danger">
+            --第一对于字符串模版,要深入研究.
+        </p>
+        <p class="padding-left2 text-danger">
+            --第二对于object上的方法,要加强记忆.
+        </p>
+        <p class="padding-left2 text-danger">
+            --第三对于正则表达式,要重新学习.
+        </p>
+        <p class="padding-left2 text-danger">
+            --对于promise,迭代器和generator,async等等新的知识只了解了基础,还需要深入的看看具体如何实现的
         </p>
     </div>
     <div class="api">
-        <h2>let</h2>
+        <h2>let和const命令</h2>
+        <p class="text-danger">
+            --ES6出现后,其实就是新增加了一级作用域,来限制变量
+        </p>
+        <p class="text-danger">
+            --let命令、const命令、class命令声明的全局变量，不属于全局对象的属性
+        </p>
         <div class="padding-left2">
             <p class="">
-                --let命令，用来声明变量。它的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。
+                --let不会被预解析,所以变量的声明必须在前;
             </p>
             <p class="">
-                --let不会被预解析;
+                --只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响;
             </p>
             <p class="">
-                --只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响。;
-            </p>
-            <p class="">
-                --let不允许在相同作用域内，重复声明同一个变量。但在不同块之间可以声明,嵌套关系也无所谓.;
+                --let不允许在相同作用域内，重复声明同一个变量;
             </p>
         </div>
         <h2>{}块级作用域</h2>
         <div class="padding-left2">
             <p class="">
-                --块级作用域是专门为let准备的,块级作用域对var毫无用处,但是能阻隔let的作用域。
+                --块级作用域是专门为let准备的,块级作用域对var毫无用处,但是能阻隔let的作用域
             </p>
-            <p class="">
-                --块级作用域的出现,自制行匿名函数就不必要了.我并不认同,虽然块级作用域能阻隔let,但是无法阻隔var,除非你的程序中不使用var.
+            <p class="text-danger">
+                --块级作用域的出现,自制行匿名函数就不必要了.因为使用块级作用域,封闭了let的作用域,就不存在变量名冲突了
             </p>
             <p class="">
                 --if和for现在都相当于块级作用域了,可以阻隔let,但原来是对var不起作用的;
-            </p>
-            <p class="">
-                --我看了阮一峰写的ECMAScript 6 入门这本书,发现他对块的理解貌似不对,块对于传统的函数变量都没有任何影响,他只是能阻隔let。;
             </p>
         </div>
 
         <h2>const</h2>
         <div class="padding-left2">
             <p class="">
-                --声明常量。
+                --常量的声明规则和let是一样的,包括作用域不可重复不可提升等
+            </p>
+            <p class="text-danger">
+                --常量的一个好处是,我们终于可以不用担心其他人篡改我们的赋值了
             </p>
             <p class="">
-                --在块内有效.块外无效,其他注意事项和let基本一样
+                --用常量赋值一个对象,那么常量是指向这个对象的地址,对象可以改变,地址不变即可
             </p>
             <p class="">
-                --如果常量是一个数组或者一个对象,那么只能用push,或者属性=值的方法,而不能给常量整体赋值;
-            </p>
-            <p class="">
-                --Object.freeze([1,2,3]),如果想真正冻结,就应该使用这个函数,不允许任何操作.;
+                --对象真正的冻结需要借助对象方法:Object.freeze([1,2,3]);
             </p>
         </div>
 
         <h2>变量的结构赋值</h2>
-        <div class="padding-left2">
-            <p>--用途:交换变量[x, y] = [y, x]; 感觉这个作用也是半个鸡肋,不借助新的变量根本交换不过来,还是我的解析有问题</p>
-            <p>--用途:接收数组或者对象,这个很好理解</p>
-            <p>--用途:函数定义function f([x, y, z]) { ... };f([1, 2, 3])</p>
-            <p>--用途:输入模块的指定方法,const { SourceMapConsumer, SourceNode } = require("source-map");</p>
+        <div class="text-danger">
+            <p>--借助数组或者对象,为变量赋值.叫法是模式匹配.</p>
+            <p>--乍一看都要流哈喇子,方便,太方便了!!!但是仔细一想,感觉并不是.把一个数组或者对象赋值给变量,有啥意义呢,我为什么不直接拿着数组或者对象去使用呢,而是非要赋值给几个变量呢.对字符串的解构就更扯淡了</p>
         </div>
         <div class="padding-left2">
             <h3>数组的解构赋值</h3>
@@ -116,71 +126,86 @@
                     --解构不成功和不完全解构,都可以成功,匹配上对应的位置就可以了
                 </p>
                 <p class="">
-                    --结构允许默认值 let [a='a',b='b',c] = [1,undefined];
+                    --如果默认值是一个函数或者表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值.undefined被认为是不赋值;
                 </p>
                 <p class="">
-                    --如果默认值是一个表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值.;
+                    --只要数据结构具有Iterator接口，都可以采用解构赋值.再说一边iterator,iterator这个要深刻理解iterator;
                 </p>
             </div>
 
             <h3>对象的解构赋值</h3>
             <div class="text-danger">
-                这个从对象中取一些方法或者属性非常实用
+                --所有赋值都不是给key赋值,而是给value赋值,所以取出对应变量也不能取key,只能取value,因为ES6会做这件事:{a,b}会自动转换成{a:a,b:b};
             </div>
             <div class="padding-left2">
                 <p class="">
-                    --对象的结构,是根据key对应的;
+                    --对象的结构赋值,只可意会...其实还是匹配模式,匹配模式匹配模式,记住就OK了;
                 </p>
                 <p class="">
-                    --如果结构名不一样需要这样写:let { first: f, last: l } = { first: 'hello', last: 'world' };
-                </p>
-                <p class="">
-                    --不允许重复声明let foo; ({foo} = {foo: 1});
-                </p>
-                <p class="">
-                    --解构也可以用于嵌套结构的对象。;
+                    --大括号不能写在行首,所以行首可以写let或者用小括号扩起来;
                 </p>
             </div>
 
             <h3>字符串的解构赋值</h3>
             <div class="padding-left2">
-                <p class="">
-                    --这个用法比较巧妙let {length : len} = 'hello';
+                <p class="text-danger">
+                    --let {length : len} = 'hello'可以这么理解么?就是说实现了iterator接口就必定有length这个属性,所以都可以拿出来用,但我取了length有什么用呢?;
+                </p>
+                <p class="text-danger">
+                    --为什么字符串可以利用数组结构赋值,正是因为字符串也实现了iterator接口;
                 </p>
             </div>
+
             <h3>函数参数的解构赋值</h3>
             <div class="padding-left2">
                 <p class="">
-                    --函数参数的解构[[1, 2], [3, 4]].map(([a, b]) => a + b);
+                    --参数接受后会把参数自动转换成变量,这个的意义在于你传进去和接受的都是一个数组或者一个对象,但你在函数中可以按照变量去使用它们;
+                </p>
+            </div>
+
+            <h3>用途</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --交换变量的值;
                 </p>
                 <p class="">
-                    --函数参数的默认值function move({x = 0, y = 0} = {}){};
+                    --从函数返回多个值;
                 </p>
                 <p class="">
-                    --不允许重复声明let foo; ({foo} = {foo: 1});
+                    --函数参数的定义;
                 </p>
                 <p class="">
-                    --解构也可以用于嵌套结构的对象。;
+                    --提取JSON数据;
+                </p>
+                <p class="">
+                    --遍历map解构,这个由map结构的特性决定,因为map解构的键值对本身就是[key,value]形式的,然并卵;
+                </p>
+                <p class="text-danger">
+                    --函数参数的默认值;
+                </p>
+                <p class="">
+                    --输入模块的指定方法;
                 </p>
             </div>
         </div>
 
         <h2>字符串的扩展</h2>
+        <div class="text-danger">
+            <p>
+                --说了一堆关于编码的问题,我也没看懂,我以后要认真研究一下字符编码的问题了
+            </p>
+            <p>
+                --ES6为字符串添加了iterator接口,这表示现在不用在将字符串转成数组就可以使用for...of...来遍历数组了
+            </p>
+            <p>
+                --看了之后感觉最有用的就是模版字符串了,这个要用起来,但是我对于一些复杂的用法还没有深入的看,之后有时间再学习吧.
+            </p>
+        </div>
         <div class="padding-left2">
             <h3>模板字符串 </h3>
             <div class="padding-left2">
-                <p>--使用符号反引号`,用${}引用变量,计算或者调用函数都可以,原来在dom元素中插入字符串比较费劲,要用''和""区分,增加的这个功能更比较实用</p>
-                <p>--如果使用模板字符串表示多行字符串，所有的空格和缩进都会被保留在输出之中。这点很方便</p>
-                <p>--模板字符串之中还能调用函数。`foo ${fn()} bar`</p>
-                <p class="text-danger">--这个模版字符串貌似用起来还是挺复杂的,有时间的时候要好好实验一下</p>
-            </div>
-
-            <h3>String.codePointAt()/String.fromCodePoint()</h3>
-
-            <div class="padding-left2">
-                <p class="">
-                    --返回一个字符的码点/通过编码返回一个字符;
-                </p>
+                <p>--可以换行,不会报错,(空格和换行都会保存在输出当中)我试验了,并不是这样</p>
+                <p>--可以写变量,变量可以运算,还可以调用函数</p>
             </div>
 
             <h3>字符串的遍历器接口</h3>
@@ -189,22 +214,13 @@
                     --字符串添加了遍历接口Iterator,可以使用for...of;
                 </p>
             </div>
-            <h3>at()</h3>
-            <div class="padding-left2">
-                <p class="">
-                    --返回对应位置上的字符;
-                </p>
-            </div>
-            <h3>normalize()</h3>
-            <div class="padding-left2">
-                <p class="">
-                    --用来将字符的不同表示方法统一为同样的形式，这称为Unicode正规化;
-                </p>
-            </div>
             <h3>includes(), startsWith(), endsWith()</h3>
             <div class="padding-left2">
                 <p class="">
                     --都返回布尔型,是对indexOf的扩展,他们分别表示是否找到了参数字符串/参数字符串是否在源字符串的头部/尾部
+                </p>
+                <p class="">
+                    --都支持第二个参数,变数开始遍历的位置
                 </p>
             </div>
             <h3>repeat(n)</h3>
@@ -216,12 +232,15 @@
             <h3>padStart()，padEnd()</h3>
             <div class="padding-left2">
                 <p class="">
-                    --头部或者尾部补全,'x'.padStart(5, 'ab') // 'ababx'
+                    --接受两个参数,第一个参数是字符串的长度,第二个参数是用来循环的字符串
                 </p>
             </div>
         </div>
 
         <h2>正则的扩展</h2>
+        <div class="text-danger">
+            <p>--RegExp.escape()这个方法还是很有用的,把字符串转换成正则的格式</p>
+        </div>
         <div class="padding-left2">
             <h3>RegExp构造函数 </h3>
             <div class="padding-left2">
@@ -281,6 +300,9 @@
         </div>
 
         <h2>数值的扩展</h2>
+        <div class="text-danger">
+            <p>--数值和运算的扩展感觉暂时没什么用,很多方法我都用不到</p>
+        </div>
         <div class="padding-left2">
             <h3>二进制和八进制表示法</h3>
             <div class="padding-left2">
@@ -357,7 +379,16 @@
             <h3>Array.from() </h3>
             <div class="padding-left2">
                 <p class="text-danger">
-                    --Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象（包括ES6新增的数据结构Set和Map）。
+                    --Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象(包括ES6新增的数据结构Set和Map).
+                </p>
+                <p class="text-danger">
+                    --什么是类数组对象:类数组对象只要是有length属性的对象就可以,必须有长度.但...不行,...只能转换由iteraror属性的对象,比如arguments,页面获取的元素.
+                </p>
+                <p class="">
+                    --此方法还可以接受第二个参数,一个函数,比如map函数
+                </p>
+                <p class="">
+                    --此方法还可以接受第三个参数,如果在map里面用到了this,可以传入第三个参数,表示this的指向
                 </p>
                 <p class="code">
                     <span class="padding-left2">let arrayLike = {'0': 'a','1': 'b','2': 'c',length: 3};</span><br>
@@ -370,26 +401,6 @@
                     <span>   </span><br>
                     <span class="padding-left2">Array.from('hello')</span><br>
                     <span class="padding-left2">// ['h', 'e', 'l', 'l', 'o']</span>
-                </p>
-                <p class="text-danger">
-                    --扩展运算符（...）也可以将某些数据结构转为数组;
-                </p>
-                <p class="">
-                    --任何有length属性的对象，都可以通过Array.from方法转为数组，而此时扩展运算符就无法转换。
-                </p>
-                <p class="code">
-                    <span class="padding-left2">Array.from({ length: 3 });</span><br>
-                    <span class="padding-left2">// [ undefined, undefined, undefinded ]</span>
-                </p>
-                <p class="">
-                    --Array.from还可以接受第二个参数，作用类似于数组的map方法，用来对每个元素进行处理，将处理后的值放入返回的数组。
-                </p>
-                <p class="code">
-                    <span class="padding-left2">let spans = document.querySelectorAll('span.name');</span><br>
-                    <span class="padding-left2">// map()</span>
-                    <span class="padding-left2">let names1 = Array.prototype.map.call(spans, s => s.textContent);</span>
-                    <span class="padding-left2">// Array.from()</span>
-                    <span class="padding-left2">let names2 = Array.from(spans, s => s.textContent)</span>
                 </p>
                 <p class="">
                     --下面的例子将数组中布尔值为false的成员转为0
@@ -446,7 +457,7 @@
             <h3>数组实例的entries()，keys()和values()</h3>
             <div class="padding-left2">
                 <p>
-                    --ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历，entries()是对键值对的遍历。
+                    --ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历(现在node6.0还不支持这个方法)，entries()是对键值对的遍历。
                 </p>
                 <p class="code">
                     <span class="padding-left2">for (let [index, elem] of ['a', 'b'].entries()) {</span><br>
@@ -475,8 +486,8 @@
 
             <h3>数组推导</h3>
             <div class="padding-left2">
-                <p class="">
-                    --通过现有数组生成新数组。
+                <p class="text-danger">
+                    --通过现有数组生成新数组,这个跟map,reduce等等有什么区别么,只是一种简写形式么。
                 </p>
                 <p class="code">
                     <span class="padding-left2">
@@ -564,13 +575,13 @@
                     --rest参数,function add(...values) {} 这可以代替操作arguments,rest参数之后不能再有其他参数,函数的length属性，不包括rest参数;
                 </p>
             </div>
-            <h3>扩展运算符</h3>
+            <h3>rest参数和扩展运算符</h3>
             <div class="padding-left2">
-                <p>
-                    --扩展运算符（spread）是三个点（...）。它好比rest参数的逆运算，将一个数组转为用逗号分隔的参数序列。console.log(...[1, 2, 3]); // 1 2 3
+                <p class="text-danger">
+                    --rest和扩展运算符是一个意思.(...)符号就是把有iterateor的对象转换成参数序列.function(...rest)实际上就是认为rest是一个数组,...rest其实就是你要传几个参数.认清...一切都很简单.
                 </p>
                 <p>
-                    --替代数组的apply方法
+                    --替代数组的apply方法,其实这个感觉说的没什么意义.其实就是相传个数组进去,但是函数只接受参数序列,怎么办,当然用...就可以解决了
                 </p>
 
                 <p class="code">
@@ -611,6 +622,9 @@
             <div class="padding-left2">
                 <p class="">
                     --ES6允许使用“箭头”（=>）定义函数
+                </p>
+                <p class="text-danger">
+                    --箭头函数根本没有this!!!!!!
                 </p>
                 <p class="code">
                     <span class="padding-left2">var f = v => v;</span><br>
@@ -658,7 +672,7 @@
                 <p class="">
                     --使用注意点
                 </p>
-                <p class="padding-left2 text-danger">
+                <p class="padding-left2">
                     <span class="">函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</span><br>
                     <span class="">不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</span>
                     <span class="">不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</span><br>
@@ -674,6 +688,9 @@
             <div class="padding-left2">
                 <p class="">
                     --ES6允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。
+                </p>
+                <p class="">
+                    --这就是在结构赋值时用到的默认转换
                 </p>
                 <p class="code">
                     <span class="padding-left2">var foo = 'bar';</span><br>
@@ -722,19 +739,22 @@
                     --函数的name属性，返回函数名。对象方法也是函数，因此也有name属性。
                 </p>
             </div>
-            <h3>Object.is()</h3>
+            <h3>Object.is(obj1,obj2)</h3>
             <div class="padding-left2">
                 <p class="">
                     --用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致
                 </p>
             </div>
-            <h3>Object.assign()</h3>
+            <h3>Object.assign(target,source)</h3>
             <div class="padding-left2">
                 <p class="">
                     --Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）
                 </p>
                 <p class="">
-                    --常见用途:为对象添加属性,为对象添加方法,克隆对象,合并多个对象,为属性指定默认值
+                    --常见用途:为对象添加属性,为对象添加方法,克隆对象,合并多个对象,为属性指定默认值.
+                </p>
+                <p class="">
+                    --要注意,只能赋值对象自身属性,隐式原型上的值是不能合并的.
                 </p>
             </div>
             <h3>属性的可枚举性</h3>
@@ -754,22 +774,22 @@
                     --ES6一共有6种方法可以遍历对象的属性
                 </p>
                 <p class="">
-                    --for...in
+                    --for...in  循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）
                 </p>
                 <p class="">
-                    --Object.keys(obj)
+                    --Object.keys(obj) 包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性）。
                 </p>
                 <p class="">
-                    --Object.getOwnPropertyNames(obj)
+                    --Object.getOwnPropertyNames(obj) 返回一个数组，包含对象自身的所有属性（不含Symbol属性，但是包括不可枚举属性）。
                 </p>
                 <p class="">
-                    --Object.getOwnPropertySymbols(obj)
+                    --Object.getOwnPropertySymbols(obj) 返回一个数组，包含对象自身的所有Symbol属性。
                 </p>
                 <p class="">
-                    --Reflect.ownKeys(obj)
+                    --Reflect.ownKeys(obj) 返回一个数组，包含对象自身的所有属性，不管是属性名是Symbol或字符串，也不管是否可枚举。
                 </p>
                 <p class="">
-                    --Reflect.enumerate(obj)
+                    --Reflect.enumerate(obj) 返回一个Iterator对象，遍历对象自身的和继承的所有可枚举属性（不含Symbol属性），与for...in循环相同。
                 </p>
             </div>
 
@@ -847,14 +867,17 @@
         <div class="padding-left2">
             <h3>Proxy概述</h3>
             <div class="padding-left2">
-                <p class="">
-                    --Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。
+                <p class="text-danger">
+                    --Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。其实这句话我没看懂
                 </p>
                 <p class="text-danger">
-                    --其实认为proxy就是个拦截器,把目标对象属性操作一下,放到自己身上,不知道理解的对不对,这里面还是有点深奥,要多看看.而且proxy可以继承,用create();
+                    --proxy就是个拦截器,在目标对象和拦截器之前建立一个关系,你通过拦截器操作一个对象,拦截器在操作对象之前还能帮你干点你想干的坏事.这有什么用?草
                 </p>
                 <p class="text-danger">
-                    --Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法,就是说可以理解成,你操作的是proxy对象,实际上是操作目标对象.
+                    --Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法,就是说可以理解成,你操作的是proxy对象,实际上是操作目标对象,但你如何操作目标对象呢,就可以借助于Reflect,因为他把Object身上的方法挂到了自己身上,大多数方法有个屁用!!!我还不如直接操作,目标对象呢
+                </p>
+                <p class="text-danger">
+                    大多数事后我没有想好应用场景,理解的不够,继续学
                 </p>
             </div>
             <h3>Reflect</h3>
@@ -931,7 +954,19 @@
                     --clear()：清除所有成员，没有返回值。
                 </p>
                 <p>
-                    --可以使用扩展运算符（...）,也可以使用for...of循环。
+                    --keys()：返回一个键名的遍历器
+                </p>
+                <p>
+                    --values()：返回一个键值的遍历器
+                </p>
+                <p>
+                    --entries()：返回一个键值对的遍历器
+                </p>
+                <p>
+                    --forEach()：使用回调函数遍历每个成员
+                </p>
+                <p class="text-danger">
+                    --可以使用扩展运算符（...）,也可以使用for...of循环。因为set是实现了iterator借口的,所以能采用for..of循环,因为...就是采用for..of循环,所以也可以使用...
                 </p>
                 <p>
                     --数组的map和filter方法也可以用于Set了,并不是可以直接使用,还是要转成数组然后使用。
@@ -953,13 +988,16 @@
                         let difference = new Set([...a].filter(x => !b.has(x)));// 差集 [1]
                     </span>
                 </p>
-                <p>
+                <p class="text-danger">
                     --set的很多操作,都是借助于数组的,因为它可以很方便的和数组之间互相转换,而数组的方法又非常的灵活
                 </p>
             </div>
 
             <h3>WeakSet</h3>
             <div class="padding-left2">
+                <p class="text-danger">
+                    --我想问一下console.log看不到WeakSet的值,取也取不出来,有个屁用.循环也不让用
+                </p>
                 <p>
                     --WeakSet的成员只能是对象，而不能是其他类型的值。WeakSet没有size属性，没有办法遍历它的成员。
                 </p>
@@ -977,7 +1015,10 @@
             <h3>Map</h3>
             <div class="padding-left2">
                 <p>
-                    --它类似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
+                    --map存储的是一对一对的数组,第一个是键=>第二个是值,因为是一对一对的数组,所以是不是对象都无所谓了,弥补了json的键只能是字符串的缺陷.
+                </p>
+                <p>
+                    --似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
                 </p>
                 <p>
                     --Map的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。
@@ -1058,16 +1099,19 @@
             <h3>Iterator（遍历器）的概念</h3>
             <div class="padding-left2">
                 <p class="">
-                    --它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成遍历操作（即依次处理该数据结构的所有成员）。
+                    --它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成for...of遍历操作（即依次处理该数据结构的所有成员）。
                 </p>
             </div>
             <h3>数据结构的默认Iterator接口</h3>
             <div class="padding-left2">
                 <p>
-                    --有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构。
+                    --有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构.某些好像我目前发现的只有arguments,和getElementsByTagname('p')这两种
                 </p>
                 <p>
                     --默认的Iterator接口部署在数据结构的Symbol.iterator属性，或者说，一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”（iterable）
+                </p>
+                <p>
+                    --就是说数组身上有Symbol.iterator这么一个方法,运行这个方法,能得到一个迭代器对象,每次运行next(),指针都会往后移动一个位置,并且返回当前项.可以这么理解么?问题是Symbol.iterator挂在哪里?挂在构造函数的原型上?比如Array.prototype,还是挂在那里?但是为什么我用Array.prototype[Symbol.iterator]取不到
                 </p>
                 <p class="code">
                     <span>
@@ -1107,7 +1151,7 @@
                     --yield*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
                 </p>
                 <p>
-                    --由于数组的遍历会调用遍历器接口，所以任何接受数组作为参数的场合，其实都调用了遍历器接口。下面是一些例子。
+                    --由于数组的遍历会调用遍历器接口，所以任何接受数组作为参数的场合，其实都调用了遍历器接口
                 </p>
             </div>
 
@@ -1189,6 +1233,9 @@
 
             <h3>for...of循环</h3>
             <div class="padding-left2">
+                <p class="text-danger">
+                    --我理解的for...of就是先执行对象的[Symbol.iterator]()方法,执行!!!,然后返回一个遍历器对象,遍历器在执行next()方法,直到返回的done的值是true的时候停止
+                </p>
                 <p>
                     --一个数据结构只要部署了Symbol.iterator属性，就被视为具有iterator接口，就可以用for...of循环遍历它的成员。也就是说，for...of循环内部调用的是数据结构的Symbol.iterator方法。
                 </p>
@@ -1200,6 +1247,212 @@
                 </p>
                 <p>
                     --类似数组的对象,DOM NodeList对象、arguments对象
+                </p>
+            </div>
+        </div>
+
+        <h2>Generator</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>基本概念</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Generator函数是一个状态机,封装了多个内部状态.还是一个遍历器对象生成函数
+                </p>
+                <p class="">
+                    --yield语句就是暂停标志
+                </p>
+                <p class="text-danger">
+                    --任意一个对象的Symbol.iterator方法，等于该对象的遍历器生成函数，调用该函数会返回该对象的一个遍历器对象.Generator函数就是遍历器生成函数，因此可以把Generator赋值给对象的Symbol.iterator属性，从而使得该对象具有Iterator接口。
+                </p>
+                <p class="">
+                    --Generator函数执行后，返回一个遍历器对象。该对象本身也具有Symbol.iterator属性，执行后返回自身。
+                </p>
+            </div>
+            <h3>next方法的参数</h3>
+            <div class="padding-left2">
+                <p>
+                    --yield句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句的返回值。
+                </p>
+            </div>
+
+            <h3>for...of循环</h3>
+            <div class="padding-left2">
+                <p>
+                    --for...of循环可以自动遍历Generator函数，且此时不再需要调用next方法。
+                </p>
+                <p>
+                    --for...of循环、扩展运算符（...）、解构赋值和Array.from方法内部调用的，都是遍历器接口。这意味着，它们可以将Generator函数返回的Iterator对象，作为参数。
+                </p>
+                <p>
+                    --对象jane原生不具备Iterator接口，无法用for...of遍历。这时，我们通过Generator函数objectEntries为它加上遍历器接口，就可以用for...of遍历了。加上遍历器接口的另一种写法是，将Generator函数加到对象的Symbol.iterator属性上面。
+                </p>
+                <p class="code">
+                    <span>
+                        function* objectEntries() {
+                    </span>
+                    <span class="padding-left2">
+                        let propKeys = Object.keys(this);
+                    </span>
+                    <span class="padding-left2">
+                        for (let propKey of propKeys) {
+                    </span>
+                    <span class="padding-left4">
+                        yield [propKey, this[propKey]];
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        let jane = { first: 'Jane', last: 'Doe' };
+                    </span>
+                    <span class="">
+                        jane[Symbol.iterator] = objectEntries;
+                    </span>
+                    <span class="">
+                        for (let [key, value] of jane) {
+                    </span>
+                    <span class="padding-left2">
+                        console.log(`${key}: ${value}`);
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+            </div>
+
+            <h3>yield*语句</h3>
+            <div class="padding-left2">
+                <p>
+                    --需要用到yield*语句，用来在一个Generator函数里面执行另一个Generator函数。
+                </p>
+            </div>
+
+            <h3>Generator函数的this</h3>
+            <div class="padding-left2">
+                <p>
+                    --Generator函数总是返回一个遍历器，ES6规定这个遍历器是Generator函数的实例，也继承了Generator函数的prototype对象上的方法。
+                </p>
+                <p>
+                    --如果要把Generator函数当作正常的构造函数使用，可以采用下面的变通方法。首先，生成一个空对象，使用bind方法绑定Generator函数内部的this。
+                </p>
+                <p class="code">
+                    <span>
+                        function* F(){
+                    </span>
+                    <span class="padding-left2">
+                        yield this.x = 2;
+                    </span>
+                    <span class="padding-left2">
+                        yield this.y = 3;
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        var obj = {};
+                    </span>
+                    <span class="">
+                        var f = F.bind(obj)();
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: 2, done: false}
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: 3, done: false}
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: undefined, done: true}
+                    </span>
+                    <span class="">
+                        obj // { x: 2, y: 3 }
+                    </span>
+                </p>
+            </div>
+
+            <h3>Generator函数推导</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --“推导”这种语法结构，不仅可以用于数组，ES7将其推广到了Generator函数。for...of循环会自动调用遍历器的next方法，将返回值的value属性作为数组的一个成员。
+                </p>
+                <p>
+                    --Generator函数推导是对数组结构的一种模拟，它的最大优点是惰性求值，即直到真正用到时才会求值，这样可以保证效率
+                </p>
+                <p>
+                    --推导函数就跟map一个意思,返回一个映射集合呗.但我实验了下面的例子和几个DEMO都是报错的,这个不作为重点,转成数组在搞也一样.有时间再试试
+                </p>
+                <p class="code">
+                    <span>
+                        let generator = function* () {
+                    </span>
+                    <span class="padding-left2">
+                        for (let i = 0; i < 6; i++) {
+                    </span>
+                    <span class="padding-left4">
+                        yield i;
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        let squared = ( for (n of generator()) n * n );
+                    </span>
+                    <span class="">
+                        // 等同于 let squared = Array.from(generator()).map(n => n * n);
+                    </span>
+                    <span class="">
+                        console.log(...squared);
+                    </span>
+                    <span class="">
+                        // 0 1 4 9 16 25
+                    </span>
+                </p>
+            </div>
+            <h3>应用</h3>
+            <div class="padding-left2">
+                <p>
+                    --异步操作的同步化表达,就一路next下去呗
+                </p>
+                <p>
+                    --控制流管理
+                </p>
+                <p>
+                    --部署iterator接口
+                </p>
+                <p>
+                    --作为数据结构
+                </p>
+            </div>
+        </div>
+
+        <h2>Promise对象</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>Promise的含义</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Promise就是一个把异步操作变成同步写法的构造函数.有三种状态：Pending（进行中）、Resolved（已完成，又称Fulfilled）和Rejected（已失败）
+                </p>
+                <p class="text-danger">
+                    --Promise是个构造函数,三个状态挂在构造函数上.构造函数接受一个函数参数,创建对象的时候就会执行这个函数.函数执行中可以调用resolved函数,给此函数传参.promise的原型上有一些方法,then方法就是要把状态变成resolved,接受一个函数,把这个函数当成参数传给resolve函数,resolve函数得到执行,把之前结果返回的数据,当作参数再传给接收的函数并执行.大概就是这样理解的不知道对不对
+                </p>
+                <p class="text-danger">
+                    --其实我觉得Promise就是个异步函数,生成对象的时候穿进去的函数,不就是个异步函数么?感觉并没有方便.只是偶尔封装起来可以连续调用,然并卵
+                </p>
+            </div>
+            <h3>Promise.prototype.then()</h3>
+            <div class="padding-left2">
+                <p>
+                    --then方法是定义在原型对象Promise.prototype上的。它的作用是为Promise实例添加状态改变时的回调函数。前面说过，then方法的第一个参数是Resolved状态的回调函数，第二个参数（可选）是Rejected状态的回调函数。
+                </p>
+                <p>
+                    --then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即then方法后面再调用另一个then方法。
                 </p>
             </div>
         </div>
