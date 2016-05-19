@@ -1,0 +1,1692 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/common.less" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">赵庆馨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="study.html">学习总结</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <h1 class="text-center">WEBPACK</h1>
+    <div class="introductions">
+        <p class="padding-left2">
+            --英文文档看起来还是稍微有些费劲,所以我决定把它有用的内容翻译下来
+        </p>
+        <p class="padding-left2">
+            --插件:WEBPACK有丰富的插件借口,大部分的功能是内部插件使用这个接口,这使得WEBPACK非常灵活.
+        </p>
+        <p class="padding-left2">
+            --加载器:WEBPACK通过加载器支持预处理文件.允许你打包任何静态资源,不仅仅是JS.你可以轻易的写你自己的加载起运行在nodejs
+        </p>
+        <p class="padding-left2">
+            --代码拆分:WEBPACK允许拆分你在大块(chunks怎么翻译?)中拆分自己的代码库.大块按需加载.减少初始化的加载时间.
+        </p>
+        <p class="padding-left2">
+            --开发工具:WEBPACK支持源路径和源映射用于简单的调试.可以通过开发中间件和开发服务器监视你的文件,自动重新加载.
+        </p>
+        <p class="padding-left2">
+            --表现:WEBPACK通过异步输入/输出,多缓存层.这使得WEBPACK非常快速的编译
+        </p>
+        <p class="padding-left2">
+            --支持:WEBPACK支持AMD和COMMONJS模块样式.他执行聪明的静态分析.他甚至有评价引擎评价表单一表达式,这允许你支持大多数存在的类库.
+        </p>
+        <p class="padding-left2">
+            --优化:WEBPACK可以减小输出大小,他也关心利用哈西请求缓存.
+        </p>
+        <p class="padding-left2">
+            --多重应用:WEBPACK主要目标是WEB,他也支持打包WebWorkers和NODEJS.
+        </p>
+    </div>
+    <div class="api">
+        <h2>动机</h2>
+        <p class="text-danger">
+            --ES6出现后,其实就是新增加了一级作用域,来限制变量
+        </p>
+        <p class="text-danger">
+            --let命令、const命令、class命令声明的全局变量，不属于全局对象的属性
+        </p>
+        <div class="padding-left2">
+            <p class="">
+                --let不会被预解析,所以变量的声明必须在前;
+            </p>
+            <p class="">
+                --只要块级作用域内存在let命令，它所声明的变量就“绑定”（binding）这个区域，不再受外部的影响;
+            </p>
+            <p class="">
+                --let不允许在相同作用域内，重复声明同一个变量;
+            </p>
+        </div>
+        <h2>{}块级作用域</h2>
+        <div class="padding-left2">
+            <p class="">
+                --块级作用域是专门为let准备的,块级作用域对var毫无用处,但是能阻隔let的作用域
+            </p>
+            <p class="text-danger">
+                --块级作用域的出现,自制行匿名函数就不必要了.因为使用块级作用域,封闭了let的作用域,就不存在变量名冲突了
+            </p>
+            <p class="">
+                --if和for现在都相当于块级作用域了,可以阻隔let,但原来是对var不起作用的;
+            </p>
+        </div>
+
+        <h2>const</h2>
+        <div class="padding-left2">
+            <p class="">
+                --常量的声明规则和let是一样的,包括作用域不可重复不可提升等
+            </p>
+            <p class="text-danger">
+                --常量的一个好处是,我们终于可以不用担心其他人篡改我们的赋值了
+            </p>
+            <p class="">
+                --用常量赋值一个对象,那么常量是指向这个对象的地址,对象可以改变,地址不变即可
+            </p>
+            <p class="">
+                --对象真正的冻结需要借助对象方法:Object.freeze([1,2,3]);
+            </p>
+        </div>
+
+        <h2>变量的结构赋值</h2>
+        <div class="text-danger">
+            <p>--借助数组或者对象,为变量赋值.叫法是模式匹配.</p>
+            <p>--乍一看都要流哈喇子,方便,太方便了!!!但是仔细一想,感觉并不是.把一个数组或者对象赋值给变量,有啥意义呢,我为什么不直接拿着数组或者对象去使用呢,而是非要赋值给几个变量呢.对字符串的解构就更扯淡了</p>
+        </div>
+        <div class="padding-left2">
+            <h3>数组的解构赋值</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --本质上，这种写法属于“模式匹配”，只要等号两边的模式相同，左边的变量就会被赋予对应的值.let [a,b,c]=[1,2,3]
+                </p>
+                <p class="">
+                    --解构不成功和不完全解构,都可以成功,匹配上对应的位置就可以了
+                </p>
+                <p class="">
+                    --如果默认值是一个函数或者表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值.undefined被认为是不赋值;
+                </p>
+                <p class="">
+                    --只要数据结构具有Iterator接口，都可以采用解构赋值.再说一边iterator,iterator这个要深刻理解iterator;
+                </p>
+            </div>
+
+            <h3>对象的解构赋值</h3>
+            <div class="text-danger">
+                --所有赋值都不是给key赋值,而是给value赋值,所以取出对应变量也不能取key,只能取value,因为ES6会做这件事:{a,b}会自动转换成{a:a,b:b};
+            </div>
+            <div class="padding-left2">
+                <p class="">
+                    --对象的结构赋值,只可意会...其实还是匹配模式,匹配模式匹配模式,记住就OK了;
+                </p>
+                <p class="">
+                    --大括号不能写在行首,所以行首可以写let或者用小括号扩起来;
+                </p>
+            </div>
+
+            <h3>字符串的解构赋值</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --let {length : len} = 'hello'可以这么理解么?就是说实现了iterator接口就必定有length这个属性,所以都可以拿出来用,但我取了length有什么用呢?;
+                </p>
+                <p class="text-danger">
+                    --为什么字符串可以利用数组结构赋值,正是因为字符串也实现了iterator接口;
+                </p>
+            </div>
+
+            <h3>函数参数的解构赋值</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --参数接受后会把参数自动转换成变量,这个的意义在于你传进去和接受的都是一个数组或者一个对象,但你在函数中可以按照变量去使用它们;
+                </p>
+            </div>
+
+            <h3>用途</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --交换变量的值;
+                </p>
+                <p class="">
+                    --从函数返回多个值;
+                </p>
+                <p class="">
+                    --函数参数的定义;
+                </p>
+                <p class="">
+                    --提取JSON数据;
+                </p>
+                <p class="">
+                    --遍历map解构,这个由map结构的特性决定,因为map解构的键值对本身就是[key,value]形式的,然并卵;
+                </p>
+                <p class="text-danger">
+                    --函数参数的默认值;
+                </p>
+                <p class="">
+                    --输入模块的指定方法;
+                </p>
+            </div>
+        </div>
+
+        <h2>字符串的扩展</h2>
+        <div class="text-danger">
+            <p>
+                --说了一堆关于编码的问题,我也没看懂,我以后要认真研究一下字符编码的问题了
+            </p>
+            <p>
+                --ES6为字符串添加了iterator接口,这表示现在不用在将字符串转成数组就可以使用for...of...来遍历数组了
+            </p>
+            <p>
+                --看了之后感觉最有用的就是模版字符串了,这个要用起来,但是我对于一些复杂的用法还没有深入的看,之后有时间再学习吧.
+            </p>
+        </div>
+        <div class="padding-left2">
+            <h3>模板字符串 </h3>
+            <div class="padding-left2">
+                <p>--可以换行,不会报错,(空格和换行都会保存在输出当中)我试验了,并不是这样</p>
+                <p>--可以写变量,变量可以运算,还可以调用函数</p>
+            </div>
+
+            <h3>字符串的遍历器接口</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --字符串添加了遍历接口Iterator,可以使用for...of;
+                </p>
+            </div>
+            <h3>includes(), startsWith(), endsWith()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --都返回布尔型,是对indexOf的扩展,他们分别表示是否找到了参数字符串/参数字符串是否在源字符串的头部/尾部
+                </p>
+                <p class="">
+                    --都支持第二个参数,变数开始遍历的位置
+                </p>
+            </div>
+            <h3>repeat(n)</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --表示将原字符串重复n次.
+                </p>
+            </div>
+            <h3>padStart()，padEnd()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --接受两个参数,第一个参数是字符串的长度,第二个参数是用来循环的字符串
+                </p>
+            </div>
+        </div>
+
+        <h2>正则的扩展</h2>
+        <div class="text-danger">
+            <p>--RegExp.escape()这个方法还是很有用的,把字符串转换成正则的格式</p>
+        </div>
+        <div class="padding-left2">
+            <h3>RegExp构造函数 </h3>
+            <div class="padding-left2">
+                <p>--var regex = new RegExp('xyz', 'i'); === var regex = new RegExp(/xyz/i); === var regex = /xyz/i; </p>
+                <p>--原有正则对象的修饰符是ig，它会被第二个参数i覆盖, 如new RegExp(/abc/ig, 'i')</p>
+            </div>
+
+            <h3>字符串的正则方法</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --字符串对象共有4个方法，可以使用正则表达式：match()、replace()、search()和split();
+                </p>
+            </div>
+
+            <h3>u修饰符</h3>
+            <div class="padding-left2">
+                <p>
+                    --ES6对正则表达式添加了u修饰符，含义为“Unicode模式”，用来正确处理大于\uFFFF的Unicode字符。也就是说，会正确处理四个字节的UTF-16编码。
+                </p>
+                <p>
+                    --点字符. 字符在正则表达式中，含义是除了换行符以外的任意单个字符;
+                </p>
+            </div>
+            <h3>y修饰符</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --y修饰符的作用与g修饰符类似，也是全局匹配，后一次匹配都从上一次匹配成功的下一个位置开始。不同之处在于，g修饰符只要剩余位置中存在匹配就可，而y修饰符确保匹配必须从剩余的第一个位置开始，这也就是“粘连”的涵义;
+                </p>
+            </div>
+            <h3>flags属性</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --在ES5中/abc/ig.source返回正文"abc",在ES6中/abc/ig.flags返回修饰符'gi'
+                </p>
+            </div>
+            <h3>RegExp.escape()</h3>
+            <div class="padding-left2">
+                <p>
+                    --字符串必须转义，才能作为正则模式,function escapeRegExp(str) {return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&');} 返回转义好的字符串
+                </p>
+                <p>
+                    ---RegExp.escape(str)就可以实现上面这个功能
+                </p>
+                <p>
+                    ---字符串转义以后，可以使用RegExp构造函数生成正则模式。var str = 'hello. how are you?'; var regex = new RegExp(RegExp.escape(str), 'g');
+                </p>
+            </div>
+            <h3>后行断言</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --”先行断言“指的是，x只有在y前面才匹配，必须写成/x(?=y)/, ”先行否定断言“指的是，x只有不在y前面才匹配，必须写成/x(?!y)/
+                </p>
+                <p class="">
+                    --"后行断言"正好与"先行断言"相反,x只有在y后面才匹配，必须写成/(?<=y)x/, ”后行否定断言“则与”先行否定断言“相反，x只有不在y后面才匹配，必须写成/(?<!y)x/
+                </p>
+            </div>
+        </div>
+
+        <h2>数值的扩展</h2>
+        <div class="text-danger">
+            <p>--数值和运算的扩展感觉暂时没什么用,很多方法我都用不到</p>
+        </div>
+        <div class="padding-left2">
+            <h3>二进制和八进制表示法</h3>
+            <div class="padding-left2">
+                <p>--ES6提供了二进制和八进制数值的新的写法，分别用前缀0b（或0B）和0o（或0O）表示;</p>
+                <p>--如果要将0b和0x前缀的字符串数值转为十进制，要使用Number方法。Number('0b111')  // 7;Number('0o10')  // 8</p>
+            </div>
+
+            <h3>Number.isFinite(), Number.isNaN()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6在Number对象上，新提供了Number.isFinite()和Number.isNaN()两个方法，用来检查Infinite和NaN这两个特殊值;
+                </p>
+                <p class="">
+                    --它们与传统的全局方法isFinite()和isNaN()的区别在于，传统方法先调用Number()将非数值的值转为数值，再进行判断，而这两个新方法只对数值有效，非数值一律返回false;
+                </p>
+            </div>
+
+            <h3>Number.parseInt(), Number.parseFloat()</h3>
+            <div class="padding-left2">
+                <p>
+                    --ES6将全局方法parseInt()和parseFloat()，移植到Number对象上面，行为完全保持不变;
+                </p>
+            </div>
+            <h3>Number.isInteger()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Number.isInteger()用来判断一个值是否为整数。需要注意的是，在JavaScript内部，整数和浮点数是同样的储存方法，所以3和3.0被视为同一个值;
+                </p>
+            </div>
+            <h3>Number.EPSILON</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6在Number对象上面，新增一个极小的常量Number.EPSILON,引入一个这么小的量的目的，在于为浮点数计算，设置一个误差范围,因为浮点数运算是不精确的;
+                </p>
+            </div>
+            <h3>安全整数和Number.isSafeInteger()</h3>
+            <div class="padding-left2">
+                <p>
+                    --JavaScript能够准确表示的整数范围在-2^53到2^53之间（不含两个端点），超过2的53次方这个范围，无法精确表示这个值。
+                </p>
+                <p>
+                    --Math.pow(2, 53) === Math.pow(2, 53) + 1
+                </p>
+                <p>
+                    --ES6引入了Number.MAX_SAFE_INTEGER和Number.MIN_SAFE_INTEGER这两个常量，用来表示这个范围的上下限;
+                </p>
+                <p>
+                    --Number.isSafeInteger()则是用来判断一个整数是否落在这个范围之内;
+                </p>
+            </div>
+            <h3>Math对象的扩展</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Math.trunc方法用于去除一个数的小数部分，返回整数部分,Math.trunc(-4.9) // -4;
+                </p>
+                <p class="">
+                    --Math.sign方法用来判断一个数到底是正数、负数、还是零。参数为正数，返回+1;参数为负数，返回-1;参数为0，返回0;参数为-0，返回-0;其他值，返回NaN。
+                </p>
+                <p class="">
+                    --Math.cbrt方法用于计算一个数的立方根。
+                </p>
+                <p class="">
+                    --Math.fround方法返回一个数的单精度浮点数形式。
+                </p>
+                <p class="">
+                    --Math.hypot方法返回所有参数的平方和的平方根。
+                </p>
+            </div>
+        </div>
+
+
+        <h2>数组的扩展</h2>
+        <div class="padding-left2">
+            <h3>Array.from() </h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --Array.from方法用于将两类对象转为真正的数组：类似数组的对象（array-like object）和可遍历（iterable）的对象(包括ES6新增的数据结构Set和Map).
+                </p>
+                <p class="text-danger">
+                    --什么是类数组对象:类数组对象只要是有length属性的对象就可以,必须有长度.但...不行,...只能转换由iteraror属性的对象,比如arguments,页面获取的元素.
+                </p>
+                <p class="">
+                    --此方法还可以接受第二个参数,一个函数,比如map函数
+                </p>
+                <p class="">
+                    --此方法还可以接受第三个参数,如果在map里面用到了this,可以传入第三个参数,表示this的指向
+                </p>
+                <p class="code">
+                    <span class="padding-left2">let arrayLike = {'0': 'a','1': 'b','2': 'c',length: 3};</span><br>
+
+                    <span class="padding-left2">// ES5的写法</span><br>
+                    <span class="padding-left2">var arr1 = [].slice.call(arrayLike); // ['a', 'b', 'c']</span><br>
+
+                    <span class="padding-left2">// ES6的写法</span><br>
+                    <span class="padding-left2">let arr2 = Array.from(arrayLike); // ['a', 'b', 'c']</span><br>
+                    <span>   </span><br>
+                    <span class="padding-left2">Array.from('hello')</span><br>
+                    <span class="padding-left2">// ['h', 'e', 'l', 'l', 'o']</span>
+                </p>
+                <p class="">
+                    --下面的例子将数组中布尔值为false的成员转为0
+                </p>
+                <p class="code">
+                    <span class="padding-left2">Array.from([1, , 2, , 3], (n) => n || 0)</span><br>
+                    <span class="padding-left2">// [1, 0, 2, 0, 3]</span>
+                </p>
+            </div>
+            <h3>Array.of()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Array.of方法用于将一组值，转换为数组;
+                </p>
+            </div>
+
+            <h3>数组实例的copyWithin()</h3>
+            <div class="padding-left2">
+                <p>
+                    --数组实例的copyWithin方法，在当前数组内部，将指定位置的成员复制到其他位置（会覆盖原有成员），然后返回当前数组。也就是说，使用这个方法，会修改当前数组。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">Array.prototype.copyWithin(target, start = 0, end = this.length);</span><br>
+                    <span class="padding-left2">- target（必需）：从该位置开始替换数据。</span><br>
+                    <span class="padding-left2">- start（可选）：从该位置开始读取数据，默认为0。如果为负值，表示倒数。</span><br>
+                    <span class="padding-left2">- end（可选）：到该位置前停止读取数据，默认等于数组长度。如果为负值，表示倒数。</span><br>
+                    <span>  </span><br>
+                    <span class="padding-left2">[1, 2, 3, 4, 5].copyWithin(0, 3, 4)</span><br>
+                    <span class="padding-left2">// [4, 2, 3, 4, 5]</span>
+                </p>
+            </div>
+            <h3>数组实例的find()和findIndex()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --数组实例的find方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">[1, 4, -5, 10].find((n) => n < 0)</span>
+                </p>
+                <p class="">
+                    --数组实例的findIndex方法的用法与find方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+                </p>
+            </div>
+            <h3>数组实例的fill()</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --fill方法使用给定值，填充一个数组。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">['a', 'b', 'c'].fill(7, 1, 2)</span><br>
+                    <span class="padding-left2">// ['a', 7, 'c']</span>
+                </p>
+            </div>
+            <h3>数组实例的entries()，keys()和values()</h3>
+            <div class="padding-left2">
+                <p>
+                    --ES6提供三个新的方法——entries()，keys()和values()——用于遍历数组。可以用for...of循环进行遍历，唯一的区别是keys()是对键名的遍历、values()是对键值的遍历(现在node6.0还不支持这个方法)，entries()是对键值对的遍历。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">for (let [index, elem] of ['a', 'b'].entries()) {</span><br>
+                    <span class="padding-left4">console.log(index, elem);</span><br>
+                    <span class="padding-left2">}</span><br>
+                    <span class="padding-left2">// 0 "a"</span><br>
+                    <span class="padding-left2">// 1 "b"</span><br>
+                </p>
+            </div>
+            <h3>数组实例的includes() </h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Array.prototype.includes方法返回一个布尔值，表示某个数组是否包含给定的值，与字符串的includes方法类似。该方法属于ES7，但Babel转码器已经支持。
+                </p>
+                <p class="code padding-left2">
+                    --[1, 2, 3].includes(要找的值,从那个索引位置开始找);     // true
+                </p>
+            </div>
+
+            <h3>数组的空位</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --数组的空位指，数组的某一个位置没有任何值。比如，Array构造函数返回的数组都是空位。
+                </p>
+            </div>
+
+            <h3>数组推导</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --通过现有数组生成新数组,这个跟map,reduce等等有什么区别么,只是一种简写形式么。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">
+                        var years = [ 1954, 1974, 1990, 2006, 2010, 2014 ];
+                    </span><br>
+                    <span class="padding-left2">
+                        [for (year of years) if (year > 2000) year];
+                    </span><br>
+                    <span class="padding-left2">
+                        // [ 2006, 2010, 2014 ]
+                    </span><br>
+                    <span class="padding-left2">
+                        [for (year of years) if (year > 2000) if(year < 2010) year];
+                    </span><br>
+                    <span class="padding-left2">
+                        // [ 2006]
+                    </span><br>
+                    <span class="padding-left2">
+                        [for (year of years) if (year > 2000 && year < 2010) year];
+                    </span><br>
+                    <span class="padding-left2">
+                        // [ 2006]
+                    </span><br>
+                </p>
+            </div>
+        </div>
+
+
+        <h2>函数的扩展</h2>
+        <div class="padding-left2">
+            <h3>函数参数的默认值</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --在ES6之前，不能直接为函数的参数指定默认值，只能采用变通的方法。在函数内部判断a = a||300
+                </p>
+                <p class="code">
+                    <span class="padding-left2">function log(x, y = 'World'){}</span><br>
+                    <span>  </span><br>
+                    <span class="padding-left2">function Point(x = 0, y = 0) {</span><br>
+                    <span class="padding-left4">this.x = x;</span><br>
+                    <span class="padding-left4">this.y = y;</span><br>
+                    <span class="padding-left2">}</span><br>
+                    <span>   </span><br>
+                    <span class="padding-left2">var p = new Point();</span><br>
+                    <span class="padding-left2">p // { x: 0, y: 0 }</span>
+                </p>
+            </div>
+            <h3>与解构赋值默认值结合使用</h3>
+            <div class="padding-left2">
+                <p class="code">
+                    <span class="padding-left2">function foo({x, y = 5}) {</span><br>
+                    <span class="padding-left4">console.log(x, y);</span><br>
+                    <span class="padding-left2">}</span><br>
+                    <span>   </span><br>
+                    <span class="padding-left2">foo({}) // undefined, 5</span><br>
+                    <span class="padding-left2">foo({x: 1}) // 1, 5</span>
+                    <span class="padding-left2">foo({x: 1, y: 2}) // 1, 2</span><br>
+                    <span class="padding-left2">foo() // TypeError: Cannot read property 'x' of undefined</span>
+                </p>
+            </div>
+
+            <h3>函数的length属性</h3>
+            <div class="padding-left2">
+                <p>
+                    --指定了默认值以后，函数的length属性，将返回没有指定默认值的参数个数。也就是说，指定了默认值后，length属性将失真
+                </p>
+                <p class="code">
+                    <span class="padding-left2">(function(a){}).length // 1</span><br>
+                    <span class="padding-left2">(function(a = 5){}).length // 0</span><br>
+                    <span class="padding-left2">(function(a, b, c = 5){}).length // 2</span>
+                </p>
+            </div>
+            <h3>作用域</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --一个需要注意的地方是，如果参数默认值是一个变量，则该变量所处的作用域，与其他变量的作用域规则是一样的，即先是当前函数的作用域，然后才是全局作用域
+                </p>
+            </div>
+            <h3>应用</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --利用参数默认值，可以指定某一个参数不得省略，如果省略就抛出一个错误。
+                </p>
+                <p class="">
+                    --rest参数,function add(...values) {} 这可以代替操作arguments,rest参数之后不能再有其他参数,函数的length属性，不包括rest参数;
+                </p>
+            </div>
+            <h3>rest参数和扩展运算符</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --rest和扩展运算符是一个意思.(...)符号就是把有iterateor的对象转换成参数序列.function(...rest)实际上就是认为rest是一个数组,...rest其实就是你要传几个参数.认清...一切都很简单.
+                </p>
+                <p>
+                    --替代数组的apply方法,其实这个感觉说的没什么意义.其实就是相传个数组进去,但是函数只接受参数序列,怎么办,当然用...就可以解决了
+                </p>
+
+                <p class="code">
+                    <span class="padding-left2">function f(x, y, z) {}</span><br>
+                    <span class="padding-left2">var args = [0, 1, 2];</span><br>
+                    <span class="padding-left2">f(...args);</span>
+                </p>
+                <p>
+                    --扩展运算符提供了数组合并的新写法。[...arr1, ...arr2, ...arr3]
+                </p>
+                <p>
+                    --与解构赋值结合
+                </p>
+                <p class="code">
+                    <span class="padding-left2">const [first, ...rest] = [1, 2, 3, 4, 5];</span><br>
+                    <span class="padding-left2">first // 1</span><br>
+                    <span class="padding-left2">rest  // [2, 3, 4, 5]</span>
+                </p>
+                <p>
+                    --扩展运算符还可以将字符串转为真正的数组。[...'hello']
+                </p>
+                <p>
+                    --任何Iterator接口的对象，都可以用扩展运算符转为真正的数组。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var nodeList = document.querySelectorAll('div');</span><br>
+                    <span class="padding-left2">var array = [...nodeList];</span><br>
+                </p>
+            </div>
+            <h3>name属性 </h3>
+            <div class="padding-left2">
+                <p class="">
+                    --函数的name属性，返回该函数的函数名。
+                </p>
+            </div>
+
+            <h3 class="text-danger">箭头函数</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6允许使用“箭头”（=>）定义函数
+                </p>
+                <p class="text-danger">
+                    --箭头函数根本没有this!!!!!!
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var f = v => v;</span><br>
+                    <span class="padding-left2">//上面的函数等同于</span>
+                    <span class="padding-left2">var f = function(v) {</span><br>
+                    <span class="padding-left4">return v;</span><br>
+                    <span class="padding-left2">};</span>
+                </p>
+                <p class="">
+                    --如果箭头函数不需要参数或需要多个参数，就使用一个圆括号代表参数部分。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var f = () => 5;</span><br>
+                    <span class="padding-left2">//等同于</span>
+                    <span class="padding-left2">var f = function (){ return 5 };</span><br>
+                    <span class="padding-left2">  </span><br>
+                    <span class="padding-left2">var sum = (num1, num2) => num1 + num2;</span><br>
+                    <span class="padding-left2">//等同于</span>
+                    <span class="padding-left2">var sum = function(num1, num2) {</span><br>
+                    <span class="padding-left4">return num1 + num2;</span>
+                    <span class="padding-left2">};</span><br>
+                </p>
+                <p class="">
+                    --如果箭头函数的代码块部分多于一条语句，就要使用大括号将它们括起来，并且使用return语句返回
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var sum = (num1, num2) => { return num1 + num2; }</span><br>
+                </p>
+                <p class="">
+                    --由于大括号被解释为代码块，所以如果箭头函数直接返回一个对象，必须在对象外面加上括号。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var getTempItem = id => ({ id: id, name: "Temp" });</span><br>
+                </p>
+                <p class="">
+                    --箭头函数可以与变量解构结合使用。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">const full = ({ first, last }) => first + ' ' + last;</span><br>
+                    <span class="padding-left2">//等同于</span>
+                    <span class="padding-left2">function full( person ){</span><br>
+                    <span class="padding-left4">return person.first + ' ' + person.last;</span><br>
+                    <span class="padding-left2">}</span>
+                </p>
+                <p class="">
+                    --使用注意点
+                </p>
+                <p class="padding-left2">
+                    <span class="">函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</span><br>
+                    <span class="">不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</span>
+                    <span class="">不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用Rest参数代替。</span><br>
+                    <span class="">不可以使用yield命令，因此箭头函数不能用作Generator函数。</span><br>
+                </p>
+            </div>
+        </div>
+
+
+        <h2>对象的扩展</h2>
+        <div class="padding-left2">
+            <h3>属性的简洁表示法</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6允许直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。
+                </p>
+                <p class="">
+                    --这就是在结构赋值时用到的默认转换
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var foo = 'bar';</span><br>
+                    <span class="padding-left2">var baz = {foo};</span><br>
+                    <span class="padding-left2">baz // {foo: "bar"}</span><br>
+                    <span>   </span><br>
+                    <span class="padding-left2">// 等同于</span><br>
+                    <span class="padding-left2">var baz = {foo: foo};</span>
+                </p>
+                <p class="">
+                    --除了属性简写，方法也可以简写
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var o = {</span><br>
+                    <span class="padding-left4">method() {</span><br>
+                    <span class="padding-left6">return "Hello!";</span><br>
+                    <span class="padding-left4">}</span><br>
+                    <span class="padding-left2">};</span><br>
+                    <span class="padding-left2">// 等同于</span><br>
+                    <span class="padding-left2">var o = {</span><br>
+                    <span class="padding-left4">method: function() {</span><br>
+                    <span class="padding-left6">return "Hello!";{</span><br>
+                    <span class="padding-left4">}</span><br>
+                    <span class="padding-left2">};</span>
+                </p>
+            </div>
+            <h3>属性名表达式</h3>
+            <div class="padding-left2">
+                <p>
+                    JavaScript语言定义对象的属性，有两种方法。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">// 方法一</span><br>
+                    <span class="padding-left2">obj.foo = true;</span><br>
+                    <span class="padding-left2">// 方法二</span><br>
+                    <span class="padding-left2">obj['a' + 'bc'] = 123;</span>
+                </p>
+                <p>
+                    表达式还可以用于定义方法名。['h'+'ello']() {return 'hi';}
+                </p>
+            </div>
+
+            <h3>方法的name属性</h3>
+            <div class="padding-left2">
+                <p>
+                    --函数的name属性，返回函数名。对象方法也是函数，因此也有name属性。
+                </p>
+            </div>
+            <h3>Object.is(obj1,obj2)</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --用来比较两个值是否严格相等，与严格比较运算符（===）的行为基本一致
+                </p>
+            </div>
+            <h3>Object.assign(target,source)</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Object.assign方法用于对象的合并，将源对象（source）的所有可枚举属性，复制到目标对象（target）
+                </p>
+                <p class="">
+                    --常见用途:为对象添加属性,为对象添加方法,克隆对象,合并多个对象,为属性指定默认值.
+                </p>
+                <p class="">
+                    --要注意,只能赋值对象自身属性,隐式原型上的值是不能合并的.
+                </p>
+            </div>
+            <h3>属性的可枚举性</h3>
+            <div class="padding-left2">
+                <p>
+                    --对象的每个属性都有一个描述对象（Descriptor），用来控制该属性的行为。Object.getOwnPropertyDescriptor方法可以获取该属性的描述对象。
+                </p>
+                <p class="code">
+                    <span class="padding-left2">let obj = { foo: 123 };</span><br>
+                    <span class="padding-left2">Object.getOwnPropertyDescriptor(obj, 'foo')</span><br>
+                    <span class="padding-left2"> //   { value: 123; //     writable: true; //     enumerable: true; //     configurable: true }</span>
+                </p>
+            </div>
+            <h3>属性的遍历</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6一共有6种方法可以遍历对象的属性
+                </p>
+                <p class="">
+                    --for...in  循环遍历对象自身的和继承的可枚举属性（不含Symbol属性）
+                </p>
+                <p class="">
+                    --Object.keys(obj) 包括对象自身的（不含继承的）所有可枚举属性（不含Symbol属性）。
+                </p>
+                <p class="">
+                    --Object.getOwnPropertyNames(obj) 返回一个数组，包含对象自身的所有属性（不含Symbol属性，但是包括不可枚举属性）。
+                </p>
+                <p class="">
+                    --Object.getOwnPropertySymbols(obj) 返回一个数组，包含对象自身的所有Symbol属性。
+                </p>
+                <p class="">
+                    --Reflect.ownKeys(obj) 返回一个数组，包含对象自身的所有属性，不管是属性名是Symbol或字符串，也不管是否可枚举。
+                </p>
+                <p class="">
+                    --Reflect.enumerate(obj) 返回一个Iterator对象，遍历对象自身的和继承的所有可枚举属性（不含Symbol属性），与for...in循环相同。
+                </p>
+            </div>
+
+            <h3>__proto__属性</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Object.setPrototypeOf()（写操作）、Object.getPrototypeOf()（读操作）、Object.create()（生成操作）代替。
+                </p>
+                <p class="">
+                    --Object.setPrototypeOf方法的作用与__proto__相同，用来设置一个对象的prototype对象。它是ES6正式推荐的设置原型对象的方法。
+                </p>
+                <p class="">
+                    --Object.getPrototypeOf(),该方法与setPrototypeOf方法配套，用于读取一个对象的prototype对象。
+                </p>
+            </div>
+            <h3>Object.values()，Object.entries()</h3>
+
+            <h3>对象的扩展运算符</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Rest解构赋值
+                </p>
+                <p class="code">
+                    <span class="padding-left2">let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };</span><br>
+                    <span class="padding-left2">x // 1</span><br>
+                    <span class="padding-left2">y // 2</span>
+                    <span class="padding-left2">z // { a: 3, b: 4 }</span>
+                </p>
+                <p class="">
+                    --扩展运算符
+                </p>
+                <p class="code">
+                    <span class="padding-left2">let z = { a: 3, b: 4 };</span><br>
+                    <span class="padding-left2">let n = { ...z };</span><br>
+                    <span class="padding-left2">n // { a: 3, b: 4 }</span>
+                </p>
+            </div>
+        </div>
+
+        <h2>Symbol</h2>
+        <div class="padding-left2">
+            <h3>概述</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6引入了一种新的原始数据类型Symbol，表示独一无二的值。它是JavaScript语言的第七种数据类型
+                </p>
+                <p class="">
+                    --Symbol函数前不能使用new命令，否则会报错。这是因为生成的Symbol是一个原始类型的值，不是对象
+                </p>
+                <p class="">
+                    --Symbol函数的参数只是表示对当前Symbol值的描述，因此相同参数的Symbol函数的返回值是不相等的
+                </p>
+                <p class="">
+                    --Symbol值不能与其他类型的值进行运算，会报错
+                </p>
+            </div>
+            <h3>作为属性名的Symbol</h3>
+            <div class="padding-left2">
+                <p>
+                    --由于每一个Symbol值都是不相等的，这意味着Symbol值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性
+                </p>
+                <p class="code">
+                    <span class="padding-left2">var mySymbol = Symbol();</span><br>
+                    <span class="padding-left2">a[mySymbol] = 'Hello!';</span><br>
+                    <span class="padding-left2">/var a = {[mySymbol]: 'Hello!'};</span><br>
+                    <span class="padding-left2">var a = {}; Object.defineProperty(a, mySymbol, { value: 'Hello!' });</span>
+                </p>
+                <p>
+                    --因为不是字符串,所以Symbol值作为对象属性名时，不能用点运算符
+                </p>
+            </div>
+        </div>
+
+        <h2>Proxy和Reflect</h2>
+        <div class="padding-left2">
+            <h3>Proxy概述</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --Proxy用于修改某些操作的默认行为，等同于在语言层面做出修改，所以属于一种“元编程”（meta programming），即对编程语言进行编程。其实这句话我没看懂
+                </p>
+                <p class="text-danger">
+                    --proxy就是个拦截器,在目标对象和拦截器之前建立一个关系,你通过拦截器操作一个对象,拦截器在操作对象之前还能帮你干点你想干的坏事.这有什么用?草
+                </p>
+                <p class="text-danger">
+                    --Reflect对象的方法与Proxy对象的方法一一对应，只要是Proxy对象的方法，就能在Reflect对象上找到对应的方法,就是说可以理解成,你操作的是proxy对象,实际上是操作目标对象,但你如何操作目标对象呢,就可以借助于Reflect,因为他把Object身上的方法挂到了自己身上,大多数方法有个屁用!!!我还不如直接操作,目标对象呢
+                </p>
+                <p class="text-danger">
+                    大多数事后我没有想好应用场景,理解的不够,继续学
+                </p>
+            </div>
+            <h3>Reflect</h3>
+            <div class="padding-left2">
+                <p>
+                    --将Object对象的一些明显属于语言内部的方法（比如Object.defineProperty），放到Reflect对象上.可以理解成是一个迁移么
+                </p>
+                <p>
+                    --Reflect.get(target, name, receiver)获取属性或者方法
+                </p>
+                <p>
+                    --Reflect.set(target, name, value, receiver)设置
+                </p>
+                <p>
+                    --Reflect.has(obj, name)是否包含.
+                </p>
+                <p>
+                    --Reflect.deleteProperty(obj, name)删除
+                </p>
+                <p>
+                    --Reflect.construct(target, args)等同于new target(...args)
+                </p>
+                <p>
+                    --Reflect.getPrototypeOf(obj)读取对象的__proto__属性
+                </p>
+                <p>
+                    --Reflect.setPrototypeOf(obj, newProto)设置对象的__proto__属性
+                </p>
+                <p class="text-danger">
+                    --Reflect.apply(fun,thisArg,args)等同于Function.prototype.apply.call(fun,thisArg,args)
+                </p>
+                <p>
+                    --Reflect.ownKeys(target) <br>
+                    Reflect.enumerate(target) <br>
+                    Reflect.isExtensible(target) <br>
+                    Reflect.preventExtensions(target) <br>
+                    Reflect.getOwnPropertyDescriptor(target, name) <br>
+                </p>
+            </div>
+        </div>
+
+        <h2>Set和Map数据结构</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>Set</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --ES6提供了新的数据结构Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。就是说以后不用数组去重了.
+                </p>
+                <p class="code">
+                    <span>var s = new Set();</span>
+                    <span>[2,3,5,4,5,2,2].map(x => s.add(x))</span>
+                    <span>for (let i of s) {console.log(i)}</span>
+                    <span>// 2 3 5 4</span>
+                    <span>var set = new Set([1, 2, 3, 4, 4])//也可以接受一个初始值</span>
+                    <span>set.size // 4 获取长度</span>
+                </p>
+                <p class="">
+                    --向Set加入值的时候，不会发生类型转换，所以5和"5"是两个不同的值。Set内部判断两个值是否不同，使用的算法叫做“Same-value equality”，它类似于精确相等运算符（===）
+                </p>
+            </div>
+            <h3>Set实例的属性和方法</h3>
+            <div class="padding-left2">
+                <p>
+                    --add(value)：添加某个值，返回Set结构本身。
+                </p>
+                <p>
+                    --delete(value)：删除某个值，返回一个布尔值，表示删除是否成功。
+                </p>
+                <p>
+                    --has(value)：返回一个布尔值，表示该值是否为Set的成员。
+                </p>
+                <p>
+                    --clear()：清除所有成员，没有返回值。
+                </p>
+                <p>
+                    --keys()：返回一个键名的遍历器
+                </p>
+                <p>
+                    --values()：返回一个键值的遍历器
+                </p>
+                <p>
+                    --entries()：返回一个键值对的遍历器
+                </p>
+                <p>
+                    --forEach()：使用回调函数遍历每个成员
+                </p>
+                <p class="text-danger">
+                    --可以使用扩展运算符（...）,也可以使用for...of循环。因为set是实现了iterator借口的,所以能采用for..of循环,因为...就是采用for..of循环,所以也可以使用...
+                </p>
+                <p>
+                    --数组的map和filter方法也可以用于Set了,并不是可以直接使用,还是要转成数组然后使用。
+                </p>
+                <p class="code">
+                    <span>
+                        let a = new Set([1, 2, 3]);
+                    </span>
+                    <span>
+                        let b = new Set([4, 3, 2]);
+                    </span>
+                    <span>
+                        let union = new Set([...a, ...b]);//并集 [1, 2, 3, 4]
+                    </span>
+                    <span>
+                        let intersect = new Set([...a].filter(x => b.has(x)));// 交集 [2, 3]
+                    </span>
+                    <span>
+                        let difference = new Set([...a].filter(x => !b.has(x)));// 差集 [1]
+                    </span>
+                </p>
+                <p class="text-danger">
+                    --set的很多操作,都是借助于数组的,因为它可以很方便的和数组之间互相转换,而数组的方法又非常的灵活
+                </p>
+            </div>
+
+            <h3>WeakSet</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --我想问一下console.log看不到WeakSet的值,取也取不出来,有个屁用.循环也不让用
+                </p>
+                <p>
+                    --WeakSet的成员只能是对象，而不能是其他类型的值。WeakSet没有size属性，没有办法遍历它的成员。
+                </p>
+                <p>
+                    --WeakSet.prototype.add(value)：向WeakSet实例添加一个新成员。
+                </p>
+                <p>
+                    --WeakSet.prototype.delete(value)：清除WeakSet实例的指定成员。
+                </p>
+                <p>
+                    --WeakSet.prototype.has(value)：返回一个布尔值，表示某个值是否在
+                </p>
+            </div>
+
+            <h3>Map</h3>
+            <div class="padding-left2">
+                <p>
+                    --map存储的是一对一对的数组,第一个是键=>第二个是值,因为是一对一对的数组,所以是不是对象都无所谓了,弥补了json的键只能是字符串的缺陷.
+                </p>
+                <p>
+                    --似于对象，也是键值对的集合，但是“键”的范围不限于字符串，各种类型的值（包括对象）都可以当作键。
+                </p>
+                <p>
+                    --Map的键实际上是跟内存地址绑定的，只要内存地址不一样，就视为两个键。
+                </p>
+                <p>
+                    --size属性返回Map结构的成员总数。
+                </p>
+                <p>
+                    --set方法设置key所对应的键值，然后返回整个Map结构。如果key已经有值，则键值会被更新，否则就新生成该键。
+                </p>
+                <p>
+                    --get方法读取key对应的键值，如果找不到key，返回undefined。
+                </p>
+                <p>
+                    --has方法返回一个布尔值，表示某个键是否在Map数据结构中。
+                </p>
+                <p>
+                    --delete方法删除某个键，返回true。如果删除失败，返回false。
+                </p>
+                <p>
+                    --clear方法清除所有成员，没有返回值。
+                </p>
+                <p>
+                    --keys()：返回键名的遍历器。
+                </p>
+                <p>
+                    --values()：返回键值的遍历器。
+                </p>
+                <p>
+                    --entries()：返回所有成员的遍历器。
+                </p>
+                <p>
+                    --forEach()：遍历Map的所有成员。
+                </p>
+                <p>
+                    --Map结构转为数组结构，比较快速的方法是结合使用扩展运算符（...）。[...map.entries()]// [[1,'one'], [2, 'two'], [3, 'three']]
+                </p>
+                <p>
+                    --Map转为数组[...myMap]
+                </p>
+                <p>
+                    --数组转为Map,new Map([[true, 7], [{foo: 3}, ['abc']]])
+                </p>
+                <p>
+                    --Map转为对象,for (let [k,v] of strMap) {obj[k] = v;}
+                </p>
+                <p>
+                    --对象转为Map,for (let k of Object.keys(obj)) {strMap.set(k, obj[k]);}
+                </p>
+                <p>
+                    --Map转为JSON,先转成对象,然后再用JSON.stringify();转成json
+                </p>
+            </div>
+
+            <h3>WeakMap</h3>
+            <div class="padding-left2">
+                <p>
+                    --WeakMap结构与Map结构基本类似，唯一的区别是它只接受对象作为键名（null除外），不接受其他类型的值作为键名，而且键名所指向的对象，不计入垃圾回收机制。
+                </p>
+                <p>
+                    --WeakMap与Map在API上的区别主要是两个，一是没有遍历操作（即没有key()、values()和entries()方法），也没有size属性
+                </p>
+                <p>
+                    --二是无法清空，即不支持clear方法
+                </p>
+                <p>
+                    --WeakMap只有四个方法可用：get()、set()、has()、delete()。
+                </p>
+                <p>
+                    --WeakMap应用的典型场合就是DOM节点作为键名,WeakMap的另一个用处是部署私有属性。
+                </p>
+            </div>
+        </div>
+
+        <h2>Iterator和for...of循环</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>Iterator（遍历器）的概念</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --它是一种接口，为各种不同的数据结构提供统一的访问机制。任何数据结构只要部署Iterator接口，就可以完成for...of遍历操作（即依次处理该数据结构的所有成员）。
+                </p>
+            </div>
+            <h3>数据结构的默认Iterator接口</h3>
+            <div class="padding-left2">
+                <p>
+                    --有三类数据结构原生具备Iterator接口：数组、某些类似数组的对象、Set和Map结构.某些好像我目前发现的只有arguments,和getElementsByTagname('p')这两种
+                </p>
+                <p>
+                    --默认的Iterator接口部署在数据结构的Symbol.iterator属性，或者说，一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”（iterable）
+                </p>
+                <p>
+                    --就是说数组身上有Symbol.iterator这么一个方法,运行这个方法,能得到一个迭代器对象,每次运行next(),指针都会往后移动一个位置,并且返回当前项.可以这么理解么?问题是Symbol.iterator挂在哪里?挂在构造函数的原型上?比如Array.prototype,还是挂在那里?但是为什么我用Array.prototype[Symbol.iterator]取不到
+                </p>
+                <p class="code">
+                    <span>
+                        var $iterator = ITERABLE[Symbol.iterator]();
+                    </span>
+                    <span>
+                        var $result = $iterator.next();
+
+                    </span>
+                    <span>
+                       while (!$result.done) {
+                    </span>
+                    <span class="padding-left2">
+                        var x = $result.value;
+                    </span>
+                    <span class="padding-left2">
+                        $result = $iterator.next();
+                    </span>
+                    <span>
+                        }
+                    </span>
+                </p>
+            </div>
+
+            <h3>调用Iterator接口的场合</h3>
+            <div class="padding-left2">
+                <p>
+                    --对数组和Set结构进行解构赋值时，会默认调用Symbol.iterator方法
+                </p>
+                <p>
+                    --扩展运算符（...）也会调用默认的iterator接口。
+                </p>
+                <p>
+                    --只要某个数据结构部署了Iterator接口，就可以对它使用扩展运算符，将其转为数组。let arr = [...iterable];
+                </p>
+                <p>
+                    --yield*后面跟的是一个可遍历的结构，它会调用该结构的遍历器接口。
+                </p>
+                <p>
+                    --由于数组的遍历会调用遍历器接口，所以任何接受数组作为参数的场合，其实都调用了遍历器接口
+                </p>
+            </div>
+
+            <h3>字符串的Iterator接口</h3>
+            <div class="padding-left2">
+                <p>
+                    --字符串是一个类似数组的对象，也原生具有Iterator接口。
+                </p>
+                <p>
+                    --可以覆盖原生的Symbol.iterator方法，达到修改遍历器行为的目的。
+                </p>
+            </div>
+
+            <h3>遍历器对象的return()，throw()</h3>
+            <div class="padding-left2">
+                <p>
+                    --遍历器对象除了具有next方法，还可以具有return方法和throw方法。如果你自己写遍历器对象生成函数，那么next方法是必须部署的，return方法和throw方法是否部署是可选的。
+                </p>
+                <p>
+                    --return方法的使用场合是，如果for...of循环提前退出（通常是因为出错，或者有break语句或continue语句），就会调用return方法。如果一个对象在完成遍历前，需要清理或释放资源，就可以部署return方法。
+                </p>
+                <p class="code">
+                    <span>
+                        function readLinesSync(file) {
+                    </span>
+                    <span class="padding-left2">
+                        return {
+                    </span>
+                    <span class="padding-left4">
+                        next() {
+                    </span>
+                    <span class="padding-left6">
+                        if (file.isAtEndOfFile()) {
+                    </span>
+                    <span class="padding-left8">
+                        file.close();
+                    </span>
+                    <span class="padding-left8">
+                        return { done: true };
+                    </span>
+                    <span class="padding-left6">
+                        }
+                    </span>
+                    <span class="padding-left4">
+                        },
+                    </span>
+                    <span class="padding-left4">
+                        return() {
+                    </span>
+                    <span class="padding-left6">
+                        file.close();
+                    </span>
+                    <span class="padding-left6">
+                        return { done: true };
+                    </span>
+                    <span class="padding-left4">
+                        }
+                    </span>
+                    <span class="padding-left2">
+                        };
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        for (let line of readLinesSync(fileName)) {
+                    </span>
+                    <span class="padding-left2">
+                        console.log(x);
+                    </span>
+                    <span class="padding-left2">
+                        break;
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+            </div>
+
+            <h3>for...of循环</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --我理解的for...of就是先执行对象的[Symbol.iterator]()方法,执行!!!,然后返回一个遍历器对象,遍历器在执行next()方法,直到返回的done的值是true的时候停止
+                </p>
+                <p>
+                    --一个数据结构只要部署了Symbol.iterator属性，就被视为具有iterator接口，就可以用for...of循环遍历它的成员。也就是说，for...of循环内部调用的是数据结构的Symbol.iterator方法。
+                </p>
+                <p>
+                    --for...of循环可以使用的范围包括数组、Set和Map结构、某些类似数组的对象（比如arguments对象、DOM NodeList对象）、后文的Generator对象，以及字符串。
+                </p>
+                <p>
+                    --有些数据结构是在现有数据结构的基础上，计算生成的,entries(),keys(),values()
+                </p>
+                <p>
+                    --类似数组的对象,DOM NodeList对象、arguments对象
+                </p>
+            </div>
+        </div>
+
+        <h2>Generator</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>基本概念</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Generator函数是一个状态机,封装了多个内部状态.还是一个遍历器对象生成函数
+                </p>
+                <p class="">
+                    --yield语句就是暂停标志
+                </p>
+                <p class="text-danger">
+                    --任意一个对象的Symbol.iterator方法，等于该对象的遍历器生成函数，调用该函数会返回该对象的一个遍历器对象.Generator函数就是遍历器生成函数，因此可以把Generator赋值给对象的Symbol.iterator属性，从而使得该对象具有Iterator接口。
+                </p>
+                <p class="">
+                    --Generator函数执行后，返回一个遍历器对象。该对象本身也具有Symbol.iterator属性，执行后返回自身。
+                </p>
+            </div>
+            <h3>next方法的参数</h3>
+            <div class="padding-left2">
+                <p>
+                    --yield句本身没有返回值，或者说总是返回undefined。next方法可以带一个参数，该参数就会被当作上一个yield语句的返回值。
+                </p>
+            </div>
+
+            <h3>for...of循环</h3>
+            <div class="padding-left2">
+                <p>
+                    --for...of循环可以自动遍历Generator函数，且此时不再需要调用next方法。
+                </p>
+                <p>
+                    --for...of循环、扩展运算符（...）、解构赋值和Array.from方法内部调用的，都是遍历器接口。这意味着，它们可以将Generator函数返回的Iterator对象，作为参数。
+                </p>
+                <p>
+                    --对象jane原生不具备Iterator接口，无法用for...of遍历。这时，我们通过Generator函数objectEntries为它加上遍历器接口，就可以用for...of遍历了。加上遍历器接口的另一种写法是，将Generator函数加到对象的Symbol.iterator属性上面。
+                </p>
+                <p class="code">
+                    <span>
+                        function* objectEntries() {
+                    </span>
+                    <span class="padding-left2">
+                        let propKeys = Object.keys(this);
+                    </span>
+                    <span class="padding-left2">
+                        for (let propKey of propKeys) {
+                    </span>
+                    <span class="padding-left4">
+                        yield [propKey, this[propKey]];
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        let jane = { first: 'Jane', last: 'Doe' };
+                    </span>
+                    <span class="">
+                        jane[Symbol.iterator] = objectEntries;
+                    </span>
+                    <span class="">
+                        for (let [key, value] of jane) {
+                    </span>
+                    <span class="padding-left2">
+                        console.log(`${key}: ${value}`);
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+            </div>
+
+            <h3>yield*语句</h3>
+            <div class="padding-left2">
+                <p>
+                    --需要用到yield*语句，用来在一个Generator函数里面执行另一个Generator函数。
+                </p>
+            </div>
+
+            <h3>Generator函数的this</h3>
+            <div class="padding-left2">
+                <p>
+                    --Generator函数总是返回一个遍历器，ES6规定这个遍历器是Generator函数的实例，也继承了Generator函数的prototype对象上的方法。
+                </p>
+                <p>
+                    --如果要把Generator函数当作正常的构造函数使用，可以采用下面的变通方法。首先，生成一个空对象，使用bind方法绑定Generator函数内部的this。
+                </p>
+                <p class="code">
+                    <span>
+                        function* F(){
+                    </span>
+                    <span class="padding-left2">
+                        yield this.x = 2;
+                    </span>
+                    <span class="padding-left2">
+                        yield this.y = 3;
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        var obj = {};
+                    </span>
+                    <span class="">
+                        var f = F.bind(obj)();
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: 2, done: false}
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: 3, done: false}
+                    </span>
+                    <span class="">
+                        f.next();  // Object {value: undefined, done: true}
+                    </span>
+                    <span class="">
+                        obj // { x: 2, y: 3 }
+                    </span>
+                </p>
+            </div>
+
+            <h3>Generator函数推导</h3>
+            <div class="padding-left2">
+                <p class="text-danger">
+                    --“推导”这种语法结构，不仅可以用于数组，ES7将其推广到了Generator函数。for...of循环会自动调用遍历器的next方法，将返回值的value属性作为数组的一个成员。
+                </p>
+                <p>
+                    --Generator函数推导是对数组结构的一种模拟，它的最大优点是惰性求值，即直到真正用到时才会求值，这样可以保证效率
+                </p>
+                <p>
+                    --推导函数就跟map一个意思,返回一个映射集合呗.但我实验了下面的例子和几个DEMO都是报错的,这个不作为重点,转成数组在搞也一样.有时间再试试
+                </p>
+                <p class="code">
+                    <span>
+                        let generator = function* () {
+                    </span>
+                    <span class="padding-left2">
+                        for (let i = 0; i < 6; i++) {
+                    </span>
+                    <span class="padding-left4">
+                        yield i;
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        let squared = ( for (n of generator()) n * n );
+                    </span>
+                    <span class="">
+                        // 等同于 let squared = Array.from(generator()).map(n => n * n);
+                    </span>
+                    <span class="">
+                        console.log(...squared);
+                    </span>
+                    <span class="">
+                        // 0 1 4 9 16 25
+                    </span>
+                </p>
+            </div>
+            <h3>应用</h3>
+            <div class="padding-left2">
+                <p>
+                    --异步操作的同步化表达,就一路next下去呗
+                </p>
+                <p>
+                    --控制流管理
+                </p>
+                <p>
+                    --部署iterator接口
+                </p>
+                <p>
+                    --作为数据结构
+                </p>
+            </div>
+        </div>
+
+        <h2>Promise对象</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>Promise的含义</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --Promise就是一个把异步操作变成同步写法的构造函数.有三种状态：Pending（进行中）、Resolved（已完成，又称Fulfilled）和Rejected（已失败）
+                </p>
+                <p class="text-danger">
+                    --Promise是个构造函数,三个状态挂在构造函数上.构造函数接受一个函数参数,创建对象的时候就会执行这个函数.函数执行中可以调用resolved函数,给此函数传参.promise的原型上有一些方法,then方法就是要把状态变成resolved,接受一个函数,把这个函数当成参数传给resolve函数,resolve函数得到执行,把之前结果返回的数据,当作参数再传给接收的函数并执行.大概就是这样理解的不知道对不对
+                </p>
+                <p class="text-danger">
+                    --其实我觉得Promise就是个异步函数,生成对象的时候穿进去的函数,不就是个异步函数么?感觉并没有方便.只是偶尔封装起来可以连续调用,然并卵
+                </p>
+            </div>
+            <h3>Promise.prototype.then()</h3>
+            <div class="padding-left2">
+                <p>
+                    --then方法是定义在原型对象Promise.prototype上的。它的作用是为Promise实例添加状态改变时的回调函数。前面说过，then方法的第一个参数是Resolved状态的回调函数，第二个参数（可选）是Rejected状态的回调函数。
+                </p>
+                <p>
+                    --then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即then方法后面再调用另一个then方法。
+                </p>
+            </div>
+        </div>
+
+        <h2>Class</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>Class基本语法</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --只是一个语法糖
+                </p>
+                <p class="code">
+                    <span>
+                        class Point {
+                    </span>
+                    <span class="padding-left2">
+                        constructor(x, y) {
+                    </span>
+                    <span class="padding-left4">
+                        this.x = x;
+                    </span>
+                    <span class="padding-left4">
+                        this.y = y;
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="padding-left2">
+                        toString() {
+                    </span>
+                    <span class="padding-left4">
+                        return '(' + this.x + ', ' + this.y + ')';
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+                <p>
+                    --类的方法都定义在prototype对象上面，所以类的新方法可以添加在prototype对象上面。Object.assign方法可以很方便地一次向类添加多个方法。
+                </p>
+                <p>
+                    --类的内部所有定义的方法，都是不可枚举的（non-enumerable),Object.keys(Point.prototype)// []; Object.getOwnPropertyNames(Point.prototype)// ["constructor","toString"]
+                </p>
+            </div>
+            <h3>Class的继承</h3>
+            <div class="padding-left2">
+                <p>
+                    --Class之间可以通过extends关键字实现继承，这比ES5的通过修改原型链实现继承，要清晰和方便很多。
+                </p>
+                <p>
+                    --class ColorPoint extends Point {}
+                </p>
+                <p class="code">
+                    <span>
+                        class ColorPoint extends Point {
+                    </span>
+                    <span class="padding-left2">
+                        constructor(x, y, color) {
+                    </span>
+                    <span class="padding-left4">
+                       super(x, y); // 调用父类的constructor(x, y)
+                    </span>
+                    <span class="padding-left4">
+                        this.color = color;
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="padding-left2">
+                        toString() {
+                    </span>
+                    <span class="padding-left4">
+                        return this.color + ' ' + super.toString(); // 调用父类的toString()
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+                <p>
+                    --子类B的__proto__属性指向父类A，子类B的prototype属性的__proto__属性指向父类A的prototype属性。
+                </p>
+                <p class="code">
+                    <span>
+                        // B的实例继承A的实例
+                    </span>
+                    <span>
+                        Object.setPrototypeOf(B.prototype, A.prototype);
+                    </span>
+                    <span>
+                        B.prototype.__proto__ = A.prototype;
+                    </span>
+                    <span>
+                        // B继承A的静态属性
+                    </span>
+                    <span>
+                        Object.setPrototypeOf(B, A);
+                    </span>
+                    <span>
+                        B.__proto__ = A;
+                    </span>
+                </p>
+                <p>
+                    --Object.getPrototypeOf方法可以用来从子类上获取父类。因此，可以使用这个方法判断，一个类是否继承了另一个类<br>
+                    --Object.getPrototypeOf(ColorPoint) === Point // true
+                </p>
+                <p>
+                    --super这个关键字作为函数调用时（即super(...args)），super代表父类的构造函数。
+                </p>
+                <p>
+                    --super这个关键字作为对象调用时（即super.prop或super.method()），super代表父类。注意，此时super即可以引用父类实例的属性和方法，也可以引用父类的静态方法。
+                </p>
+                <p>
+                    --子类实例的__proto__属性的__proto__属性，指向父类实例的__proto__属性。也就是说，子类的原型的原型，是父类的原型。
+                </p>
+                <p>
+                    --ES6可以自定义原生数据结构（比如Array、String等）的子类，这是ES5无法做到的。extends关键字不仅可以用来继承类，还可以用来继承原生的构造函数。
+                </p>
+            </div>
+
+            <h3>Class的取值函数（getter）和存值函数（setter）</h3>
+            <div class="padding-left2">
+                <p>
+                    --与ES5一样，在Class内部可以使用get和set关键字，对某个属性设置存值函数和取值函数，拦截该属性的存取行为。
+                </p>
+            </div>
+
+            <h3>Class的Generator方法</h3>
+            <div class="padding-left2">
+                <p>
+                    --如果某个方法之前加上星号（*），就表示该方法是一个Generator函数。
+                </p>
+            </div>
+
+            <h3>Class的静态方法</h3>
+            <div class="padding-left2">
+                <p>
+                    --static关键字，就表示该方法不会被实例继承，而是直接通过类来调用，这就称为“静态方法”。
+                </p>
+                <p>
+                    --父类的静态方法，可以被子类继承。
+                </p>
+            </div>
+
+            <h3>Class的静态属性和实例属性</h3>
+            <div class="padding-left2">
+                <p>
+                    --ES6明确规定，Class内部只有静态方法，没有静态属性。
+                </p>
+            </div>
+
+            <h3>new.target属性</h3>
+            <div class="padding-left2">
+                <p>
+                    --ES6为new命令引入了一个new.target属性，（在构造函数中）返回new命令作用于的那个构造函数。如果构造函数不是通过new命令调用的，new.target会返回undefined
+                </p>
+                <p>
+                    --子类继承父类时，new.target会返回子类。利用这个特点，可以写出不能独立使用、必须继承后才能使用的类。
+                </p>
+                <p class="code">
+                    <span>
+                        class Shape {
+                    </span>
+                    <span class="padding-left2">
+                        constructor() {
+                    </span>
+                    <span class="padding-left4">
+                        if (new.target === Shape) {
+                    </span>
+                    <span class="padding-left6">
+                        throw new Error('本类不能实例化');
+                    </span>
+                    <span class="padding-left4">
+                        }
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                    <span class="">
+                        class Rectangle extends Shape {
+                    </span>
+                    <span class="padding-left2">
+                        constructor(length, width) {
+                    </span>
+                    <span class="padding-left4">
+                        super();
+                    </span>
+                    <span class="padding-left4">
+                        //...
+                    </span>
+                    <span class="padding-left2">
+                        }
+                    </span>
+                    <span class="">
+                        }
+                    </span>
+                </p>
+            </div>
+        </div>
+
+        <h2>Module</h2>
+        <div></div>
+        <div class="padding-left2">
+            <h3>export命令</h3>
+            <div class="padding-left2">
+                <p class="">
+                    --模块功能主要由两个命令构成：export和import。export命令用于规定模块的对外接口，import命令用于输入其他模块提供的功能。
+                </p>
+                <p>
+                    --export输出的变量就是本来的名字，但是可以使用as关键字重命名。
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/less.js"></script>
+</html>

@@ -4,15 +4,24 @@
   "description": "个人静态网站",
   "main": "index.js",
   "dependencies": {
+    "babel-polyfill": "^6.8.0",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
     "bootstrap": "^3.3.6",
     "co": "^4.6.0",
     "less": "^2.6.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.8.0",
+    "babel-plugin-transform-es2015-modules-amd": "^6.8.0",
+    "babel-polyfill": "^6.8.0",
+    "core-js": "^2.4.0",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/.bin/babel src -wd build"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,90 @@
+.header{
+    height: 1.7rem;
+    padding-top:1.4rem;
+    padding-bottom:1.4rem;
+    border-top:1px solid #d4d4d4;
+    border-bottom: 1px solid #d4d4d4;
+}
+.header .nav{
+    float: left;
+    display: block;
+    width: 1.8rem;
+    height: 1.7rem;
+    margin-left:1.8rem;
+    margin-right: 1rem;
+    background: url("../images/button1.jpg") no-repeat left top;
+    -webkit-background-size:100%;
+    background-size:100%;
+}
+.header .bar{
+    width: 0.1rem;
+    height: 1.7rem;
+    float: left;
+    background: url("../images/vertical-bar.jpg") repeat-y left top;
+    -webkit-background-size:100%;
+    background-size:100%;
+}
+.header .logo{
+    width: 8.7rem;
+    height: 1.7rem;
+    float: left;
+    background: url("../images/logo.png") no-repeat left top;
+    margin-left: 0.7rem;
+    -webkit-background-size:100%;
+    background-size:100%;
+    text-indent: -10000rem;
+}
+.header .avatar{
+    width: 1.7rem;
+    height: 1.7rem;
+    float: right;
+    background: url("../images/avatar.jpg") no-repeat left top;
+    margin-right: 2rem;
+    -webkit-background-size:100%;
+    background-size:100%;
+}
+
+.feature{
+    height: 35rem;
+    background: url("../images/feature.jpg") no-repeat left top;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.feature-introduce{
+    width: 10rem;
+    padding: 7rem 0 0 2rem;
+    font-weight: bold;
+    color:#757371;
+}
+
+.feature-introduce p{
+    margin-bottom: 1rem;
+}
+.feature-introduce span{
+    display:block;
+    float: left;
+}
+
+.font30{
+    height: 3rem;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+.font23{
+    height:2.3rem;
+    font-size: 2.3rem;
+    line-height: 2.3rem;
+    padding-top: 0.3rem;
+}
+.font14{
+    height: 1.4rem;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
+}
+.feature-point{
+    width: 18rem;
+    height: 20rem;
+    margin-top: 5rem;
+    background: url("../images/feature-point.png") no-repeat left top;
+    background-size: 100%;
+}
