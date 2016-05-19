@@ -61,3 +61,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .floatr{
     float: right;
 }
+
+.position-relative{
+    position: relative;
+}
+.position-absolute{
+    position:absolute;
+}

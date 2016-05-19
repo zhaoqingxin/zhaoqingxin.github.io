@@ -51,8 +51,8 @@
     background-size:contain;
 }
 .feature-introduce{
-    width: 11.5rem;
-    padding: 7rem 0 0 2.8rem;
+    width: 11.7rem;
+    padding: 7rem 0 0 3rem;
     font-weight: bold;
     color:#757371;
 }
@@ -63,6 +63,7 @@
 .feature-introduce span{
     display:block;
     float: left;
+    font-weight:normal;
 }
 
 .font30{
@@ -71,20 +72,135 @@
     line-height: 3rem;
 }
 .font23{
-    height:2.3rem;
-    font-size: 2.3rem;
-    line-height: 2.3rem;
+    height:2.2rem;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
     padding-top: 0.3rem;
 }
 .font14{
-    height: 1.4rem;
-    font-size: 1.4rem;
-    line-height: 1.4rem;
+    height: 1.2rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
 }
 .feature-point{
-    width: 22rem;
-    height: 22rem;
+    width: 20rem;
+    height: 18.4rem;
     margin-top: 5rem;
     background: url("../images/feature-point.png") no-repeat left top;
     background-size: 100%;
 }
+
+.solve{
+    height: 35rem;
+    background: url("../images/solve.jpg") no-repeat left top;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.solve-introduce{
+    width: 12.6rem;
+    height: 5.2rem;
+    padding: 10rem 0 0 1.3rem;
+}
+.solve-introduce img{
+    width: 12.6rem;
+    height: 5.2rem;
+}
+.solve-point{
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 5rem;
+}
+.solve-point img{
+    width: 100%;
+    height: 5rem;
+}
+
+.finance{
+    height: 35rem;
+    background: url("../images/finance.jpg") no-repeat left top;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.finance-introduce{
+    width: 12.6rem;
+    height: 5.2rem;
+    padding: 9rem 0 0 23rem;
+}
+.finance-introduce img{
+    width: 12.6rem;
+    height: 5.2rem;
+}
+.finance-point{
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 5rem;
+}
+.finance-point img{
+    width: 100%;
+    height: 5rem;
+}
+
+.wallet{
+    height: 35rem;
+    background: url("../images/wallet.jpg") no-repeat left top;
+    -webkit-background-size:contain;
+    background-size:contain;
+}
+.wallet-introduce{
+    width: 12.6rem;
+    height: 5.2rem;
+    padding: 10rem 0 0 1.3rem;
+}
+.wallet-introduce img{
+    width: 12.6rem;
+    height: 5.2rem;
+}
+.wallet-point{
+    left:0;
+    bottom:0;
+    width: 100%;
+    height: 5rem;
+}
+.wallet-point img{
+    width: 100%;
+    height: 5rem;
+}
+
+.connection{
+    background: #eee;
+    padding:2.8rem 0 2.4rem 1rem;
+}
+.connection h3{
+    color: #676664;
+    font-size: 1.4rem;
+}
+.connection .coop{
+    padding:1.5rem 0 1rem 0;
+}
+.connection .coop img{
+    float: left;
+    width:7.9rem;
+    height:2.3rem;
+    padding-right:1.2rem;
+    padding-bottom: 0.8rem;
+}
+.connection p{
+    color: #676664;
+    height:2.3rem;
+    line-height: 2.3rem;
+    font-size: 1rem;
+}
+.footer .right{
+    background: #3a3a3a;
+    color:#ffffff;
+    font-size: 1.1rem;
+    padding-top:3rem;
+    padding-bottom: 2rem;
+}
+.footer .right p{
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
