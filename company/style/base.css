@@ -68,3 +68,6 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #
 .position-absolute{
     position:absolute;
 }
+.hide{
+    display: none;
+}
