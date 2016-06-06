@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="../css/common.less" />
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">赵庆馨</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="study.html">学习总结</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <h1 class="text-center">AngularJS API</h1>
+    <div class="introductions">
+        <p class="padding-left2">
+            --angularjs核心模块主要分为4部分内容:指令,服务,过滤器和全局函数.本文档针对angularjs的核心模块api做一点说明.
+        </p>
+        <p class="padding-left2">
+            --本文档对路由,动画,cookies,Resource,touch,mock等周边模块做一点简要说明
+        </p>
+    </div>
+    <div class="api">
+        <h2>控制器</h2>
+        <div class="padding-left2">
+            <p>控制器的定义是一个构造函数,用于增加一个scope作用域.</p>
+            <p>
+                当控制器被附加到DOM上,通过ng-controller指令.angular将使用指定的控制器构造函数,实例新的控制器对象,同时,新的子作用域被创建,并且可以作为参数被注入进控制器构造函数中.如果DOM中使用controller as 语法,那么控制器实例将被分配到scope的这个属性上
+                <span class="text-danger">(实例是scope的一个属性)</span>.
+            </p>
+            <p>
+                控制器的作用:1.设置scope对象的初始化状态; 2.给scope对象添加行为
+            </p>
+            <p>
+                控制器不能做:1.控制DOM,这会让测试困难,angular采用数据绑定,用指令封装手动DOM操作; 2.格式化输入; 3.过滤输出; 4.在控制器间分享代码和状态(用服务来做); 5.管理组件生命周期(因为这是自动的).
+            </p>
+            <p class="text-danger">
+                正确使用控制器:控制器只应负责页面的业务逻辑.保持控制器简洁通过封装工作:合理封装服务,然后通过依赖注入在控制器中使用.
+            </p>
+            <p class="text-danger">
+                定义控制器,其实就是定义一个构造函数,构造函数会在需要的地方被实例.控制器并不像服务,不是单例的.
+            </p>
+        </div>
+        <h2>servies</h2>
+        <div class="padding-left2">
+            <p class="text-danger">
+                服务适合封装一些公共方法和数据.
+            </p>
+            <p>
+                服务是可替换的对象,通过依赖注入联系起来.可以使用服务组织和分享代码.
+            </p>
+            <p>
+                服务的特点:延迟实例,当被依赖注入的时候被实例; 单例,实例后被缓存.
+            </p>
+        </div>
+
+        <h2>provider</h2>
+        <div class="padding-left2">
+            <p class="text-danger">
+                provider可以理解成是服务的提供者.
+                在config阶段注入$provide的服务,调用provider,factory...方法来注册服务,module的provider方法是一种语法糖,让我们可以通过module直接定义服务. <br>
+                provider方法编写一个构造函数,这个构造函数在config阶段被实例化,赋值给此服务的provider对象(这个对象是angular自动创建的),此服务的provider对象又可以在config阶段被配置,此对象有$get方法,$get方法在被依赖注入的时候调用,创建出真正的服务,随后服务被缓存,单例模式. <br>
+                其他四种方法是provider的语法糖,factory是provider的$get部分; value是provider的return部分; service也是provider的return部分,但会先被new创建对象后返回(你写一个构造函数,但返回的是构造函数创建的对象); constant根value很想,但constant可以在config阶段被注入.<br>
+
+                自定义服务在config阶段是不能被依赖注入的,只有服务的provider可以在被注入.但constant是个例外. <br>
+                provider在run阶段是不能被注入的,服务可以被注入. <br>
+                指令和过滤器也是工厂方法创建的服务.控制器是特殊的服务,他是一个构造函数,在每次需要控制器的时候都会被实例,他并不是单例模式的.
+            </p>
+            <p>
+                任何应用程序都是由对象协作来完成任务.对象需要被实例,协同为app工作.在angular应用中,对象自动实例和结合,通过注入器服务.
+            </p>
+            <p>
+                注入器创建两类对象:服务和专门对象.
+            </p>
+            <p>
+                服务对象的API是被开发人员编写的服务.
+            </p>
+            <p>
+                专门对象是angular框架API,他们是控制器,指令,过滤器,动画.
+            </p>
+            <p>
+                注入器需要知道如何创建这些对象.有5种方法,你通过这5种方法告诉注入器如何创建.
+            </p>
+            <p>
+                最综合的一项是provider方法,其余的四项分别是factory,value,service和constant,都是provider的语法糖.
+            </p>
+        </div>
+
+
+        <h2>scope</h2>
+        <div class="padding-left2">
+            <p class="text-danger">
+                scope是引用应用程序模型的对象.他是表达式的执行上下文,他根据DOM结构继承,scope可以观察表达式和传播事件.
+            </p>
+            <p>
+                scope提供$watch观察模型变化.提供$apply从控制器,服务,事件控制,将模型的任何变化传播给视图.模型允许嵌套,嵌套可以分为继承和隔离(一般是自定义指令中可以产生隔离作用域),
+            </p>
+            <p>
+                scope提供解析表达式的上下文环境.scope是控制器和视图之间的胶水.指令在他的scope中$watch表达式,$watch允许在表达式改变的时候指令得到通知.允许指令在DOM中渲染数据的更新.
+            </p>
+            <p>
+                控制器和指令中都引用scope,通过scope建立联系,但是互相不联系,这就隔离了两者,
+            </p>
+            <p>
+                scope事件传播,broadcast广播,emit发射机制.
+            </p>
+            <p>
+                angular的模型修改,通过$apply正确处理评估表达式,之后执行$digest,此阶段scope检查所有的被$watch的表达式,进行异步脏值检测,这意味着一个数据改变,会在$digest阶段被通知,这种延迟通知是被期望的,合并多个模型更新,在一个通知里,其他的$watch都不再运行.(真扯淡,我没懂他具体要如何实现)
+            </p>
+            <p>
+                生命周期: <br>
+                1.创建阶段,启动阶段创建rootscope和指令创建子scope. <br>
+                2.模版连接阶段,指令在scope中注册$watch,用于将模型的值传播到DOM中. <br>
+                3.模型改变,为了正确的观察到改变,让模型改变被$apply执行,angular隐性调用,所以不用额外的调用$apply,当在控制器中或者在 $http, $timeout or $interval中异步的执行.<br>
+                4.当$apply完成,在rootscope中执行$digest循环,然后传播到整个子scope,在$digest循环中,所有的$watch表达式和函数进行脏值检测,如果检测到改变$watch监听器被调用.<br>
+                5.scope销毁,当子$scope不再被需要,子$scope创建器有责任销毁她们,通过scope.$destroy()API,这将停止在子作用域中$digest传播,并允许被垃圾回收器回收.
+            </p>
+            <p>
+                scope和directive,在解析阶段,解析器在模版DOM中匹配指令,指令通常分为两类: <br>
+                1.观察指令,双大括号表达式,通过$watch方法注册监听器,这种类型的指令在任何改变的时候都需要被通知,更新视图. <br>
+                2.监听器指令,比如ng-click,在DOM上注册监听器,当监听器触发,指令执行相应的表达式,更新DOM使用$apply方法. <br>
+                当外部的事件被接收,相关的表达式必须调用在作用域中,通过$apply方法,以便所有的监听器正确的更新.
+
+            </p>
+            <p>
+                指令创建scope,在大多数情况下,指令和scope是互动的,但不创建新的scope实例,但是一些指令,比如ng-controller or ng-repeat创建新的子scope,并在相应的DOM元素附上新的子scope,你可以检索DOM元素的scope,使用angular.element(aDomElement).scope()方法.
+            </p>
+            <p>
+                控制器和scope,控制器和scope互动在以下的情况下: <br>
+                1.控制器使用scope展示控制器方法在模版中 (没懂) <br>
+                2.控制器定义方法在scope的属性上. <br>
+                3.控制器在模型上注册监听,控制器行为执行后,watchl立即执行.
+            </p>
+            <p>
+                关于$watch,在angular中对scope的属性进行脏值检测是很普遍的操作,因此脏值检测必须高效.脏值检测不做任何DOM访问,DOM访问比属性访问要慢.
+            </p>
+            <p>
+                $watch深入,通过三种策略执行脏值检测:通过引用,通过集合内容,通过值.策略的区别在于检测的种类,和性能特征. <br>
+                1.通过引用观察(scope.$watch (watchExpression, listener))检测改变,当整个值返回通过观察表达式,转变新的值.如果这个值是一个数组或者对象,内部的变化不能被检测,这是最有效的策略.
+                <br>
+                2.通过集合内容观察(scope.$watchCollection (watchExpression, listener))检测发生在数组或者对象内部的变化,如果项目被增加,删除,重新整理.这是浅度的检测,他不能查找内部的嵌套集合,观察集合内容比观察引用效率低,因为赋值需要被维护,但这种方法会赋值最小化需求.
+                <br>
+                3.通过值观察 (scope.$watch (watchExpression, listener, true))检测任何改变在任意的嵌套结构,这是最有力的检测策略,但是最昂贵的.全部便利数据结构需要整个贯穿,并且复制到内存中.
+            </p>
+            <p>
+                浏览器事件循环: <br>
+                1.浏览器事件循环,等待事件.事件是用户互动,定时器事件,或者网络事件. <br>
+                2.事件回调被执行,进入javascript上下文,回调函数可以更改DOM结构. <br>
+                3.一旦回调执行,浏览器离开javascript上下文,并且根据DOM修改重新渲染视图
+            </p>
+            <p>
+                angular修改javascript通过自己的事件处理循环,他从传统中分离javascript和angular执行上下文.应用angular执行上下文好处是操作数据绑定,除非控制,属性观察.你可以在javascript中通过$apply进入angular执行上下文环境.记住,在大部分的情况下,比如指令和服务中$apply都被自动调用了,除非执行自定义事件回调或者第三方库回调函数中使用$apply方法.
+                <br>
+                1.执行scope.apply(fn)方法,进入angular执行上下文环境. <br>
+                2.angular执行fn,代表性的修改应用状态. <br>
+                3.angular执行$digest循环,循环有两个较小的循环,处理 $evalAsync队列和$watch列表.循环知道模块固定,这意味这 $evalAsync队列是空的,$watch列表没有任何变化.
+                <br>
+                4. $evalAsync队列被用于计划工作,需要发生在当前堆栈框架之外,但在渲染视图之前. <br>
+                5.$watch是上次循环改变的表达式集合,如果改变被检测到,$watch被调用,更新DOM通过新的值. <br>
+                6.一旦$digest结束,执行离开angular和javascript上下文,浏览器渲染DOM,映射改变.
+
+            </p>
+        </div>
+
+        <h2>Dependency Injection</h2>
+        <div class="padding-left2">
+            <p>
+                依赖注入是一个软件设计模式,处理组件如何控制依赖.angular注入器子系统,管理创建组件,解决依赖,把她们提供到需要的组件中去.
+            </p>
+            <h3>
+                使用依赖注入
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    依赖注入渗透在整个angular应用,你可以使用它定义组件.
+                </p>
+                <p>
+                    1.组件比如服务,指令,过滤器,和动画,通过可注入工厂方法或者构造函数定义.可以注入service和value方法定义的组件作为依赖.
+                </p>
+                <p>
+                    2.控制器通过构造函数定义,可以注入service和value方法定义的组件作为依赖.
+                </p>
+                <p>
+                    3.run方法接受一个函数,可以注入"service", "value" and "constant"组件作为依赖.不可以注入providers
+                </p>
+                <p>
+                    4.config方法可以接受providers和constant作为依赖,不能接受"service" or "value".
+                </p>
+            </div>
+
+            <h3>
+                依赖注释
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    angular调用确定函数通过注入器,你需要注释以便注入器知道将服务注入到函数中,有三种方法注视服务名称信息.
+                </p>
+                <p>
+                    1.使用行间数组注释
+                </p>
+                <p>
+                    2.使用$injector属性注释.
+                </p>
+                <p>
+                    3.通过参数名隐性注释
+                </p>
+
+            </div>
+
+            <h3>
+                为什么使用依赖注入
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    讨论依赖注入的动机.有三种注入方式
+                </p>
+                <p>
+                    1.组件可以创建依赖,典型通过new操作符.
+                </p>
+                <p>
+                    2.组件可以寻找依赖,在全局范围内.
+                </p>
+                <p>
+                    3.组件可以在他需要的地方得到依赖.
+                </p>
+
+            </div>
+        </div>
+
+        <h2>Templates</h2>
+        <div class="padding-left2">
+            <p>
+                在angular中,模版HTML包含了angular指定元素和属性.angular在浏览器端结合模版和模型,控制器信息渲染动态视图
+            </p>
+            <p>
+                四种angular元素和属性你可以使用:
+            </p>
+            <p>
+                1.指令:属性或者元素增加到现有的DOM元素或者代表重用DOM组件
+            </p>
+            <p>
+                2.MARKUP双大括号{{}}绑定表达式
+            </p>
+            <p>
+                3.过滤器:格式化数据显示
+            </p>
+            <p>
+                4.表单控制器:验证表单
+            </p>
+        </div>
+
+
+        <h2>Expressions</h2>
+        <div class="padding-left2">
+            <p>
+                angular表达式类似angular代码片段,通常出现在插值绑定{{}}中,也用于指令属性中.
+            </p>
+            <h3>
+                angular表达式和javascript表达式比较
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    1.上下文环境:angular表达式在scope对象中被解析.
+                </p>
+                <p>
+                    2.在angular中解析不成功不会报错,会解析成undefined或者null.
+                </p>
+                <p>
+                    3.可以使用过滤器,在显示前格式化
+                </p>
+                <p>
+                    4.不能再表达式生命函数,用ng-init代替
+                </p>
+                <p>
+                    5.不能在表达式中创建正则表达式
+                </p>
+                <p>
+                    6.不能在表达式中使用new操作符
+                </p>
+                <p>
+                    7.不能在表达式中使用new操作符
+                </p>
+                <p>
+                    可以使用$eval方法手动解析表达式
+                </p>
+            </div>
+
+            <h3>
+                Context
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    angular不能使用eval()解析表达式,而是使用$parse服务处理表达式.angular限制使用window,location,document.防止访问全局状态--通常的错误来源.用$window,location代替.允许模拟全局使用.
+                </p>
+            </div>
+
+            <h3>
+                一次性绑定
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    使用{{::expression}}
+                </p>
+            </div>
+        </div>
+
+        <h2>Interpolation</h2>
+        <div class="padding-left2">
+            <p>
+                插值是嵌入式表达式用于提供数据绑定在文章和属性中.<a ng-href="img/{{username}}.jpg">Hello {{username}}!</a>
+            </p>
+            <h3>
+                文章和属性绑定如何工作
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    解析器使用$interpolate服务解析嵌入式表达式
+                </p>
+                <p>
+                    在这种情况下,解析器增加插值指令和注册$watch计算插值函数.更新对应的文章或者属性值像通常的$digest循环的一部分.
+                </p>
+
+            </div>
+
+            <h3>
+                绑定布尔类型属性
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    像disabled属于布尔类型属性,因为他们存在代表true,她们不存在代表false.我们不能采用通用的属性绑定,因为HTML规范不需要浏览器保存布尔属性的值.这意味这属性会丢失,因为浏览器忽略属性值,所以我们要用ng前缀.
+                </p>
+            </div>
+
+            <h3>
+                ngAttr绑定任意的属性
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    浏览器无法判断可用的属性.使用ng-attr-属性名可以解决这个问题
+                </p>
+            </div>
+        </div>
+
+        <h2>filter</h2>
+        <div class="padding-left2">
+            <p>
+                过滤器格式化数据显示给用户.可以被用于视图模版,控制器和服务.可以容易的自定义服务.
+            </p>
+            <h3>
+                在视图模版中使用过滤器
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    使用 | 语法,可以管道过滤, |过滤1 |过滤2 |过滤3
+                </p>
+                <p>
+                    使用:接受参数,如 | 过滤器:参数.
+                </p>
+
+            </div>
+
+            <h3>
+                在控制器,服务,指令中使用过滤器
+            </h3>
+
+            <h3>
+                自定义过滤器
+            </h3>
+
+        </div>
+
+        <h2>form</h2>
+        <div class="padding-left2">
+            <p>
+                用户使用控制元素(input,select,textarea)输入信息,form是这些控制元素的集合. <br>
+                form和控制元素提供验证服务,以便用户在提交前得到验证失败的通知.这种校验比后端验证用户体验更好,因为用户立即反馈改正错误.
+            </p>
+            <h3>
+                使用CSS类
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    ng-valid: the model is valid <br>
+                    ng-invalid: the model is invalid <br>
+                    ng-valid-[key]: for each valid key added by $setValidity <br>
+                    ng-invalid-[key]: for each invalid key added by $setValidity <br>
+                    ng-pristine: the control hasn't been interacted with yet <br>
+                    ng-dirty: the control has been interacted with <br>
+                    ng-touched: the control has been blurred <br>
+                    ng-untouched: the control hasn't been blurred <br>
+                    ng-pending: any $asyncValidators are unfulfilled <br>
+                </p>
+            </div>
+
+            <h3>
+                绑定属性和控制元素状态
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    $touched失去焦点,$submitted提交
+                </p>
+            </div>
+
+            <h3>
+                自定义触发模型更新
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    默认的,任何改变都讲触发模型更新和表单验证.你可以使用ngModelOptions指令覆盖默认的触发,updateOn代表触发的时机,debounce延迟时间
+                </p>
+            </div>
+
+            <h3>
+                自定义验证.
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    angular支持HTML5的基础验证,还有验证指令(required, pattern, minlength, maxlength, min, max);
+                </p>
+                <p>
+                    自定义指令,可以在ngModelController中增加自己的验证函数在$validators上对象上.
+                </p>
+                <p>
+                    在$validators对象上得函数接收模型值和视图值,作为参数.然后内部调用$setValidity,函数返回值(true: valid, false: invalid).当input改变或者绑定的模型改变,验证的函数被调用.验证发生在成功分别调用$parsers and $formatters之后.
+                    失败的验证器被键ngModelController.$error存储.
+                </p>
+                <p>
+                    另外$asyncValidators这是异步验证对象,处理异步验证,如向后端发起http请求,函数返回promise,如果验证通过返回resolve函数,否则返回reject函数.异步处理通过ngModelController.$pending存储.
+                </p>
+
+            </div>
+
+        </div>
+
+        <h2>directive</h2>
+        <div class="padding-left2">
+            <p>
+                document如何解释:当你想创建自己的指令在angularjs应用中,如何执行她们.
+            </p>
+            <h3>
+                什么是指令
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    在高层级,指令标记在DOM元素上(属性,TAG,CLASS,注释)告诉angular $compile为DOM元素附上指定的行为,甚至改变DOM元素h和他的子元素.
+                </p>
+                <p>
+                    angular内置了指令集合,如ngBind等.就像你创建了控制器和服务,你可以创建自己的指令使用.当angular启动应用,HTML解析贯穿DOM匹配DOM元素中的指令
+                </p>
+
+            </div>
+
+            <h3>
+                匹配指令
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    在我们写指令之前,我们需要知道angular HTML如何解析指令.
+                </p>
+                <p>
+                    当元素匹配选择器,类似术语被使用.我们说指令被匹配,当指令是声明的一部分.
+                </p>
+            </div>
+
+            <h3>
+                标准化
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    x- , data- , : , _都可以被匹配,但最佳实践是 ng- 或者 data-ng-
+                </p>
+            </div>
+
+            <h3>
+                指令类型
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    compile可以通过元素TAG,属性,CLASS和注释匹配指令.但最佳实践是通过元素名或者属性.
+                </p>
+            </div>
+
+            <h3>
+                创建指令
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    通过module.directive指令,使用工厂函数返回对象,告诉$compile指令如何运行.只有compile第一次匹配到指令时工厂函数被调用1次,你可以执行任何初始化在这里.函数调用使用$injector.invoke方法
+                </p>
+                <p>
+                    template:模版字符串; templateUrl:模版字符串连接.
+                </p>
+                <p>
+                    restrict: A属性,E标签,C样式名,M注释.
+                </p>
+                <p>
+                    scope: {}隔离作用域.里面可以使用 = (解析属性,直接引用属性,属性被改变,父级数据也会改变), @(将属性表达式的值赋值给新的作用域), &(复制属性到新的作用域,不会改变父级)
+                </p>
+                <p>
+                    link: function(scope作用域,element(jqLite包装的指令匹配的元素),attrs属性,controller,transcludeFn)
+                </p>
+                <p>
+                    transclude:是否包含内部元素,如果是true,模版中必须有ng-transclude,包含原有的服务.
+                </p>
+                <p>
+                    controller:太困了,一会继续看!!!
+                </p>
+            </div>
+        </div>
+
+        <h2>Components</h2>
+        <div class="padding-left2">
+            <p>
+                在angular里面,component是一种特殊的指令.通过简单的配置,适用基于组件构造应用.一种简单的写应用程序的方式,类似于web组件.
+            </p>
+            <p>
+                组件的优势:
+            </p>
+            <div class="padding-left2">
+                <p>
+                    1.比指令更简单的配置.
+                </p>
+                <p>
+                    2.促进健全的预设值和最佳实践
+                </p>
+                <p>
+                    3.优化基于组件的体系结构.
+                </p>
+                <p>
+                    4.写组件指令易于升级angular2版本.
+                </p>
+            </div>
+            <p>
+                什么时候不使用组件:
+            </p>
+            <div class="padding-left2">
+                <p>
+                    1.指令依赖DOM操作.增加事件监听,因为compile和link不可用.
+                </p>
+                <p>
+                    2.当你需要高级指令定义选项,比如优先级,终端和多元素.
+                </p>
+                <p>
+                    3.当你希望指令被属性或者class名,而不是element.
+                </p>
+            </div>
+            <h3>
+                创建和配置指令
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    组建可以使用component()方法注册,方法包含两个参数.组建名,组建配置对象.组件方法不使用工厂函数.
+                </p>
+
+            </div>
+
+        </div>
+
+        <h2>Modules</h2>
+        <div class="padding-left2">
+            <p>
+                什么是module,模块就是各个部分的容器,控制器,过滤器,服务,动画等等.
+            </p>
+            <h3>
+                为什么需要module
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    大多数应用程序都包含一个主方法,一个实例联系应用程序的不同部分.
+                </p>
+                <p>
+                    angular没有主方法,模块声明指定应用程序如何启动,这种方法有一些优势:
+                </p>
+                <div class="padding-left2">
+                    <p>
+                        1.定义过程容易理解
+                    </p>
+                    <p>
+                        2.你可以打包代码以便复用模块
+                    </p>
+                    <p>
+                        模块可以按任何顺序加载,因为模块是延迟执行的.
+                    </p>
+                    <p>
+                        单元测试只加载相关的模块,更快速.
+                    </p>
+                    <p>
+                        E2E测试模块可以推翻配置.
+                    </p>
+                </div>
+            </div>
+
+
+            <h3>
+                模块加载和依赖
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    一个模块包含config和run阶段.在应用程序启动后执行.最简单的模块由两种代码块构成.
+                </p>
+
+                <div class="padding-left2">
+                    <p>
+                        1.config block:执行provider注册和配置阶段.只有provider和constant可以被注入.这是为了防止在完成配置之前实例化服务.
+                    </p>
+                    <p>
+                        2.run block:注入器创建和启动应用程序后执行.只有实例和constant可以被注入.这是为了阻止在run阶段进行系统配置.
+                    </p>
+                </div>
+            </div>
+
+            <h3>
+                Configuration Blocks
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    在此阶段,有一些方便的方法在module上面.在启动阶段,先应用所有的constant定义,然后应用配置block按照书写的顺序注册.
+                </p>
+
+                <div class="padding-left2">
+                    <p>
+                        value('a', 123). === $provide.value('a', 123)
+                    </p>
+                    <p>
+                        directive('directiveName', ...) === $compileProvider.directive('directiveName', ...);
+                    </p>
+                    <p>
+                        filter('filterName', ...) === $filterProvider.register('filterName', ...);
+                    </p>
+                </div>
+            </div>
+
+            <h3>
+                Run Blocks
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    此阶段最接近应用的主方法,此block执行启动后需要执行的代码.他执行在所有的服务配置完成,注入器被创建之后.这个阶段的代码难于单元测试,所以应该声明隔离的模块.因此它可以忽略单元测试
+                </p>
+            </div>
+
+            <h3>
+                依赖
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    模块可以列出依赖的其他模块,依赖的模块暗示,依赖的模块需要在之前加载,换句话说被依赖模块的configuration blocks应该在本模块的configuration blocks之前.run模块也是如此.任何模块可以被夹在一次,如果被多次依赖也是如此.
+                </p>
+            </div>
+
+            <h3>
+                异步加载
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    模块在加载的过程中不执行,所以脚本加载器可以利用这个特点异步加载.
+                </p>
+            </div>
+        </div>
+
+        <h2>Components</h2>
+        <div class="padding-left2">
+            <p>
+                在angular里面,component是一种特殊的指令.通过简单的配置,适用基于组件构造应用.一种简单的写应用程序的方式,类似于web组件.
+            </p>
+            <p>
+                组件的优势:
+            </p>
+            <div class="padding-left2">
+                <p>
+                    1.比指令更简单的配置.
+                </p>
+                <p>
+                    2.促进健全的预设值和最佳实践
+                </p>
+                <p>
+                    3.优化基于组件的体系结构.
+                </p>
+                <p>
+                    4.写组件指令易于升级angular2版本.
+                </p>
+            </div>
+            <p>
+                什么时候不使用组件:
+            </p>
+            <div class="padding-left2">
+                <p>
+                    1.指令依赖DOM操作.增加事件监听,因为compile和link不可用.
+                </p>
+                <p>
+                    2.当你需要高级指令定义选项,比如优先级,终端和多元素.
+                </p>
+                <p>
+                    3.当你希望指令被属性或者class名,而不是element.
+                </p>
+            </div>
+            <h3>
+                创建和配置指令
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    组建可以使用component()方法注册,方法包含两个参数.组建名,组建配置对象.组件方法不使用工厂函数.
+                </p>
+
+            </div>
+
+        </div>
+
+        <h2>HTML Compiler</h2>
+        <div class="padding-left2">
+            <p>
+                angular HTML Compiler允许开发者浏览器新html语法.解析器允许你在所有HTML元素中添加行为和属性,甚至根据自定义行为创建新的元素和属性.
+            </p>
+            <p>
+                angular预绑定常用指令,对建立任何应用都有用处的.我们也希望创建指令,在我们指定的应用中.这些扩展将编程特殊的语法在我们的应用程序中,然后就被compile解析了.这一切就发生在浏览器端.
+            </p>
+            <h3>
+                compiler
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    编译器是angular服务,贯穿DOM寻找属性.编译器处理发生在两个阶段.
+                </p>
+                <p>
+                    1.compiler阶段:贯穿整个DOM,收集全部指令,结果是连接函数.
+                </p>
+                <p>
+                    2.link阶段:指令结合scope,产生时时视图.任何模型的改变都会映射到视图中,任何用户交互都会映射到模型中.
+                </p>
+            </div>
+
+
+            <h3>
+                理解视图
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    angular使用DOM,连接函数,合并模型映射视图,试图和模型明显的绑定.开发者不用调用特别的操作来更新视图.angular指令不止包含text,而是行为构建.
+                </p>
+                <p>
+                    angular方法产生一个稳定的DOM,DOM元素实例绑定模型实例在生命周期内.这意味着,代码可以控制元素,注册事件控制,在模版数据合并时,引用不会销毁.
+                </p>
+            </div>
+
+            <h3>
+                指令如何被编译
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    angular操作DOM节点,而不是字符串.你不用声明限制,因为当网页加载,浏览器解析从DOM自动解析HTML.
+                </p>
+
+                <div class="padding-left2">
+                    <p>
+                        HTML解析分三个阶段
+                    </p>
+                    <p>
+                        1.angular $compile服务贯穿DOM匹配指令.如果解析器在元素上匹配到指令,指令被添加到指令列表.一个元素可能匹配多个指令.
+                    </p>
+                    <p>
+                        2.所有指令匹配的DOM元素全部被识别,编译器按照指令的优先级排序.所有指令编译函数被执行,所有的编译函数有机会修改DOM,所有编译函数返回link函数,这些编译函数被结合在link函数中,调用任何指令返回link函数.
+                    </p>
+                    <p>
+                        3.$compile通过调用上一步合并的link函数连接模版和scope.调用单独指令的link函数,在元素上注册监听,建立$watch服务在scope上,所有指令被配置.
+                    </p>
+                </div>
+            </div>
+
+            <h3>
+                compile和link的区别
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    为什么编译分成编译和链接两个阶段.因为这是必要的,当一个模型变化引起DOM结构变化.指令有编译函数非常好,因为大多数指令被关心工作在特殊的DOM元素实例,而不是改变他的整体结构.link函数允许注册监听指定的DOM元素实例,好像在scope上复制内容到DOM内容上.
+                </p>
+            </div>
+        </div>
+
+        <h2>Animations</h2>
+        <div class="padding-left2">
+            <p>
+                angular提供了一些默认的动画钩子指令,比如ngRepeat, ngSwitch, and ngView,也可以通过$animate服务自定义动画.动画钩子设置在触发动画的地方,尝试执行CSS transition.CSS动画贞或者javascript回调函数执行
+            </p>
+            <h3>
+                如何工作
+            </h3>
+            <div class="padding-left2">
+                <p>
+                    动画基于CSS名,只要CSS附加在DOM元素上,你可以应用animate.
+                </p>
+                <p>
+                    动画会在变更状态的时候给你加上CSS类名,你就设置好之后,调用animate就可以了.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+<script src="../js/less.js"></script>
+</html>
