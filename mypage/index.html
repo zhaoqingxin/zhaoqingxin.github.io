@@ -1,0 +1,1850 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>赵庆馨15210489227</title>
+<link rel="stylesheet" href="css/base.css" />
+<script src="js/move.js"></script>
+<style>
+	body{}
+	
+	#box{ width:100%;}
+	.page{ float:left; font-family:'微软雅黑';}
+	.pagebox{position:absolute; left:0; top:0;}
+	
+	
+	#prev{ width:80px; height:80px; font-size:70px; color:#999; position:fixed; left:10px; top:50%; margin-top:-30px; font-weight:bold; cursor:pointer; z-index:2000; opacity:0.4;}
+	#next{ width:80px; height:80px; font-size:70px; color:#999; position:fixed; right:10px; top:50%; margin-top:-30px; font-weight:bold; cursor:pointer; z-index:2000; opacity:0.4;}
+	
+	#page1{ width:100%; position:relative;}
+	#ziti{font:12px/18px "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;}
+	
+	
+	#page2{background:#fff; position:relative; width:100%;}
+	#page2_box{ width:800px; height:500px; position:absolute; left:50%; top:50%; margin-left:-400px; margin-top:-250px;}
+	.page2_ul{ width:133px; height:200px; position:absolute; left:50%; top:50%; margin-left:-66px; margin-top:-150px; border-radius:8px; 
+	-webkit-transform-style:preserve-3d; 
+	-moz-transform-style:preserve-3d; 
+	-o-transform-style:preserve-3d; 
+	-ms-transform-style:preserve-3d; 
+	transform-style:preserve-3d; 
+	-webkit-transform:perspective(800px) rotateX(-15deg);
+	-moz-transform:perspective(800px) rotateX(-15deg);
+	-o-transform:perspective(800px) rotateX(-15deg);
+	-ms-transform:perspective(800px) rotateX(-15deg);
+	transform:perspective(800px) rotateX(-15deg);
+	}
+	
+	.page2_ul li{ width:133px; height:200px; position:absolute; left:0; top:0; border-radius:8px; box-shadow:0 0 10px #000; cursor:pointer;}
+	.page2_ul li span{ position:absolute; left:0; top:0; width:133px; height:200px; 
+	transform:translateY(220px) scale(1,-1);
+	-webkit-transform:translateY(220px) scale(1,-1);
+	-moz-transform:translateY(220px) scale(1,-1);
+	-o-transform:translateY(220px) scale(1,-1);
+	-ms-transform:translateY(220px) scale(1,-1);
+	border-radius:10px; 
+	-webkit-mask:linear-gradient(rgba(0,0,0,0) 30%,rgba(0,0,0,1));
+	-moz-mask:linear-gradient(rgba(0,0,0,0) 30%,rgba(0,0,0,1));
+	
+	alpha:opacity:(30);
+	 opacity:0.3; box-shadow:0 0 10px 5px #fff;}
+	
+	#page3{ text-align:center; width:100%; position:relative; background:#fff;}
+	#page3_p{ text-align:center; color:#999; padding:50px; font-size:24px;}
+	#page3_ul1{ width:360px; height:500px; position:absolute; left:50%; margin-left:-460px; top:120px; }
+	#page3_ul1 li{ width:100px; height:100px; float:left; margin:10px; cursor:pointer; transition:0.2s transform ease;}
+	#page3_ul1 li img{ width:100px;}
+	#page3_ul1 li.box{transform:scale(1.5);}
+	#page3_ul2{ width:360px; height:500px; position:absolute; left:50%; top:100px; margin-left:100px;}
+	#page3_ul2 li{cursor:pointer;}
+	#page3_ul2 li,#page3_ul2 img{ width:100px; height:100px; float:left; margin:10px; border-radius:12px;}
+	#page3_ul2 li.box{ border:2px dashed #666;}
+	
+	#page4{ width:100%; background:#fff; position:relative; width:100%; text-align:center;}
+	#page4_box{ width:700px; height:400px; background:url(img/bg1.jpg) no-repeat; margin-top:-200px; margin-left:-350px; position:absolute; top:50%; left:50%;
+	-webkit-transform-style:preserve-3d; 
+	-moz-transform-style:preserve-3d; 
+	-o-transform-style:preserve-3d; 
+	-ms-transform-style:preserve-3d; 
+	transform-style:preserve-3d; }
+	#page4_box span{ position:absolute; background:url(img/bg0.jpg) no-repeat;
+	-webkit-transform-style:preserve-3d; 
+	-moz-transform-style:preserve-3d; 
+	-o-transform-style:preserve-3d; 
+	-ms-transform-style:preserve-3d; 
+	transform-style:preserve-3d; 
+	-webkit-transform:perspective(800px) rotate(0deg);
+	-moz-transform:perspective(800px) rotate(0deg);
+	-o-transform:perspective(800px) rotate(0deg);
+	-ms-transform:perspective(800px) rotate(0deg);
+	transform:perspective(800px) rotate(0deg);
+	}
+	
+	#page5{ position:relative; background:#fff;}
+	#applebox{ position:absolute; left:0; bottom:0; width:100%; text-align:center;}
+	
+	.page5_page img{border:none;display:block;}
+	.page5_page{
+		-webkit-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+		-moz-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+		-o-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+		-ms-box-shadow: rgba(0,0,0,0.3) 0 1px 3px;
+		box-shadow: rgba(0,0,0,0.3) 0 1px 3px; 
+		background:#FFFFFF;
+		border-color: #E5E5E5 #DBDBDB #D2D2D2;
+		border-style: solid;
+		border-width: 1px;
+		margin:50px auto 0;
+		width:980px;
+	}
+	.page5_box{
+		overflow: hidden;
+		position: relative;
+		width: 820px;
+		z-index: 0;
+		height:158px;
+		margin: 0 70px;
+	}
+	.page5_box_head{
+		width: 1680px;	
+	}
+	.page5_box_head li{
+		width:140px; 
+		float:left;
+		text-align: center;
+	}
+	.page5_page a{
+		text-decoration:none;
+		font: 12px/18px "Lucida Grande","Lucida Sans Unicode",Helvetica,Arial,Verdana,sans-serif;
+		color:#7F7F7F;
+	}
+	.page5_box_head li a:hover{color:#333;}
+	.page5_box_foot{
+		height:30px; 
+		text-align:center; 
+		background:#fff; 
+		overflow:hidden;
+		background:-moz-linear-gradient(center bottom, rgba(223,223,223,1) 0%, rgba(242,242,242,1) 66%, rgba(242,242,242,1) 90%, rgba(230,230,230,1) 93%, rgba(190,190,190,1) 96%, rgba(150,150,150,1) 100%);
+		background:-webkit-gradient(linear, left bottom, left top, from(rgba(223,223,223,1)), color-stop(66%, rgba(242,242,242,1)), color-stop(90%, rgba(242,242,242,1)), color-stop(93%, rgba(230,230,230,1)), color-stop(96%, rgba(210,210,210,1)), to(rgba(140,140,140,1)));
+		
+		border-bottom:1px solid #ebebeb;
+		position:relative;
+	}
+	.page5_page .caret{
+		background: url(appleimg2/caret_active.gif) no-repeat scroll 0 0;
+		display: block;
+		height: 8px;
+		margin: 0 0 -8px -7px;
+		position: absolute;
+		width: 15px;
+	}
+	.page5_box_foot a{
+		display: inline-block;
+		margin: 0 15px;
+		padding: 8px 0 6px;
+		cursor:pointer;
+		text-shadow: 0 1px 0 #FFFFFF;
+	}
+	.page5_box_foot .show{
+		color:#2B2B2B;	
+	}
+	.page5_box_foot a:hover{color:#000;}
+	
+	.page5_ul{overflow:hidden; width:840px; margin:100px auto;}
+	.page5_ul li{float:left; width:200px; height:150px; margin:5px; position:relative; top:0; left:0; overflow:hidden; cursor:pointer;}
+	.page5_ul li span{position:absolute; width:100%; height:100%; background:#33CCFF; text-align:center; line-height:150px; font-size:24px; font-weight:bold; color:#fff; top:0; left:-200px; }
+	#c1 {background:url(img/game_bg_2_hd.jpg); position:absolute; left:50%; top:50%; margin-left:-400px; margin-top:-300px;}
+	
+	#page6{ position:relative; background:#EBEBED; }
+	#page6_ball{ width:200px; height:200px; background:#000; border-radius:50%; position:absolute; left:0; top:0;}
+	#page6_ball2{width:100px; height:100px; background:#000; border-radius:50%; position:absolute; left:1500px; top:500px}
+	#page6 p{ font-size:24px; font-weight:bold; padding:200px; color:#999; text-align:center;}
+</style>
+<script>
+	function rnd(n,m){
+		return parseInt(Math.random()*(m+1-n)+n);
+	}
+	
+	window.onload=function(){
+		var oBox=document.getElementById('box');
+		var oPbox=document.getElementById('pagebox');
+		var oPrev=document.getElementById('prev');
+		var oNext=document.getElementById('next');
+		var oPg1=document.getElementById('page1');
+		var oPg2=document.getElementById('page2');
+		var oPg3=document.getElementById('page3');
+		var oPg4=document.getElementById('page4');
+		var oPg5=document.getElementById('page5');
+		var oP2box=document.getElementById('page2_box');
+		var oUl=document.getElementById('page2_ul');
+		oPbox.style.width=document.documentElement.clientWidth*10+'px';
+		var oPg=oPbox.children;
+		var clientW=document.documentElement.clientWidth;
+		
+		for(var i=0; i<oPg.length; i++){
+			oPg[i].style.float='left';
+			oPg[i].style.width=clientW+'px';
+			oPg[i].style.height=document.documentElement.clientHeight+'px';
+			oPg[i].onmousedown=function(){
+				return false;
+			}
+		}
+		
+		oPbox.onmousedown=function(){
+			return false;
+		};
+		if(document.documentElement.clientHeight>=800){
+			oBox.style.height=document.documentElement.clientHeight+'px';
+			oPbox.style.height=document.documentElement.clientHeight+'px';
+			oPg1.style.height=document.documentElement.clientHeight+'px';
+			oPg2.style.height=document.documentElement.clientHeight+'px';
+			oPg3.style.height=document.documentElement.clientHeight+'px';
+			oPg4.style.height=document.documentElement.clientHeight+'px';
+			oPg5.style.height=document.documentElement.clientHeight+'px';
+		}else{
+			oBox.style.height=800+'px';
+			oPbox.style.height=800+'px';
+			oPg1.style.height=800+'px';
+			oPg2.style.height=800+'px';
+			oPg3.style.height=800+'px';
+			oPg4.style.height=800+'px';
+			oPg5.style.height=800+'px';
+		}
+		oBox.style.width=document.documentElement.clientWidth;
+		
+		
+		
+		var x=0;
+		var iNow=0;
+		var iNowPage=[];
+		
+		;(function(){
+			oPrev.onclick=function(){
+				
+				if(iNow==0)return;
+				iNow--;
+				iNowPage.unshift(iNow);
+				console.log(iNow);
+				x=-iNow*clientW;
+				move(oPbox,{left:x},{end:pagechange})
+			};
+			oNext.onclick=function(){
+				if(iNow==oPg.length-1)return;
+				iNow++;
+				iNowPage.unshift(iNow);
+				console.log(iNow);
+				x=-iNow*clientW;
+				move(oPbox,{left:x},{end:pagechange})
+			};
+		})()
+		//页面拖动
+		;(function(){
+			var timer=null;
+			var speedX;
+			var lastX;
+			
+			oBox.onmousedown=function(ev){
+				clearInterval(timer);
+				var oEvent=ev||event;
+				var oldX=oEvent.clientX-x;
+				document.onmousemove=function(ev){
+					var oEvent=ev||event;
+					x=oEvent.clientX-oldX;
+					oPbox.style.left=x+'px';
+					speedX=oEvent.clientX-lastX;
+					lastX=oEvent.clientX;
+				};
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+					clearInterval(timer);
+					/*timer=setInterval(function(){
+						speedX*=0.8;
+						x+=speedX;
+						oPbox.style.left=x+'px';
+						if(Math.abs(speedX)<3){
+							clearInterval(timer);
+						}
+					},30)*/
+					if(x>0){
+						x=0;
+					}else if(x<(-clientW*4)){
+						x=(-document.documentElement.clientWidth*4);
+					}else if(x<0&&x>-clientW*4){
+						x=-(Math.floor(-x/clientW)*clientW+Math.round(-x%clientW/clientW)*clientW);
+					}
+					iNow=-x/clientW;
+					iNowPage.unshift(iNow);
+					
+					console.log(iNow);
+					if(iNowPage[0]!=1){
+						oUl.innerHTML='';
+					}
+					move(oPbox,{left:x},{end:pagechange})
+					
+				};
+				
+			};
+		})();
+		
+		
+		
+		
+		//照片墙
+		;(function(){
+			
+			var oU1=document.getElementById('page3_ul1');	
+			var oU2=document.getElementById('page3_ul2');	
+			var aLi=oU1.children;
+			var zIndex=1000;
+			
+			oU1.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			}
+			//布局转化  浮动->定位
+			var aPos=[];  //[{},{},{}]
+			
+			//点击随机走
+			
+				
+			//把位置给打乱了
+			aPos.sort(function(){
+				return Math.random()-0.5;
+			});
+			
+			for(var i=0; i<aLi.length; i++){
+				move(aLi[i],aPos[aLi[i].index]);
+			}
+		
+			
+			for(var i=0; i<aLi.length; i++){
+				aPos[i]={left:aLi[i].offsetLeft, top:aLi[i].offsetTop};
+			}
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].style.left=aPos[i].left+'px';
+				aLi[i].style.top=aPos[i].top+'px';
+				aLi[i].style.position='absolute';
+				aLi[i].style.margin=0;
+			}
+			
+			//调用拖拽
+			for(var i=0; i<aLi.length; i++){
+				drag(aLi[i]);
+				aLi[i].index=i;
+			}
+			
+			function drag(obj){
+				obj.onmousedown=function(ev){
+					var oEvent=ev || event;
+					var disX=oEvent.clientX-obj.offsetLeft;
+					var disY=oEvent.clientY-obj.offsetTop;
+					
+					obj.style.zIndex=zIndex++;
+					
+					clearInterval(obj.timer);
+					
+					document.onmousemove=function(ev){
+						var oEvent=ev || event;
+						obj.style.left=oEvent.clientX-disX+'px';
+						obj.style.top=oEvent.clientY-disY+'px';
+						
+						//用
+						for(var i=0; i<aLi.length; i++){
+							aLi[i].className='';
+						}
+						var oNear=findNearest(obj);
+						if(oNear){
+							oNear.className='box';
+						}
+					};
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+						
+						//
+						var oNear=findNearest(obj);	
+						if(oNear){
+							move(obj,aPos[oNear.index]);
+							move(oNear,aPos[obj.index]);
+							
+							oNear.className='';
+							
+							var tmp;
+							tmp=obj.index;
+							obj.index=oNear.index;
+							oNear.index=tmp;
+						}else{
+							//obj.style.left=aPos[obj.index].left+'px';
+							//obj.style.top=aPos[obj.index].top+'px';
+							move(obj,aPos[obj.index]);
+						}
+					};
+					oEvent.cancelBubble = true
+					return false;
+				};
+			}
+			
+			function findNearest(obj){
+				var iMin=999999999999999;
+				var iMinIndex=-1;
+				
+				for(var i=0; i<aLi.length; i++){
+					if(obj==aLi[i])continue;
+					if(collTest(obj,aLi[i])){
+						var dis=getDis(obj,aLi[i]);
+						if(dis<iMin){
+							iMin=dis;
+							iMinIndex=i;
+						}
+					}
+				}
+				
+				if(iMinIndex==-1){
+					return null;
+				}else{
+					return aLi[iMinIndex];
+				}
+			}
+			
+			//求出两个物体距离
+			function getDis(obj,obj2){
+				var l1=obj.offsetWidth/2+obj.offsetLeft;
+				var l2=obj2.offsetWidth/2+obj2.offsetLeft;
+				
+				var t1=obj.offsetTop+obj.offsetHeight/2;
+				var t2=obj2.offsetTop+obj2.offsetHeight/2;
+				
+				var a=l1-l2;
+				var b=t1-t2;
+				
+				return Math.sqrt(a*a+b*b);
+			}
+			//碰撞检测
+			function collTest(oDiv,oDiv2){
+				var l1=oDiv.offsetLeft;
+				var r1=oDiv.offsetLeft+oDiv.offsetWidth;
+				var t1=oDiv.offsetTop;
+				var b1=oDiv.offsetTop+oDiv.offsetHeight;
+				
+				var l2=oDiv2.offsetLeft;
+				var r2=oDiv2.offsetLeft+oDiv2.offsetWidth;
+				var t2=oDiv2.offsetTop;
+				var b2=oDiv2.offsetTop+oDiv2.offsetHeight;
+				
+				if(r1<l2 || l1>r2 || b1<t2 || t1>b2){
+					return false;
+				}else{
+					return true;
+				}	
+			}
+		})();
+		
+		
+		//手机桌面效果
+		;(function(){
+			
+			
+			var oU1=document.getElementById('page3_ul1');
+			var oU2=document.getElementById('page3_ul2');	
+			var aLi=oU2.children;
+			var zIndex=1000;
+			var aPos=[];
+			oU2.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			}
+			
+			//布局转化  浮动->定位
+			  //[{},{},{}]
+			
+			if(!aPos[0]){
+				for(var i=0; i<aLi.length; i++){
+					aPos[i]={left:aLi[i].offsetLeft, top:aLi[i].offsetTop};
+				}
+			}
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].style.left=aPos[i].left+'px';
+				aLi[i].style.top=aPos[i].top+'px';
+				aLi[i].style.position='absolute';
+				aLi[i].style.margin=0;
+			}
+			
+			//调用拖拽
+			for(var i=0; i<aLi.length; i++){
+				drag(aLi[i]);
+				aLi[i].index=i;
+			}
+			
+			function drag(obj){
+				obj.onmousedown=function(ev){
+					var oEvent=ev || event;
+					var disX=oEvent.clientX-obj.offsetLeft;
+					var disY=oEvent.clientY-obj.offsetTop;
+					
+					obj.style.zIndex=zIndex++;
+					
+					clearInterval(obj.timer);
+					
+					document.onmousemove=function(ev){
+						var oEvent=ev || event;
+						obj.style.left=oEvent.clientX-disX+'px';
+						obj.style.top=oEvent.clientY-disY+'px';
+						
+						//用
+						var oNear=findNearest(obj);	
+						if(oNear && obj!=oNear){
+							var n=obj.index;
+							var m=oNear.index;
+							if(n<m){
+								for(var i=0; i<aLi.length; i++){
+									if(aLi[i].index>=n+1 && aLi[i].index<=m){
+										aLi[i].index--;
+										move(aLi[i],aPos[aLi[i].index]);
+									}
+								}
+								obj.index=m;
+							}else{
+								for(var i=0; i<aLi.length; i++){
+									if(aLi[i].index>=m && aLi[i].index<=n-1){
+										aLi[i].index++;
+										move(aLi[i],aPos[aLi[i].index]);
+									}
+								}
+								obj.index=m;
+							}
+						}
+					};
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+						
+						
+						move(obj,aPos[obj.index]);
+					};
+					oEvent.cancelBubble = true
+					return false;
+				};
+			}
+			
+			function findNearest(obj){
+				var iMin=999999999999999;
+				var iMinIndex=-1;
+				
+				for(var i=0; i<aLi.length; i++){
+					//if(obj==aLi[i])continue;
+					if(collTest(obj,aLi[i])){
+						var dis=getDis(obj,aLi[i]);
+						if(dis<iMin){
+							iMin=dis;
+							iMinIndex=i;
+						}
+					}
+				}
+				
+				if(iMinIndex==-1){
+					return null;
+				}else{
+					return aLi[iMinIndex];
+				}
+			}
+			
+			//求出两个物体距离
+			function getDis(obj,obj2){
+				var l1=obj.offsetWidth/2+obj.offsetLeft;
+				var l2=obj2.offsetWidth/2+aPos[obj2.index].left;
+				
+				var t1=obj.offsetTop+obj.offsetHeight/2;
+				var t2=aPos[obj2.index].top+obj2.offsetHeight/2;
+				
+				var a=l1-l2;
+				var b=t1-t2;
+				
+				return Math.sqrt(a*a+b*b);
+			}
+			//碰撞检测
+			function collTest(oDiv,oDiv2){
+				var l1=oDiv.offsetLeft;
+				var r1=oDiv.offsetLeft+oDiv.offsetWidth;
+				var t1=oDiv.offsetTop;
+				var b1=oDiv.offsetTop+oDiv.offsetHeight;
+				
+				var l2=aPos[oDiv2.index].left;
+				var r2=aPos[oDiv2.index].left+oDiv2.offsetWidth;
+				var t2=aPos[oDiv2.index].top;
+				var b2=aPos[oDiv2.index].top+oDiv2.offsetHeight;
+				
+				if(r1<l2 || l1>r2 || b1<t2 || t1>b2){
+					return false;
+				}else{
+					return true;
+				}	
+			}
+			
+		})();
+		
+		//照片爆炸效果
+		;(function(){
+			var oBox=document.getElementById('page4_box');
+			oBox.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			}
+			var R=4;
+			var C=7;
+			for(var r=0; r<R; r++){
+				for(var c=0; c<C; c++){
+					var oSpan=document.createElement('span');
+					oSpan.style.width=oBox.offsetWidth/C+'px';
+					oSpan.style.height=oBox.offsetHeight/R+'px';
+					oBox.appendChild(oSpan);
+					oSpan.style.left=c*oSpan.offsetWidth+'px';
+					oSpan.style.top=r*oSpan.offsetHeight+'px';
+					
+					oSpan.style.backgroundPosition='-'+c*oSpan.offsetWidth+'px -'+r*oSpan.offsetHeight+'px';
+				}
+			}
+			//点击
+			var iNow=0;
+			var bReady=true;
+			oBox.onclick=function(){
+				if(bReady==false)return;
+				bReady=false;
+				iNow++;
+				var aSpan=oBox.children;
+				
+				for(var i=0; i<aSpan.length; i++){
+					aSpan[i].style.transition='.5s all ease';
+					//setStyle3(aSpan[i],'transition','.5s all ease')
+					var x=aSpan[i].offsetLeft+aSpan[i].offsetWidth/2-oBox.offsetWidth/2;
+					var y=aSpan[i].offsetTop+aSpan[i].offsetHeight/2-oBox.offsetHeight/2;
+					
+					aSpan[i].style.transform='translate3d('+x+'px,'+y+'px,100px) rotateX('+rnd(0,180)+'deg) rotateY('+rnd(0,180)+'deg)';
+					//aSpan[i].style.MsTransform='translate3d('+x+'px,'+y+'px,100px) rotateX('+rnd(0,180)+'deg) rotateY('+rnd(0,180)+'deg)';
+					
+					//setStyle3(aSpan[i],'transform','perspective(800px) translate3d('+x+'px,'+y+'px,100px) rotateX('+rnd(0,180)+'deg) rotateY('+rnd(0,180)+'deg)')
+					aSpan[i].style.opacity=0;
+					aSpan[i].style.alpha='opacity(0)';
+				}
+				aSpan[0].addEventListener('transitionend',function(){
+					for(var i=0; i<aSpan.length; i++){
+						aSpan[i].style.transition='none';
+						//setStyle3(aSpan[i],'transition','none')
+						aSpan[i].style.opacity=1;
+						aSpan[i].style.alpha='opacity(100)';
+						
+						aSpan[i].style.transform='translate3d(0,0,0) rotateX(0deg) rotateY(0deg)';
+						//aSpan[i].style.MsTransform='translate3d(0,0,0) rotateX(0deg) rotateY(0deg)';
+						//setStyle3(aSpan[i],'perspective(800px) translate3d(0,0,0) rotateX(0deg) rotateY(0deg)');
+						oBox.style.backgroundImage='url(img/bg'+(iNow+1)%7+'.jpg)';
+						aSpan[i].style.backgroundImage='url(img/bg'+iNow%7+'.jpg)';
+					}
+					bReady=true;
+				},false);
+			};
+		})();
+		
+		//一些小的效果
+		(function(){
+			var oBox = document.getElementById('applebox');
+			var aImg = oBox.children;
+			oBox.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			};
+			oPg1.onmousemove=function(ev){
+				var oEvent = ev||event;
+				for(var i=0;i<aImg.length;i++){
+					var a = aImg[i].offsetLeft+aImg[i].offsetWidth/2-oEvent.clientX;
+					var b = aImg[i].offsetTop+aImg[i].offsetHeight/2+oBox.offsetTop-oEvent.clientY;
+					
+					var c = Math.sqrt(a*a+b*b);//求出距离
+					var scale = 1-c/500;//算出比例
+					scale<0.5&&(scale=0.5);//控制比例范围不能小于0.5
+					aImg[i].width=scale*128;			
+				}
+			};
+		})();
+		
+		
+		;(function(){
+			var oBox=document.getElementById('page5_div1');
+			var oUl=document.getElementById('page5_box_head');
+			var aLi=oUl.getElementsByTagName('li');
+			var oDiv=document.getElementById('page5_box_foot');
+			var aA=oDiv.getElementsByTagName('a');
+			var oI=document.getElementById('caret');
+			var oPos=[];
+			var n=0;
+			var m=6;
+			var timer1=null;
+			for(var i=0; i<aLi.length; i++){
+				oPos.push({left:aLi[i].offsetLeft,top:aLi[i].offsetTop})
+			}
+			for(var i=0; i<aLi.length; i++){
+				aLi[i].style.float='none';
+				aLi[i].style.position='absolute';
+				aLi[i].style.left=oPos[i].left+'px';
+				aLi[i].style.top=oPos[i].top+'px';
+			}
+			oBox.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			}
+			var bReady=true;
+			aA[1].onclick=function(){
+				//oI.style.left='537px';
+				if(bReady==false||aA[1].className=='show')return;
+				aA[0].className='';
+				aA[1].className='show'
+				setTimeout(function(){bReady=true;},2000)
+				move(oI,537)
+				timer1=setInterval(function(){
+					if(aLi[n]){
+					//aLi[i].style.left=oPos[i].left-840+'px';
+					move(aLi[n],oPos[n].left-840);
+					}
+					n++;
+					if(n==6){
+						clearInterval(timer1);
+					}
+				},100)
+				setTimeout(function(){
+					timer1=setInterval(function(){
+						if(aLi[m]){
+							move(aLi[m],oPos[m-6].left);
+							//aLi[i].style.left=oPos[i-6].left+'px';
+						}
+						m++;
+						if(m==12){
+							clearInterval(timer1);
+							
+						}
+					},100)	
+				},1000)
+				bReady=false;
+			}
+			aA[0].onclick=function(){
+				if(bReady==false||aA[0].className=='show')return
+				aA[0].className='show';
+				aA[1].className='';
+				setTimeout(function(){bReady=true;},2000)
+					//oI.style.left='422px';
+				move(oI,422)
+				timer1=setInterval(function(){
+					m--;
+					if(aLi[m]){
+					//aLi[i].style.left=oPos[i].left+'px';
+					move(aLi[m],oPos[m].left);
+					}
+					if(m==6){
+						clearInterval(timer1);
+					}
+				},100)
+				setTimeout(function(){
+					timer1=setInterval(function(){
+						n--;
+						if(aLi[n]){
+						//aLi[i].style.left=oPos[i].left+'px';
+						move(aLi[n],oPos[n].left);
+						}
+						if(n==0){
+							clearInterval(timer1);
+						}
+					},100)	
+				},1000)
+				bReady=false;
+				
+			}
+			function move(obj,target){
+				var x=obj.offsetLeft; 
+				var speed=0;
+				var timer=null;
+				timer=setInterval(function(){
+					speed+=(target-obj.offsetLeft)/6;
+					speed*=0.7;
+					x+=speed;
+					
+					obj.style.left=x+'px';
+					if(speed<3&&Math.abs(obj.offsetLeft-target)<5){
+						obj.style.left=target+'px';
+						clearInterval(timer);
+					}
+				},30)
+			}
+		})();
+		
+		
+		;(function(){
+			var oUl=document.getElementById('page5_ul');
+			oUl.onmousedown=function(ev){
+				var oEvent=ev||event;
+				oEvent.cancelBubble=true;
+				return false;
+			};
+			var aLi = document.querySelectorAll('#page5_ul li');
+			for(var i=0;i<aLi.length;i++){
+				through(aLi[i]);
+			}
+			function hoverDir(obj,ev){
+				var w = obj.offsetWidth;
+				var h = obj.offsetHeight;
+				var x = obj.offsetLeft+w/2-ev.clientX;
+				var y = obj.offsetTop+h/2-ev.clientY;
+				return Math.round((Math.atan2(y,x)*180/Math.PI+180)/90)%4;
+			}
+			function through(obj){
+				var oS = obj.children[0];
+				obj.onmouseover=function(ev){
+					var oEvent = ev||event;
+					var oFrom = oEvent.fromElement||oEvent.relatedTarget;
+					if(obj.contains(oFrom))return;
+					var n = hoverDir(obj,oEvent);
+					switch(n){
+						case 0:
+							oS.style.left='200px';
+							oS.style.top=0;
+						break;
+						case 1:
+							oS.style.left=0;
+							oS.style.top='200px';
+						break;
+						case 2:
+							oS.style.left='-200px';
+							oS.style.top=0;
+						break;
+						case 3:
+							oS.style.left=0;
+							oS.style.top='-200px';
+						break;
+					}
+					move(oS,{top:0,left:0});
+				};
+				obj.onmouseout=function(ev){
+					var oEvent = ev||event;
+					var oTo = oEvent.toElement||oEvent.relatedTarget;
+					if(obj.contains(oTo))return;
+					var n = hoverDir(obj,oEvent);
+					switch(n){
+						case 0:
+							move(oS,{top:0,left:200});
+						break;
+						case 1:
+							move(oS,{top:150,left:0});
+						break;
+						case 2:
+							move(oS,{top:0,left:-200});
+						break;
+						case 3:
+							move(oS,{top:-150,left:0});
+						break;
+					}
+				};
+			}
+		})();
+		
+		
+		//碰撞
+		/*;(function(){
+			var oDiv=document.getElementById('page6_ball');
+			var oDiv2=document.getElementById('page6_ball2');
+			boll(oDiv,oDiv2);
+			boll(oDiv2,oDiv);
+			
+			
+			
+			function boll(obj1,obj2){
+				obj1.iSpeedX=0;
+				obj1.iSpeedY=0;
+				
+				obj1.lastX=0;
+				obj1.lastY=0;
+				
+				obj1.timer=null;	
+				
+				obj1.onmousedown=function(ev){
+					
+					var oEvent=ev || event;
+					oEvent.cancelBubble=true;
+					var disX=oEvent.clientX-obj1.offsetLeft;
+					var disY=oEvent.clientY-obj1.offsetTop;
+					
+					clearInterval(obj1.timer);
+					document.onmousemove=function(ev){
+						var oEvent=ev || event;
+						obj1.style.left=oEvent.clientX-disX+'px';
+						obj1.style.top=oEvent.clientY-disY+'px';
+						
+						//算速度
+						obj1.iSpeedX=oEvent.clientX-obj1.lastX;
+						obj1.iSpeedY=oEvent.clientY-obj1.lastY;
+						
+						obj1.lastX=oEvent.clientX;
+						obj1.lastY=oEvent.clientY;
+					};
+					document.onmouseup=function(){
+						document.onmousemove=null;
+						document.onmouseup=null;
+						
+						//alert(iSpeedX+','+iSpeedY);	
+						duangMove(obj1,obj2);
+					};
+					return false;
+				};
+				
+				function duangMove(obj1,obj2){
+					clearInterval(obj1.timer);
+					obj1.timer=setInterval(function(){
+						obj1.iSpeedY+=5;
+						
+						obj1.l=obj1.offsetLeft+obj1.iSpeedX;
+						console.log(obj1.l)
+						obj1.t=obj1.offsetTop+obj1.iSpeedY;
+						if(obj1.t>=document.documentElement.clientHeight-obj1.offsetHeight){
+							obj1.t=document.documentElement.clientHeight-obj1.offsetHeight;
+							obj1.iSpeedY*=-0.8;
+							obj1.iSpeedX*=0.8;
+						}
+						if(obj1.l>=document.documentElement.clientWidth-obj1.offsetWidth){
+							obj1.l=document.documentElement.clientWidth-obj1.offsetWidth;
+							obj1.iSpeedX*=-0.8;
+							obj1.iSpeedY*=0.8;
+						}
+						if(obj1.t<=0){
+							obj1.t=0;
+							obj1.iSpeedY*=-0.8;
+							obj1.iSpeedX*=0.8;
+						}
+						if(obj1.l<=0){
+							obj1.l=0;
+							obj1.iSpeedX*=-0.8;
+							obj1.iSpeedY*=0.8;
+							
+							
+							
+							
+							
+						}
+						if(peng(obj1,obj2)){
+							if(obj2.iSpeedX<obj1.iSpeedX){
+								obj2.iSpeedX=sobj2.iSpeedX+obj1.iSpeedX*1;
+								obj1.iSpeedX*=1;
+							}
+							if(obj2.iSpeedY<obj1.iSpeedY){
+								obj2.iSpeedY=obj2.iSpeedY+obj1.iSpeedY*1;
+								obj1.iSpeedY*=1;
+							}
+							
+							duangMove(obj2,obj1)
+						}
+						obj1.style.left=obj1.l+'px';
+						obj1.style.top=obj1.t+'px';
+						
+						if(Math.abs(obj1.iSpeedX)<1)obj1.iSpeedX=0;
+						if(Math.abs(obj1.iSpeedY)<1)obj1.iSpeedY=0;
+						
+						if(Math.abs(obj1.iSpeedX)<1 && Math.abs(obj1.iSpeedY)<1 && obj1.t==document.documentElement.clientHeight-obj1.offsetHeight){
+							clearInterval(obj1.timer);
+						}
+					},30);
+				}
+			
+				
+				function peng(obj1,obj2){
+					var l1=obj1.offsetLeft;
+					var r1=obj1.offsetLeft+obj1.offsetWidth;
+					var t1=obj1.offsetTop;
+					var b1=obj1.offsetTop+obj1.offsetHeight;
+					var l2=obj2.offsetLeft;
+					var r2=obj2.offsetLeft+obj2.offsetWidth;
+					var t2=obj2.offsetTop;
+					var b2=obj2.offsetTop+obj2.offsetHeight;
+					if(l1>r2||r1<l2||t1>b2||b1<t2){
+						
+					}else{
+						return true;
+					}
+				}
+			}
+		})();*/
+		
+		
+		//换页
+		function pagechange(){
+			if(iNowPage[1]==1&&iNow!=1){
+				oUl.innerHTML='';
+			}
+			
+			if(iNow==1&&iNowPage[1]!=1){
+			;(function(){
+				
+				var lastX;
+				var lastY;
+				var speedY;
+				var speedX;
+				
+				var timer1=null;
+				
+				var y=0;
+				var x=75;
+				for(var i=0; i<11; i++){
+					var oLi=document.createElement('li');
+					oLi.style.backgroundImage='url(img/'+(i+1)+'.jpg)';
+					oUl.appendChild(oLi);
+					oLi.style.transition='1s all ease '+300+'ms';
+					var oSpan=document.createElement('span');
+					oSpan.style.backgroundImage='url(img/'+(i+1)+'.jpg)';
+					oLi.appendChild(oSpan);
+				}
+				
+				var aLi=oUl.getElementsByTagName('li');
+				var n=10;
+				var timer=null;
+				timer=setInterval(function(){
+					if(aLi[n]){
+						setStyle3(aLi[n],'transform','rotateY('+n*360/11+'deg) translateZ(300px)')
+						n--;
+						if(n==-1){
+							clearInterval(timer);
+						}
+					}
+				},200);
+				aLi[0].addEventListener('transitionend',function(){
+					for(var i=0; i<aLi.length;i++){
+						//aLi[i].style.transform='rotateY('+(i*360/11+y)+'deg) translateZ(300px)';
+						setStyle3(aLi[i],'transform','rotateY('+(i*360/11+y)+'deg) translateZ(300px)');
+						var s=Math.abs(i*360/11+y)%360;
+						if(s>180){
+							s=360-s;
+						}
+						s=180-s;
+						scale=s/180;
+						scale<0.2&&(scale=0.2);
+						aLi[i].style.opacity=scale;
+						oP2box.onmousedown=function(ev){
+							var oEvent=ev||event;
+							var oldX=oEvent.clientX;
+							var oldY=oEvent.clientY;
+							var oldy=y
+							var oldx=x
+							
+							document.onmousemove=function(ev){
+								var oEvent=ev||event;
+								y=oEvent.clientX-oldX+oldy;
+								x=oEvent.clientY-oldY+oldx;
+								for(var j=0; j<aLi.length;j++){
+									aLi[j].style.transition='none';
+									setStyle3(aLi[j],'transform','rotateY('+(j*360/11+y/5)+'deg) translateZ(300px)');
+									var s=Math.abs(j*360/11+y/5)%360;
+									if(s>180){
+										s=360-s;
+									}
+									s=180-s;
+									scale=s/180;
+									scale<0.2&&(scale=0.2);
+									aLi[j].style.opacity=scale;
+									aLi[j].style.alpha='opacity('+scale*100+')';
+								}
+								//oUl.style.transform='perspective(800px) rotateX('+-x/5+'deg)';
+								setStyle3(oUl,'transform','perspective(800px) rotateX('+-x/5+'deg)');
+								speedY=oEvent.clientX-lastX;
+								lastX=oEvent.clientX;
+								speedX=oEvent.clientY-lastY;
+								lastY=oEvent.clientY;
+							}
+							document.onmouseup=function(){
+								document.onmousemove=null;
+								document.onmouseup=null;
+								clearInterval(timer1);
+								timer1=setInterval(function(){
+									speedY*=0.95;
+									y=y+speedY;
+									for(var k=0; k<aLi.length;k++){
+										aLi[k].style.transition='none';
+										//aLi[k].style.transform='rotateY('+(k*360/11+y/5)+'deg) translateZ(300px)';
+										setStyle3(aLi[k],'transform','rotateY('+(k*360/11+y/5)+'deg) translateZ(300px)');
+										var s=Math.abs(k*360/11+y/5)%360;
+										if(s>180){
+											s=360-s;
+										}
+										s=180-s;
+										scale=s/180;
+										scale<0.2&&(scale=0.2);
+										aLi[k].style.opacity=scale;
+										aLi[k].style.alpha='opacity('+scale*100+')';
+									}
+									speedX*=0.8;
+									x+=speedX;
+									//oUl.style.transform='perspective(800px) rotateX('+-x/5+'deg)';
+									setStyle3(oUl,'transform','perspective(800px) rotateX('+-x/5+'deg)');
+									if((Math.abs(speedX)<5)&&(Math.abs(speedY)<5)){
+										clearInterval(timer1);
+									}
+								},30)
+								
+								
+							}
+							oEvent.cancelBubble=true;
+							return false;
+						}
+					}
+			
+				},false)
+				
+			})();
+			}
+		}
+		;(function(){
+			
+		function d2a(n)
+			{
+				return n*Math.PI/180;
+			}
+			function a2d(n)
+			{
+				return n*180/Math.PI;
+			}
+			function rnd(n, m)
+			{
+				return Math.floor(Math.random()*(m-n))+n;
+			}
+			
+			//1.加载图片
+			var json={};
+			function loadImages(arr, fn)
+			{
+				var count=0;
+				
+				for(var i=0;i<arr.length;i++)
+				{
+					var oImg=new Image();
+					
+					oImg.src=arr[i];
+					
+					(function (index){
+						oImg.onload=function ()
+						{
+							json[arr[index]]=this;
+							
+							count++;
+							
+							if(count==arr.length)
+							{
+								fn();
+							}
+						};
+					})(i);
+				}
+			}
+			
+			//2.鱼
+			var FISH_SIZE=[
+				null,
+				{w: 55, h: 37, collR: 17},
+				{w: 78, h: 64, collR: 24},
+				{w: 72, h: 56, collR: 20},
+				{w: 77, h: 59, collR: 22},
+				{w: 107, h: 122, collR: 29}
+			];
+			function Fish(type)
+			{
+				this.type=type;
+				
+				this.x=0;
+				this.y=0;
+				
+				this.rotate=0;
+				
+				this.speed=rnd(1, 4);
+				
+				this.cur=0;
+				
+				this.collR=FISH_SIZE[type].collR;
+				
+				//动
+				this._timer1=null;
+				this._timer2=null;
+				
+				this.move();
+			}
+			
+			Fish.prototype.draw=function (gd)
+			{
+				//宽高
+				var w=FISH_SIZE[this.type].w;
+				var h=FISH_SIZE[this.type].h;
+				
+				//画
+				gd.save();
+				
+				gd.translate(this.x, this.y);
+				gd.rotate(d2a(this.rotate));
+				if(this.rotate>90 && this.rotate<270)
+				{
+					gd.scale(1, -1);
+				}
+				
+				gd.drawImage(
+					json['img/fish'+this.type+'.png'],
+					0, h*this.cur, w, h,
+					-w/2, -h/2, w, h
+				);
+				
+				gd.restore();
+			};
+			
+			Fish.prototype.move=function ()
+			{
+				var _this=this;
+				
+				//摆尾巴
+				this._timer1=setInterval(function (){
+					_this.cur++;
+					
+					if(_this.cur==4)
+						_this.cur=0;
+				}, 150);
+			
+				
+				//走起来
+				this._timer2=setInterval(function (){
+					//y=sin(ang)*speed
+					//x=cos(ang)*speed
+					var speedX=Math.cos(d2a(_this.rotate))*_this.speed;
+					var speedY=Math.sin(d2a(_this.rotate))*_this.speed;
+					
+					_this.x+=speedX;
+					_this.y+=speedY;
+				}, 30);
+			};
+			
+			Fish.prototype.close=function ()
+			{
+				clearInterval(this._timer1);
+				clearInterval(this._timer2);
+			};
+			
+			Fish.prototype.isIn=function (x, y)
+			{
+				var a=x-this.x;
+				var b=y-this.y;
+				
+				var dis=Math.sqrt(a*a+b*b);
+				
+				if(dis<=this.collR)
+					return true;
+				else
+					return false;
+			};
+			
+			//3.炮、弹
+			var CANNON_SIZE=[
+				null,
+				{w: 74, h: 74},
+				{w: 74, h: 76},
+				{w: 74, h: 76},
+				{w: 74, h: 83},
+				{w: 74, h: 85},
+				{w: 74, h: 90},
+				{w: 74, h: 94}
+			];
+			function Cannon(type)
+			{
+				this.type=type;
+				
+				this.x=0;
+				this.y=0;
+				
+				this.rotate=0;
+			}
+			
+			Cannon.prototype.draw=function (gd)
+			{
+				var w=CANNON_SIZE[this.type].w;
+				var h=CANNON_SIZE[this.type].h;
+				
+				gd.save();
+				
+				gd.translate(this.x, this.y);
+				gd.rotate(d2a(this.rotate));
+				
+				gd.drawImage(
+					json['img/cannon'+this.type+'.png'],
+					0, 0, w, h,
+					-w/2, -h/2, w, h
+				);
+				
+				gd.restore();
+			};
+			
+			var BULLET_SIZE=[
+				null,
+				{x: 86, y: 0, w: 24, h: 26},
+				{x: 62, y: 0, w: 25, h: 29},
+				{x: 30, y: 0, w: 31, h: 35},
+				{x: 32, y: 35, w: 27, h: 31},
+				{x: 30, y: 82, w: 29, h: 33},
+				{x: 0, y: 82, w: 30, h: 34},
+				{x: 0, y: 0, w: 30, h: 44}
+			];
+			function Bullet(type)
+			{
+				this.type=type;
+				
+				this.x=0;
+				this.y=0;
+				
+				this.rotate=0;
+				
+				//速度
+				this.speed=5;
+				
+				this._timer=null;
+				this.move();
+			}
+			
+			Bullet.prototype.draw=function (gd)
+			{
+				var x=BULLET_SIZE[this.type].x;
+				var y=BULLET_SIZE[this.type].y;
+				var w=BULLET_SIZE[this.type].w;
+				var h=BULLET_SIZE[this.type].h;
+				
+				gd.save();
+				
+				gd.translate(this.x, this.y);
+				gd.rotate(d2a(this.rotate));
+				
+				gd.drawImage(
+					json['img/bullet.png'],
+					x, y, w, h,
+					-w/2, -h/2, w, h
+				);
+				
+				gd.restore();
+			};
+			
+			Bullet.prototype.move=function ()
+			{
+				var _this=this;
+				
+				this._timer=setInterval(function (){
+					var speedX=Math.sin(d2a(_this.rotate))*_this.speed;
+					var speedY=Math.cos(d2a(_this.rotate))*_this.speed;
+					
+					_this.x+=speedX;
+					_this.y-=speedY;
+				}, 30);
+			};
+			
+			Bullet.prototype.close=function ()
+			{
+				clearInterval(this._timer);
+			};
+			
+			
+			//4.按钮
+			function Button(img, w, h, nx, ny, dx, dy)
+			{
+				this.img=img;
+				
+				this.w=w;
+				this.h=h;
+				this.nx=nx;
+				this.ny=ny;
+				this.dx=dx;
+				this.dy=dy;
+				
+				this.x=0;
+				this.y=0;
+				this.rotate=0;
+				
+				this.status='normal';
+			}
+			
+			Button.prototype.draw=function (gd)
+			{
+				var sx=0;
+				var sy=0;
+				
+				switch(this.status)
+				{
+					case 'normal':
+						sx=this.nx;
+						sy=this.ny;
+						break;
+					case 'down':
+						sx=this.dx;
+						sy=this.dy;
+						break;
+				}
+				
+				//画
+				gd.save();
+				
+				gd.translate(this.x, this.y);
+				gd.rotate(d2a(this.rotate));
+				
+				gd.drawImage(
+					this.img,
+					sx, sy, this.w, this.h,
+					-this.w/2, -this.h/2, this.w, this.h
+				);
+				
+				gd.restore();
+			};
+			
+			Button.prototype.isIn=function (x, y)
+			{
+				var l=this.x-this.w/2;
+				var r=this.x+this.w/2;
+				var t=this.y-this.h/2;
+				var b=this.y+this.h/2;
+				
+				if(l<=x && x<=r && t<=y && y<=b)
+					return true;
+				else
+					return false;
+			};
+			
+			//5.金币
+			function Coin(type)
+			{
+				this.type=type;
+				
+				this.x=0;
+				this.y=0;
+				
+				this.cur=0;
+				
+				this.move();
+			}
+			
+			Coin.prototype.draw=function (gd)
+			{
+				gd.save();
+				
+				gd.translate(this.x, this.y);
+				
+				gd.drawImage(
+					json['img/coinAni'+this.type+'.png'],
+					0, 60*this.cur, 60, 60,
+					-30, -30, 60, 60
+				);
+				
+				gd.restore();
+			};
+			
+			Coin.prototype.move=function ()
+			{
+				var _this=this;
+				
+				this._timer1=setInterval(function (){
+					_this.cur++;
+					
+					if(_this.cur==10)
+						_this.cur=0;
+				}, 50);
+				
+				//过去
+				this._timer2=setInterval(function (){
+					//67, 560
+					_this.x+=(67-_this.x)/5;
+					_this.y+=(580-_this.y)/5;
+				}, 30);
+			};
+			
+			Coin.prototype.close=function ()
+			{
+				clearInterval(this._timer);
+			};
+			
+			
+				var oC=document.getElementById('c1');
+				oC.onmousedown=function(ev){
+					var oEvent=ev||event;
+					oEvent.cancelBubble=true;
+					return false;
+				};
+				var gd=oC.getContext('2d');
+				
+				loadImages([
+					//鱼
+					'img/fish1.png', 'img/fish2.png', 'img/fish3.png', 'img/fish4.png', 'img/fish5.png',
+					//炮
+					'img/cannon1.png', 'img/cannon2.png', 'img/cannon3.png', 'img/cannon4.png', 'img/cannon5.png', 'img/cannon6.png', 'img/cannon7.png',
+					//炮台
+					'img/bottom.png',
+					//炮弹
+					'img/bullet.png',
+					//钱
+					'img/coinAni1.png', 'img/coinAni2.png'
+				], function (){
+					//正式开始
+					//鱼
+					var arrFish=[];
+					
+					//炮
+					var oCannon=new Cannon(1);
+					oCannon.x=431;
+					oCannon.y=570;
+					
+					//炮弹
+					var arrBullet=[];
+					
+					//限制开炮频率
+					var last=0;
+					
+					//按钮
+					var oBtnPlus=new Button(
+						//img, w, h
+						json['img/bottom.png'], 36, 28,
+						//nx, ny, dx, dy
+						47, 75, 3, 75
+					);
+					oBtnPlus.x=490;
+					oBtnPlus.y=580;
+					
+					var oBtnMinus=new Button(
+						//img, w, h
+						json['img/bottom.png'], 36, 28,
+						//nx, ny, dx, dy
+						135, 75, 91, 75
+					);
+					oBtnMinus.x=370;
+					oBtnMinus.y=580;
+					
+					var arrCoin=[];
+					
+					//绘制
+					setInterval(function (){
+						gd.clearRect(0, 0, oC.width, oC.height);
+						
+						//生成鱼
+						if(Math.random()<0.03)	//1秒1条
+						{
+							var f=new Fish(rnd(1, 6));
+							
+							var a=rnd(1,5);
+							
+							if(a==1)			//左边出来
+							{
+								f.x=-10;
+								f.y=rnd(100, oC.height-100);
+								f.rotate=rnd(-30, 30);
+							}
+							else if(a==2)		//右边出来
+							{
+								f.x=oC.width+10;
+								f.y=rnd(100, oC.height-100);
+								f.rotate=rnd(180-30, 180+30);
+							}
+							else if(a==3)		//上边
+							{
+
+								f.x=rnd(100, oC.width-100);
+								f.y=-10;
+								f.rotate=rnd(90-30, 90+30);
+							}
+							else				//下边
+							{
+								f.x=rnd(100, oC.width-100);
+								f.y=oC.height+10;
+								f.rotate=rnd(270-30, 270+30);
+							}
+							arrFish.push(f);
+						}
+						
+						//1.鱼
+						for(var i=0;i<arrFish.length;i++)
+							arrFish[i].draw(gd);
+						
+						
+						
+						
+						
+						//4.钱
+						for(var i=0;i<arrCoin.length;i++)
+						{
+							arrCoin[i].draw(gd);
+						}
+						
+						//2.炮+弹
+						//1.台子
+						gd.drawImage(json['img/bottom.png'], 0, 0, 765, 70, 4, 532, 765, 70);
+						
+						//2.炮弹
+						for(var i=0;i<arrBullet.length;i++)
+						{
+							arrBullet[i].draw(gd);
+						}
+						
+						//3.炮
+						oCannon.draw(gd);
+						
+						//3.按钮
+						oBtnPlus.draw(gd);
+						oBtnMinus.draw(gd);
+						
+						//----------------------------------------
+						//一旦出去了，干掉——鱼、炮弹
+						for(var i=0;i<arrFish.length;i++)
+						{
+							if(arrFish[i].x<-100 || arrFish[i].y<-100 || arrFish[i].x>oC.width+100 || arrFish[i].y>oC.height+100)
+							{
+								arrFish[i].close();
+								arrFish.splice(i, 1);
+								i--;
+							}
+						}
+						for(var i=0;i<arrBullet.length;i++)
+						{
+							if(arrBullet[i].x<-100 || arrBullet[i].y<-100 || arrBullet[i].x>oC.width+100 || arrBullet[i].y>oC.height+100)
+							{
+								arrBullet[i].close();
+								arrBullet.splice(i, 1);
+								i--;
+							}
+						}
+						
+						//----------------------------------------
+						//钱到了地方，也消失
+						for(var i=0;i<arrCoin.length;i++)
+						{
+							if(Math.abs(arrCoin[i].x-67)<1 && Math.abs(arrCoin[i].y-580)<1)
+							{
+								arrCoin[i].close();
+								arrCoin.splice(i, 1);
+								i--;
+							}
+						}
+						
+						//----------------------------------------
+						//鱼和炮弹碰上没有
+						for(var i=0;i<arrFish.length;i++)
+						{
+							for(var j=0;j<arrBullet.length;j++)
+							{
+								if(arrFish[i].isIn(arrBullet[j].x, arrBullet[j].y))
+								{
+									if(Math.random()<(arrBullet[j].type/arrFish[i].type))
+									{
+										var x=arrFish[i].x;
+										var y=arrFish[i].y;
+										
+										//alert('a');
+										//鱼——死
+										arrFish[i].close();
+										arrFish.splice(i, 1);
+										i--;
+										
+										//炮弹——死
+										arrBullet[j].close();
+										arrBullet.splice(j, 1);
+										
+										//造金币
+										var c=new Coin(1);
+										
+										c.x=x;
+										c.y=y;
+										
+										arrCoin.push(c);
+										
+										break;
+									}
+									else
+									{
+										//炮弹——死
+										arrBullet[j].close();
+										arrBullet.splice(j, 1);
+										
+										break;
+									}
+								}
+							}
+						}
+					}, 30);
+					
+					//事件
+					oC.onclick=function (ev)
+					{
+						//旋转炮塔
+						var x=ev.pageX-oC.offsetLeft-oCannon.x;
+						var y=oCannon.y-ev.pageY+oC.offsetTop;
+						var r=90-a2d(Math.atan2(y, x));
+						oCannon.rotate=r;
+						
+						//炮弹
+						var t=new Date().getTime();
+						
+						if(t-last>500)
+						{
+							var b=new Bullet(oCannon.type);
+							b.x=oCannon.x;
+							b.y=oCannon.y;
+							b.rotate=oCannon.rotate;
+							
+							arrBullet.push(b);
+							
+							last=t;
+						}
+						return false;
+					};
+					
+					oC.onmousedown=function (ev)
+					{
+						var x=ev.pageX-oC.offsetLeft;
+						var y=ev.pageY-oC.offsetTop;
+						console.log(''+x+'-'+y);
+						if(oBtnPlus.isIn(x, y))
+						{
+							oCannon.type++;
+							if(oCannon.type>7)
+								oCannon.type=7;
+							
+							oBtnPlus.status='down';
+						}
+						if(oBtnMinus.isIn(x, y))
+						{
+							oCannon.type--;
+							if(oCannon.type<1)
+								oCannon.type=1;
+							
+							oBtnMinus.status='down';
+						}
+						ev.cancelBubble=true;
+						return false;
+					};
+					oC.onmouseup=function ()
+					{
+						oBtnPlus.status='normal';
+						oBtnMinus.status='normal';
+					};
+				});
+		})();
+	};
+	
+	function setStyle3(obj,name,value){
+		var str=name.charAt(0).toUpperCase()+name.substring(1);
+		
+		obj.style['Webkit'+str]=value;
+		obj.style['Moz'+str]=value;
+		obj.style['O'+str]=value;
+		obj.style['Ms'+str]=value;
+		obj.style[name]=value;
+	}
+			
+	
+</script>
+</head>
+
+<body style="overflow-x:hidden">
+<p id="prev"><<</p>
+<p id="next">>></p>
+<div id="box">
+
+	<div id="pagebox" class="pagebox">
+        <div id="page1" class="page">
+            <div id="page5_div1" class="page5_page">
+                <div class="page5_box">
+                        <ul class="page5_box_head" id="page5_box_head">
+                            <li><a href="javascirpt:;"><img src="appleimg2/1.jpg" alt=""/>iPod shuffle</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/2.jpg" alt=""/>iPod nano</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/3.jpg" alt=""/>iPod classic</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/4.jpg" alt=""/>iPod touch</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/5.jpg" alt=""/>Apple TV</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/6.jpg" alt=""/>Accessories</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/7.jpg" alt=""/>Download iTunes 10</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/8.jpg" alt=""/>iTunes Gift Cards</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/9.jpg" alt=""/>Nike + iPod</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/10.jpg" alt=""/>(PRODUCT) RED</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/11.jpg" alt=""/>MobileMe</a></li>
+                            <li><a href="javascirpt:;"><img src="appleimg2/12.jpg" alt=""/>In-Ear Headphones</a></li>
+                        </ul>
+                </div>
+                <div class="page5_box_foot" id="page5_box_foot">
+                    <span style="left: 424px;" class="caret" id="caret"></span>
+                    <a class="show">Products</a>
+                    <a>iTunes and more</a>
+                </div>
+            </div>
+			
+            <ul id="page5_ul" class="page5_ul">
+                <li style="background:url(img/star5.jpg)"><span>齐达内</span></li>
+                <li style="background:url(img/star6.jpg)"><span>梅西</span></li>
+                <li style="background:url(img/star7.jpg)"><span>罗纳尔多</span></li>
+                <li style="background:url(img/star8.jpg)"><span>小罗</span></li>
+                <li style="background:url(img/star1.jpg)"><span>詹姆斯</span></li>
+                <li style="background:url(img/star2.jpg)"><span>投篮</span></li>
+                <li style="background:url(img/star3.jpg)"><span>科比</span></li>
+                <li style="background:url(img/star4.jpg)"><span>乔丹</span></li>
+            </ul>
+        
+            <div id="applebox">
+                <img src="appleimg/1.png" width="64" />
+                <img src="appleimg/2.png" width="64" />
+                <img src="appleimg/3.png" width="64" />
+                <img src="appleimg/4.png" width="64" />
+                <img src="appleimg/5.png" width="64" />
+            </div>
+        </div>
+        
+        <div id="page2" class="page">
+            <div id="page2_box">
+                <ul class="page2_ul" id="page2_ul"> 	
+                </ul>
+            </div>
+        </div>
+        
+		<div id="page5"  class="page">
+			
+        	<canvas id="c1" width="800" height="600">
+				你的浏览器版本过低
+			</canvas>
+        </div>
+		
+        <div id="page3"  class="page">
+        	<p id="page3_p">手机桌面拖动效果-两种方式</p>
+            <ul id="page3_ul1">
+                <li><img src="appleimg2/1.jpg" alt=""/></li>
+                <li><img src="appleimg2/2.jpg" alt=""/></li>
+                <li><img src="appleimg2/3.jpg" alt=""/></li>
+                <li><img src="appleimg2/4.jpg" alt=""/></li>
+                <li><img src="appleimg2/5.jpg" alt=""/></li>
+                <li><img src="appleimg2/6.jpg" alt=""/></li>
+                <li><img src="appleimg2/7.jpg" alt=""/></li>
+                <li><img src="appleimg2/8.jpg" alt=""/></li>
+                <li><img src="appleimg2/9.jpg" alt=""/></li>
+                <li><img src="appleimg2/10.jpg" alt=""/></li>
+                <li><img src="appleimg2/11.jpg" alt=""/></li>
+                <li><img src="appleimg2/12.jpg" alt=""/></li>
+            </ul>
+            <ul id="page3_ul2">
+                <li><img src="appleimg2/1.jpg" alt=""/></li>
+                <li><img src="appleimg2/2.jpg" alt=""/></li>
+                <li><img src="appleimg2/3.jpg" alt=""/></li>
+                <li><img src="appleimg2/4.jpg" alt=""/></li>
+                <li><img src="appleimg2/5.jpg" alt=""/></li>
+                <li><img src="appleimg2/6.jpg" alt=""/></li>
+                <li><img src="appleimg2/7.jpg" alt=""/></li>
+                <li><img src="appleimg2/8.jpg" alt=""/></li>
+                <li><img src="appleimg2/9.jpg" alt=""/></li>
+                <li><img src="appleimg2/10.jpg" alt=""/></li>
+                <li><img src="appleimg2/11.jpg" alt=""/></li>
+                <li><img src="appleimg2/12.jpg" alt=""/></li>
+            </ul>
+            
+        </div>
+        
+        <div id="page4"  class="page">
+            <div id="page4_box"></div>
+        </div>
+     </div>
+</div>
+</body>
+</html>
