@@ -1,0 +1,333 @@
+<html>
+
+<head>
+    <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+    <title>政府公开目录---依申请公开</title>
+
+    <link id="indexStyle" href="http://222.74.213.233:8018/apply/sqgk/css/hd_add.css" rel="stylesheet" type="text/css">
+
+    <script language="javascript" src="http://222.74.213.233:8018/apply/sqgk/hd_add_from_out.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function isIe(){
+            return window.ActiveXObject ? true : false;
+        }
+
+        var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+        if(isChrome==false){
+            if(isIe()==false){
+                alert("当前浏览器太高，请切换成兼容模式进行留言!");
+                closewin();
+            }
+        }
+
+        function closewin(){
+            var browserName=navigator.appName;
+            if (browserName=="Netscape") {
+                var opened=window.open('about:blank','_self');
+                opened.opener=null;
+                opened.close();
+            } else if(browserName=="Microsoft Internet Explorer") {
+                window.opener=null;
+                window.open('','_self');
+                window.close();
+            }
+        }
+    </script>
+    <style type="text/css">
+
+        .personTable td{
+
+            border-bottom:1px solid silver;
+
+            border-right:1px solid silver;
+
+        }
+
+        .personTable{
+
+            width:780px;
+
+        }
+
+        .tableBorder{
+
+        }
+
+        .tableBorder td{
+
+            padding-left:8px;
+
+            border-bottom:1px solid silver;
+
+            border-right:1px solid silver;
+
+        }
+
+        .tdBorder, .personTable td{
+
+            border-bottom:1px solid silver;
+
+            border-right:1px solid silver;
+
+        }
+
+        .personTable td{
+
+            height:30px;
+
+        }
+
+        .personTable .label{
+
+            text-align:right;
+
+            padding-right:8px;
+
+            width:100px;
+
+            background:F8F8F8;
+
+        }
+
+        .personTable .normalText, .personTable  select{
+
+            margin-left:8px;
+
+            width:200px;
+
+            border:1px solid #9AABBB;
+
+            background-color:#FEFEF1;
+
+        }
+
+        textarea{
+
+            margin-left:8px;
+
+            width:550px;
+
+            height:50px;
+
+            border:1px solid #9AABBB;
+
+            background-color:#FEFEF1;
+
+        }
+
+        table{
+
+            font-size:14px;
+
+        }
+
+        .disableTable .normalText{
+
+        }
+
+        .requireStyle{
+
+            margin-left:4px;
+
+            color:red;
+
+        }
+
+        .RowLabel{
+
+            width:30px;
+
+            text-align:center;
+
+            color:red;
+
+            font-weight:bold;
+
+            font-size:14px;
+
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+<form name="frmData1" id="frmData1" method="post" action="hd_request_dispatch.jsp?url=hd_add_dowith.jsp" onsubmit="return submitData1();">
+
+    <div class="container">
+
+        <div class="main" style="text-align:center;">
+
+
+
+            <table border="0" cellspacing="0" cellpadding="0" style="border-left:1px solid silver;border-top:1px solid silver; width:715px;">
+
+                <tr>
+
+                    <td class="tdBorder RowLabel">个<br>人<br>信<br>息</td>
+
+                    <td>
+
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;height:100%;">
+                            <tr>
+
+                                <td colspan="2" id="dataContainer1">
+
+                                    <table class="personTable" border="0" cellspacing="0" cellpadding="0" style="width:100%;height:100%;">
+
+                                        <tbody>
+
+                                        <tr>
+
+                                            <td class="label">姓名</td><!--保留-->
+
+                                            <td><input class="normalText" type="text" id="applyerName" name="applyerName" value="" validation="type:'string',desc:'姓名',required:'',max_len:'100'"><span class="requireStyle">*</span></td>
+
+                                            <td class="label">联系电话</td><!--保留-->
+
+                                            <td><input class="normalText" type="text" id="telephone" name="telephone" value=""><span class="requireStyle">*</span>
+                                            </td>
+
+
+                                        </tr>
+
+                                        <tr>
+                                            <td class="label">电子邮件</td><!--保留-->
+
+                                            <td><input class="normalText" type="text" id="email" name="email" value=""><!--validation="type:'string',desc:'电子邮件',required:'',max_len:'50'" <span class="requireStyle">*</span>--></td>
+
+                                            <td class="label">工作单位</td><!--保留-->
+
+                                            <td><input class="normalText" type="text" id="department" name="department" value="" validation="type:'string',desc:'工作单位',max_len:'200'"></td>
+
+                                            <!--
+                                            <td class="label">邮政编码</td>
+
+                                            <td><input class="normalText" type="text" name="postCode" value="" validation="type:'string',desc:'邮政编码',required:'',max_len:'50'"><span class="requireStyle">*</span></td>
+                                            -->
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="label">联系地址</td><!--保留-->
+
+                                            <td><input class="normalText" type="text" id="address" name="address" value=""><!--<span class="requireStyle">*</span>  validation="type:'string',desc:'联系地址',required:'',max_len:'200'"--></td>
+
+                                            <td class="label">选择回复方式</td><!--保留-->
+
+                                            <td>
+
+                                                <select id="certificateName" name="certificateName">
+                                                    <option value="0">网站公开</option>
+                                                    <option value="10">邮件回复</option>
+                                                </select>
+
+                                            </td>
+                                            <!--
+                                            <td class="label">证件号码</td>
+
+                                            <td><input class="normalText" type="text" name="certificateCode" value="" validation="type:'string',desc:'证件号码',required:'',max_len:'50'"><span class="requireStyle">*</span></td>
+                                            -->
+                                        </tr>
+
+                                        </tbody>
+
+                                    </table>
+
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <table border="0" cellspacing="0" cellpadding="0" style="border-left:1px solid silver;width:715px;" id="dataContainer3">
+
+                <tr>
+
+                    <td class="tdBorder RowLabel" rowspan="2">咨<br>询<br>信<br>息<br>情<br>况</td>
+
+                    <td>
+
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;height:100%;" class="personTable">
+
+                            <tr>
+
+                                <td style="width:100px;height:50px;text-align:center;padding-right:8px;" class="tdBorder">主&nbsp;&nbsp;&nbsp;&nbsp;题</td>
+                                <td class="tdBorder">
+                                    <!--
+                                    <textarea name="applyDesc" style="height:22px;" validation="type:'string',desc:'主题',required:'',max_len:'200'"></textarea><span class="requireStyle">*</span>
+            `						-->
+                                    <input class="normalText" type="text" id="applyDesc" name="applyDesc" style="width:550px;" validation="type:'string',desc:'主题',required:'',max_len:'100'" maxlength="100"><span class="requireStyle">*</span>
+                                    <input type="hidden" id="channel" name="channel" value="933">
+                                </td>
+                            </tr>
+
+                            <tr>
+
+                                <td style="width:100px;height:130px;text-align:center;padding-right:8px;" class="tdBorder">留言内容<br>（1000字以内）</td>
+
+                                <td class="tdBorder">
+
+                                    <textarea id="purpose" name="purpose" style="height:110px;" validation="type:'string',desc:'留言内容',required:'',max_len:'1000'"></textarea><span class="requireStyle">*</span>
+
+                                </td>
+
+                            </tr>
+                        </table>
+
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+
+            <div class="verifyCode" style="text-align:left;padding-left:2px;">
+
+                输入图片中的字符：
+
+                <input type="text" id="rand" name="rand" value="" style="border:1px solid silver;width:60px;">
+
+                请输入验证码 <img src="http://222.74.213.233:8018/apply/verifycode" border="0" alt="" id="verifycodeImg" x-src="../verifycode">
+
+                <a href="" onclick="getNextVerifyCode();">看不清？换一张</a>
+                <input type="hidden" id="ip" name="ip" value="103.250.225.98" style="border:1px solid silver;width:90px;"><br>
+                <!--注：你的IP<font color="blue">103.250.225.98</font>将与信件一同记录！-->
+            </div>
+
+            <div style="margin-top:10px;">
+
+                <!--<button onclick="submitData1();">提&nbsp;&nbsp;&nbsp;交</button>-->
+                <input type="submit" style="height: 2em;line-height: 2em;overflow: hidden;" name="submit" value=" 提 交 ">&nbsp;&nbsp;&nbsp;
+                <input type="reset" style="height: 2em;line-height: 2em;overflow: hidden;" name="reset" value=" 重 置 ">
+                <!--&nbsp;&nbsp;&nbsp;<button onclick="window.history.back();">返&nbsp;&nbsp;&nbsp;回</button>-->
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</form>
+
+</body>
+
+</html><!-- Duration: 14ms-->
