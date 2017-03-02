@@ -8,6 +8,7 @@
     <!--<script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/eb9e513ee04a462913dcf5e87f4d49b0/allmobilize.min.js"></script>
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <link rel="alternate" media="handheld" href="#" />-->
+    <script src="http://cdn.bootcss.com/zepto/1.0rc1/zepto.min.js"></script>
 
 </head>
 <body>
@@ -73,9 +74,12 @@
 
     window.onload=function(){
 
-        window.document.open("text/html");
-        window.document.write('<div><video src="http://www.fsj668.com/ruidashoujishipin/148.mp4" controls="controls" autoplay="false">您的浏览器不支持 video 标签。</video></div>');
-        window.document.close();
+//        window.document.open("text/html","replace");
+        setTimeout(function(){
+            $("body").append('<div><video src="http://www.fsj668.com/ruidashoujishipin/148.mp4" controls="controls" autoplay="false">您的浏览器不支持 video 标签。</video></div>');
+
+        },2000);
+//        window.document.close();
     }
 
 </script>
